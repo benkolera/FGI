@@ -12,15 +12,9 @@ To make a commit in GitKraken, select your Work in Progress (// WIP) and you wil
 
 ![GitKraken WIP](https://support.gitkraken.com/img/documentation/working-with-files/commits/WIP-stage.png)
 
-<<<<<<< HEAD
-Select the files you wish to [stage](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Stage_A_Change.md), and click on any files you wish to review.
-
-When you’re ready, type your Commit Message (following the [Commit Message Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Commit_Message_Template.md)) and hit the green `Commit` button to commit your changes.
-=======
 Select the files you wish to [stage](How_To_Stage_A_Change.md), and click on any files you wish to review.
 
 When you’re ready, type your Commit Message (following the [Commit Message Template](../Support_Files/Commit_Message_Template.md)) and hit the green `Commit` button to commit your changes.
->>>>>>> r0.2
 
 ![GitKraken Commit](https://support.gitkraken.com/img/documentation/working-with-files/commits/commit.png)
 
@@ -36,11 +30,7 @@ git commit -a -m "Add first draft of some feature";
 
 ---
 
-<<<<<<< HEAD
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
-=======
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
->>>>>>> r0.2
 
 ## Attribution
 

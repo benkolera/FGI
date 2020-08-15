@@ -14,19 +14,11 @@ If you&rsquo;ve never used Git and GitHub before it can seem a bit daunting at f
 
 Git doesn&rsquo;t have a Graphic User Interface (GUI) and so it is controlled by typing commands in at the Command Line. There are, however, other programs which do have a GUI that you can install and use instead of Git that utilise the Git architecture, thus making it a lot easier to use and even see what is going on in a git repository. One of these programs is [GitKraken](https://www.gitkraken.com/), and because of its easy of use, availability on all computer platforms (Windows, Linux, and Mac), seemless integration with GitHub and GitHub&rsquo;s Issue Tracker, etc, and its cost (free!) GitKraken is the Git-Client software recommended by the Project. All of the Project&rsquo;s *How To&rsquo;s* are written assuming you are using GitKraken, but we&rsquo;ve also included the Command Line Git commands as well (for those who prefer that style of working).
 
-<<<<<<< HEAD
-GitKracken, GK-Boards, and several other useful Programs can be downloaded from the Project&rsquo;s [Tools](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Tools.md) Document.
-
-### A Git Glossary
-
-We&rsquo;ve provided a brief [Glossary](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Glossary.md) of terms commonly used with Git (and GitKraken) to help out those who aren&rsquo;t quite sure what any given term means.
-=======
 GitKracken, GK-Boards, and several other useful Programs can be downloaded from the Project&rsquo;s [Tools](Tools.md) Document.
 
 ### A Git Glossary
 
 We&rsquo;ve provided a brief [Glossary](Glossary.md) of terms commonly used with Git (and GitKraken) to help out those who aren&rsquo;t quite sure what any given term means.
->>>>>>> r0.2
 
 ## The Project&rsquo;s FGI-Workflow
 
@@ -36,21 +28,13 @@ For simplicity we call this hybrid workflow the *FGI-Workflow*.
 
 In the FGI-Workflow, each Contributor has their own copy of the Project&rsquo;s git repository (the Project&rsquo;s files and documents) stored on GitHub, known as their *public repository*. Each Contributor also has a copy of the Project&rsquo;s repository stored on their local computer, known as their *private repository*. Each of these repositories is keep synchronised with the *master* or *official repository* controlled by the Project&rsquo;s Maintainer(s).
 
-<<<<<<< HEAD
-![Project Workflow 1](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Workflow01.png)
-=======
 ![Project Workflow 1](../Support_Files/Workflow01.png)
->>>>>>> r0.2
 
 Like the Gitflow Workflow, the FGI-Workflow defines a strict branching model within each individual repository. It assigns very specific roles to different branches within the repository and defines how and when they should interact.
 
 The core idea behind this is that all of the activities that occur within the Project, such as feature development, bug fixes, and release preparations, should take place in their own dedicated branch. These branches can then be merged back into the &ldquo;offical&rdquo; `master` and the &ldquo;offical&rdquo; `develop` branches when ready. This encapsulation makes it easy for multiple Contributors to work on a particular feature without disturbing the rest of the Project. It also means the &ldquo;offical&rdquo; `master` branch will never contain broken code or unfinished documents, and that the &ldquo;offical&rdquo; `develop` branch never holds code or documents that have not been approved by the Project&rsquo;s Maintainers.
 
-<<<<<<< HEAD
-![Project Workflow 2](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Workflow02.png)
-=======
 ![Project Workflow 2](../Support_Files/Workflow02.png)
->>>>>>> r0.2
 
 The reason we use this workflow is that contributions can be integrated without the need for everybody to have write access to the official repository. Contributors submit new and edited documents and program files to their own public server-side repositories (known as *pushing*), and only the Project Maintainers can push to the official master repository. This allows the Maintainers to accept changes (known as *commits*) from any Contributor without giving them write access to the official manuscripts or codebase.
 
@@ -60,15 +44,9 @@ The result is a distributed workflow that provides a flexible way for large, org
 
 ### 1. Initial Repository Setup
 
-<<<<<<< HEAD
-The FGI-Workflow begins with an official public repository stored on a server (in our case, the GitHub Server at [https://github.com/Dulux-Oz/FGI](https://github.com/Dulux-Oz/FGI)). When a new repository is first initialised it normal begins with a single branch called `master`. However, the FGI-Workflow has two branches to record the history of the project. The `master` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It&rsquo;s also convenient to tag all commits in the `master` branch with a [SemVer+]((https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) version number.
-
-![Project Workflow 3](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Workflow03.png)
-=======
 The FGI-Workflow begins with an official public repository stored on a server (in our case, the GitHub Server at [https://github.com/Dulux-Oz/FGI](https://github.com/Dulux-Oz/FGI)). When a new repository is first initialised it normal begins with a single branch called `master`. However, the FGI-Workflow has two branches to record the history of the project. The `master` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It&rsquo;s also convenient to tag all commits in the `master` branch with a [SemVer+]((Semantic_Versioning_Plus.md) version number.
 
 ![Project Workflow 3](../Support_Files/Workflow03.png)
->>>>>>> r0.2
  
 ### 2. Getting Started
 
@@ -83,21 +61,12 @@ After they have created their server-side copy, the Contributor *clones* the rep
 
 **Further Information:**
 
-<<<<<<< HEAD
-- [How To Fork The Project](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Fork_The_Project.md)
-- [How To Clone A Repository](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Clone_A_Repository.md)
-
-### 3. Feature Branches
-
-![Project Workflow 4](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Workflow04.png)
-=======
 - [How To Fork The Project](How_To_Fork_The_Project.md)
 - [How To Clone A Repository](How_To_Clone_A_Repository.md)
 
 ### 3. Feature Branches
 
 ![Project Workflow 4](../Support_Files/Workflow04.png)
->>>>>>> r0.2
 
 Each new feature or document-set should reside in its own branch. But, instead of branching off of `master`, feature branches use `develop` as their parent branch. Feature branches should have descriptive names, like `animated-menu-items` or `issue-#1061`. The idea is to give a clear, highly-focused purpose to each branch.
 
@@ -120,19 +89,11 @@ You can think of pull requests as a discussion dedicated to a particular branch.
 
 **Further Information:**
 
-<<<<<<< HEAD
-- [How To Create A Branch](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Create_A_Branch.md)
-- [How To Stage A Change](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Stage_A_Change.md)
-- [How To Commit A Change](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Commit_A_Change.md)
-- [How To Push A Commit](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Push_A_Commit.md)
-- [How To File A Pull Request](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Document_A_Pull_Request.md)
-=======
 - [How To Create A Branch](How_To_Create_A_Branch.md)
 - [How To Stage A Change](How_To_Stage_A_Change.md)
 - [How To Commit A Change](How_To_Commit_A_Change.md)
 - [How To Push A Commit](How_To_Push_A_Commit.md)
 - [How To File A Pull Request](How_To_Document_A_Pull_Request.md)
->>>>>>> r0.2
 
 ### 4. Getting The Commit Into The Official Repository
 
@@ -149,13 +110,8 @@ To integrate the new work into the official repository, one of the Project Maint
 
 **Further Information:**
 
-<<<<<<< HEAD
-- [How To File A Pull Request](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Document_A_Pull_Request.md)
-- [How To Pull From A Repository](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Pull_From_A_Repository.md)
-=======
 - [How To File A Pull Request](How_To_Document_A_Pull_Request.md)
 - [How To Pull From A Repository](How_To_Pull_From_A_Repository.md)
->>>>>>> r0.2
 
 ### 5. Synchronisation
 
@@ -167,15 +123,6 @@ The contribution is now part of the Project, and other Contributors should pull 
 
 **Further Information:**
 
-<<<<<<< HEAD
-- [How To Pull From A Repository](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Pull_From_A_Repository.md)
-
-### 6. Release Branches
-
-![Project Workflow 5](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Workflow05.png)
-
-Once the official repository&rsquo;s `develop` branch has acquired enough features for a release (or a predetermined release date is approaching), the Project&rsquo;s Release Manager creates a release branch off of `develop` (in their own, local copy of the repository, after making sure their local copy is fully synchronised with the official repository). Creating this branch starts the next release cycle, so no new features can be added after this point — only bug fixes and other release-oriented tasks should go in this branch. Once it&rsquo;s ready to be deployed, the release gets merged into `master` and tagged with a [SemVer](http://semver.org) or a [SemVer+](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) version number as appropriate. In addition, the branch should also be merged back into `develop`, which may have progressed since the release was initiated. Other Contributors should now pull from the official repository to synchronise their local repositories.
-=======
 - [How To Pull From A Repository](How_To_Pull_From_A_Repository.md)
 
 ### 6. Release Branches
@@ -183,7 +130,6 @@ Once the official repository&rsquo;s `develop` branch has acquired enough featur
 ![Project Workflow 5](../Support_Files/Workflow05.png)
 
 Once the official repository&rsquo;s `develop` branch has acquired enough features for a release (or a predetermined release date is approaching), the Project&rsquo;s Release Manager creates a release branch off of `develop` (in their own, local copy of the repository, after making sure their local copy is fully synchronised with the official repository). Creating this branch starts the next release cycle, so no new features can be added after this point — only bug fixes and other release-oriented tasks should go in this branch. Once it&rsquo;s ready to be deployed, the release gets merged into `master` and tagged with a [SemVer](http://semver.org) or a [SemVer+](Semantic_Versioning_Plus.md) version number as appropriate. In addition, the branch should also be merged back into `develop`, which may have progressed since the release was initiated. Other Contributors should now pull from the official repository to synchronise their local repositories.
->>>>>>> r0.2
 
 Using a dedicated branch to prepare releases makes it possible for the Release Manager (and their team, if one exists) to polish the current release while other teams and individuals continues working on features for the next release. It also creates well-defined phases of development (eg it&rsquo;s easy to say, &ldquo;this week we&rsquo;re preparing for version 4.0&rdquo; and to actually see it in the structure of the repository).
 
@@ -196,17 +142,6 @@ Using a dedicated branch to prepare releases makes it possible for the Release M
 
 **Further Information:**
 
-<<<<<<< HEAD
-- [How To Perform A Release](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Perform_A_Release.md)
-
-### 7. Maintenance Or &ldquo;Hotfix&rdquo; Branches
-
-![Project Workflow 6](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Workflow06.png)
-
-Maintenance or &ldquo;hotfix&rdquo; branches are used to quickly patch production releases. They work the same as feature branches and anyone can work on a maintenance branch (not just the Project Maintainer(s)). However, maintenance branches branch directly off of `master` (and are the only branches to do so).
-
-As soon as the fix is complete, a pull request should be filed with the official repository and one of the Project Maintainers will then review it and merge it into both `master` and `develop` (or the current release branch), and `master` will be tagged with an updated [SemVer](http://semver.org) or a [SemVer+](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) version number as appropriate. Other Contributors should now pull from the official repository to synchronise their local repositories.
-=======
 - [How To Perform A Release](How_To_Perform_A_Release.md)
 
 ### 7. Maintenance Or &ldquo;Hotfix&rdquo; Branches
@@ -216,7 +151,6 @@ As soon as the fix is complete, a pull request should be filed with the official
 Maintenance or &ldquo;hotfix&rdquo; branches are used to quickly patch production releases. They work the same as feature branches and anyone can work on a maintenance branch (not just the Project Maintainer(s)). However, maintenance branches branch directly off of `master` (and are the only branches to do so).
 
 As soon as the fix is complete, a pull request should be filed with the official repository and one of the Project Maintainers will then review it and merge it into both `master` and `develop` (or the current release branch), and `master` will be tagged with an updated [SemVer](http://semver.org) or a [SemVer+](Semantic_Versioning_Plus.md) version number as appropriate. Other Contributors should now pull from the official repository to synchronise their local repositories.
->>>>>>> r0.2
 
 Having a dedicated line of development for bug fixes lets Contributors address issues without interrupting the rest of the workflow or waiting for the next release cycle.
 
@@ -231,19 +165,11 @@ Having a dedicated line of development for bug fixes lets Contributors address i
 
 ### Project Workflow Example
 
-<<<<<<< HEAD
-This [link](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Project_Workflow_Example.md) will take you to an example of using the FGI-Workflow.
-
----
-
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
-=======
 This [link](Project_Workflow_Example.md) will take you to an example of using the FGI-Workflow.
 
 ---
 
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
->>>>>>> r0.2
 
 ## Attribution
 

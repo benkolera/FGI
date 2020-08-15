@@ -20,19 +20,11 @@ The third sub-Project will be the further development of the *Deadlands Classic*
 
 In addition to all of the above are any extra &ldquo;features&rdquo; that Contributors would like to see in a Ruleset, or in *all* Rulesets, plus any refinement and further development of the Project&rsquo; documentation..
 
-<<<<<<< HEAD
-All of this is laid out in the Project&rsquo;s [Roadmap](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Project_Roadmap.md).
-
-All of the Project Documentation is listed below in logical groupings, so read the ones you need to (and the others that you want to) and find out how to effectively contribute to the Project.
-
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
-=======
 All of this is laid out in the Project&rsquo;s [Roadmap](Project_Roadmap.md).
 
 All of the Project Documentation is listed below in logical groupings, so read the ones you need to (and the others that you want to) and find out how to effectively contribute to the Project.
 
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
->>>>>>> r0.2
 
 ## Getting Started How To&rsquo;s
 
@@ -40,17 +32,6 @@ The Documents in this section explain all about how the to get started in contri
 
 The Documents should be should be read in order presented so that you can get a really good understanding of how the Project actually operates.
 
-<<<<<<< HEAD
-1. [How To Participate In The Project Workflow](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md)
-2. [Project Workflow Example](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Project_Workflow_Example.md)
-3. [The Project&rsquo;s Glossary](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Glossary.md)
-4. [Getting Started](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Getting_Started.md)
-5. [GitKraken Basics](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/GitKraken_Basics.md)
-6. [GK-Boards Basics](https://support.gitkraken.com/boards/quick-start/)
-7. [How To Fork The Project](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Fork_The_Project.md)
-8. [How To Clone A Repository](https://github.com/tree/master/Project_Documentation/How_To_Clone_A_Repository.md)
-9. [Useful Software Tools](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Tools.md)
-=======
 1. [How To Participate In The Project Workflow](How_To_Participate_In_The_Project_Workflow.md)
 2. [Project Workflow Example](Project_Workflow_Example.md)
 3. [The Project&rsquo;s Glossary](Glossary.md)
@@ -60,7 +41,6 @@ The Documents should be should be read in order presented so that you can get a 
 7. [How To Fork The Project](How_To_Fork_The_Project.md)
 8. [How To Clone A Repository](https://github.com/tree/master//How_To_Clone_A_Repository.md)
 9. [Useful Software Tools](Tools.md)
->>>>>>> r0.2
 
 ## Project Standards
 
@@ -70,13 +50,8 @@ We use these Standards to ensure that *everyone* is working, coding, and writing
 
 The Documents are listed in alphabetical order and can be read in any order.
 
-<<<<<<< HEAD
-- [Contributor Certificate Of Origin](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/CCO.md)
-- [Project Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_DocumentsStandards.md)
-=======
 - [Contributor Certificate Of Origin](CCO.md)
 - [Project Standards](Project_DocumentsStandards.md)
->>>>>>> r0.2
 
 ## Project Governance And Information
 
@@ -84,19 +59,6 @@ The Documents in this section explain how the Project is Governed &mdash; how de
 
 The Documents can be read in any order, although the order they are presented is a good one to read them in.
 
-<<<<<<< HEAD
-- [The Project&rsquo;s LICENSE](https://github.com/Dulux-Oz/FGI/tree/master/LICENSE.md)
-- [The Project&rsquo;s CODE OF CONDUCT](https://github.com/Dulux-Oz/FGI/tree/master/CODE_OF_CONDUCT.md)
-- [The Project&rsquo;s Misson Statement](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Mission_Statement.md)
-- [The Project&rsquo;s Governance](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Project_Governance.md)
-- [The Project&rsquo;s Contributor Certificate Of Origin Explained](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/CCO_Explained.md)
-- [Versioning &mdash; Semver+](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md)
-- [Voting](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Voting.md)
-- [File Locations](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/File_Locations.md)
-- [Project Roadmap](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Project_Roadmap.md)
-- [Project Acknowledgements](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Acknowledgements.md)
-- [Project FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md)
-=======
 - [The Project&rsquo;s LICENSE](LICENSE.md)
 - [The Project&rsquo;s CODE OF CONDUCT](CODE_OF_CONDUCT.md)
 - [The Project&rsquo;s Misson Statement](Mission_Statement.md)
@@ -108,7 +70,6 @@ The Documents can be read in any order, although the order they are presented is
 - [Project Roadmap](Project_Roadmap.md)
 - [Project Acknowledgements](Acknowledgements.md)
 - [Project FAQs](FAQs.md)
->>>>>>> r0.2
 
 ## Design Documents
 
@@ -116,19 +77,11 @@ The Documents in this section contain information and notes on the UDR, the UDRF
 
 The Documents can be read in any order, although the order they are presented is a good one to read them in.
 
-<<<<<<< HEAD
-- [The FG Architecture](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FG_Architecture.md)
-- [FG Coding](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FG_Coding.md)
-- [Die-Code EBNF Grammar Definition](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Die-Code_EBNF_Grammar_Definition.md)
-- [Die-Roll Data Structure](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Die-Roll_Data_Structure.md)
-- [Die-Roll Flowchart](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Die_Roll_Flowchart.md)
-=======
 - [The FG Architecture](FG_Architecture.md)
 - [FG Coding](FG_Coding.md)
 - [Die-Code EBNF Grammar Definition](../Support_Files/Die-Code_EBNF_Grammar_Definition.md)
 - [Die-Roll Data Structure](../Support_Files/Die-Roll_Data_Structure.md)
 - [Die-Roll Flowchart](../Support_Files/Die_Roll_Flowchart.md)
->>>>>>> r0.2
 
 ## How To&rsquo;s
 
@@ -136,23 +89,6 @@ The Documents in this Section are all of the Project&rsquo;s *How To* Documents.
 
 The Documents are listed in alphabetical order and can be read in any order.
 
-<<<<<<< HEAD
-- [How To Clone A Repository](https://github.com/tree/master/Project_Documentation/How_To_Clone_A_Repository.md)
-- [How To Commit A Change](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Commit_A_Change.md)
-- [How To Communicate Effectively](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Communicate_Effectively.md)
-- [How To Contribute](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Contribute.md)
-- [How To Create A Branch](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Create_A_Branch.md)
-- [How To File A Pull Request](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Document_A_Pull_Request.md)
-- [How To Fork The Project](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Fork_The_Project.md)
-- [How To Merge A Branch](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Merge_A_Branch.md)
-- [How To Participate In The Project Workflow](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md)
-- [How To Perform A Release](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Perform_A_Release.md)
-- [How To Pull From A Repository](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Pull_From_A_Repository.md)
-- [How To Push A Commit](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Push_A_Commit.md)
-- [How To Recognise Rudeness](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Recognise_Rudeness.md)
-- [How To Stage A Change](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Stage_A_Change.md)
-- [How To Test](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Test.md)
-=======
 - [How To Clone A Repository](https://github.com/tree/master//How_To_Clone_A_Repository.md)
 - [How To Commit A Change](How_To_Commit_A_Change.md)
 - [How To Communicate Effectively](How_To_Communicate_Effectively.md)
@@ -168,7 +104,6 @@ The Documents are listed in alphabetical order and can be read in any order.
 - [How To Recognise Rudeness](How_To_Recognise_Rudeness.md)
 - [How To Stage A Change](How_To_Stage_A_Change.md)
 - [How To Test](How_To_Test.md)
->>>>>>> r0.2
 
 ## Support Documents
 
@@ -176,29 +111,6 @@ The Documents in this section are primarily secondary informational documents an
 
 The Documents are listed in alphabetical order and can be read in any order.
 
-<<<<<<< HEAD
-- [Why We Don&rsquo;t Use Author Tags](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Author_Tags.md)
-- [Boilerplate Statements](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Boilerplate_Statements.md)
-- [Commit Message Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Commit_Message_Template.md)
-- [Community Roles &mdash; Maintainers](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Maintainers.md)
-- [GitHub Flavoured Markdown (GFM) Quick Spec](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/GFM_Quick_Spec.md)
-- [Links &amp; Resources](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Links.md)
-- [Lua File Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/lua_file_template.lua)
-- [MD Document With Images Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/MD_Document_With_Images_Template.md)
-- [MD Document Without Images Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/MD_Document_Without_Images_Template.md)
-- [PDF File With Images Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/PDF_File_With_Images_Template.pdf)
-- [PDF File Without Images Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/PDF_File_Without_Images_Template.pdf)
-- [OO Word Document With Images Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/OO_Word_Document_With_Images_Template.odt)
-- [OO Word Document Without Images Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/OO_Word_Document_Without_Images_Template.odt)
-- [Possible Die-Codes](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Possible_Die-Codes.md)
-- [Project Hooks](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Project_Hooks.md)
-- [Project Secrecy](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Secrecy.md)
-- [Project Workflow Example](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Workflow_Example.md)
-- [Recommended GitKracken Preferences](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/GitKracken_Preferences.md)
-- [Suggested Tools](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Tools.md)
-- [Video Tutorials](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Video_Tutorials.md)
-- [XML File Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/xml_file_template.xml)
-=======
 - [Why We Don&rsquo;t Use Author Tags](Author_Tags.md)
 - [Boilerplate Statements](../Support_Files/Boilerplate_Statements.md)
 - [Commit Message Template](../Support_Files/Commit_Message_Template.md)
@@ -220,7 +132,6 @@ The Documents are listed in alphabetical order and can be read in any order.
 - [Suggested Tools](Tools.md)
 - [Video Tutorials](Video_Tutorials.md)
 - [XML File Template](../Support_Files/xml_file_template.xml)
->>>>>>> r0.2
 
 ---
 

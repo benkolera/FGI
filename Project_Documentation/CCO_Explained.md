@@ -22,17 +22,6 @@ This &lsquo;sign off&rsquo; is included in the [*Commit Message Template*](https
 
 Your signature certifies that you are either the author of the contribution or have the right to submit it under the open-source licenses used by the FGI Project.
 
-<<<<<<< HEAD
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
-
-## Further Information
-
-[**The FGI Project&rsquo;s CCO**](https://github.com/Dulux-Oz/FGI/tree/tree/master/Project_Documentation/CCO.md)
-
----
-
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
-=======
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## Further Information
@@ -42,7 +31,6 @@ If you have any further questions or require any further help, please see the Pr
 ---
 
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
->>>>>>> r0.2
 
 ---
 

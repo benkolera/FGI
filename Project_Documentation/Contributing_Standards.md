@@ -6,11 +6,7 @@ Version 0.1.
 
 These are the Project&rsquo;s *Contributing Standards*, organised alphabetically.
 
-<<<<<<< HEAD
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
-=======
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
->>>>>>> r0.2
 
 ## Interpretations
 
@@ -22,15 +18,6 @@ The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;
 
 ## Code Contributing Standards
 
-<<<<<<< HEAD
-See also the Project&rsquo;s [`Lua` Coding Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documents/Lua_Coding_Standards.md) Document and the [`XML` Coding Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/XML_Coding_Standards.md) Document for all Coding-specific Standards.
-
-### Feature Contributing Standards
-
-1. All Features SHALL be created in a new `features` Branch in a repository as per the [FGI-Workflow](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md).
-2. All Features must follow the *Feature Branch Naming Standards* as outlined in the [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
-3. All Features SHALL have a Folder/Director created for them under the `DORCoreMin` Folder/Directory, named as per *Feature Branch Directories Naming Standards* as outlined in the [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
-=======
 See also the Project&rsquo;s [`Lua` Coding Standards](Project_Documents/Lua_Coding_Standards.md) Document and the [`XML` Coding Standards](XML_Coding_Standards.md) Document for all Coding-specific Standards.
 
 ### Feature Contributing Standards
@@ -38,7 +25,6 @@ See also the Project&rsquo;s [`Lua` Coding Standards](Project_Documents/Lua_Codi
 1. All Features SHALL be created in a new `features` Branch in a repository as per the [FGI-Workflow](How_To_Participate_In_The_Project_Workflow.md).
 2. All Features must follow the *Feature Branch Naming Standards* as outlined in the [Naming Standards](Naming_Standards.md) Document.
 3. All Features SHALL have a Folder/Director created for them under the `DORCoreMin` Folder/Directory, named as per *Feature Branch Directories Naming Standards* as outlined in the [Naming Standards](Naming_Standards.md) Document.
->>>>>>> r0.2
 4. The following Folders/Directories SHALL be placed under the folder created as per (3) above, and named as shown:
 	1. `Scripts`.
 	2. `XMLFiles`.
@@ -49,19 +35,6 @@ See also the Project&rsquo;s [`Lua` Coding Standards](Project_Documents/Lua_Codi
 
 ### Hotfix Contributing Standards
 
-<<<<<<< HEAD
-1. All Hotfixes SHALL be created in a new `hotfixes` Branch in a repository as per the [FGI-Workflow](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md).
-2. All Hotfixes must follow the *Hotfix Branch Naming Standards* as outlined in the [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
-
-### Release Contributing Standards
-
-1. All Releases SHALL be created in a new `releases` Branch in a repository as per the [FGI-Workflow](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md).
-2. All Releases must follow the *Release Branch Naming Standards* as outlined in the [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
-
-## Documentation Contributing Standards
-
-See also the Project&rsquo;s [`MD` Document Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/MD_Document_Standards.md) Document and the [`PDF` Document Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/PDF_Document_Standards.md) Documentfor all Documentation-specific Standards.
-=======
 1. All Hotfixes SHALL be created in a new `hotfixes` Branch in a repository as per the [FGI-Workflow](How_To_Participate_In_The_Project_Workflow.md).
 2. All Hotfixes must follow the *Hotfix Branch Naming Standards* as outlined in the [Naming Standards](Naming_Standards.md) Document.
 
@@ -73,24 +46,12 @@ See also the Project&rsquo;s [`MD` Document Standards](https://github.com/Dulux-
 ## Documentation Contributing Standards
 
 See also the Project&rsquo;s [`MD` Document Standards](MD_Document_Standards.md) Document and the [`PDF` Document Standards](PDF_Document_Standards.md) Documentfor all Documentation-specific Standards.
->>>>>>> r0.2
 
 1. All Documents relating to the *Project* itself (ie the Project&rsquo; Governance, How To&rsquo;s, etc &mdash; Documents which could be consided &ldquo;Meta-Project&rdquo; Documents) SHALL be placed in the Project&rsquo;s `` Folder/Directory.
 2. All Documents relating to details of the Coding, etc, SHALL be placed in the Project&rsquo;s `Support_Files` Folder/Directory.
 
 ## General Contributing Standards
 
-<<<<<<< HEAD
-1. All Project Contributors MUST follow the [FGI-Workflow](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md).
-2. The use of GitKracken and GK-Boards is RECOMMENDED by all Project Contributors.
-3. The subscription to and use of the Project&rsquo;s Mailing List (<fgi@freelists.org>) is RECOMMENDED.
-4. All Project Contributions MUST be &ldquo;Signed-Off&rdquo; as per the [CCO](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/CCO.md).
-
-## Further Information:
-
-- [The CCO Explained](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/CCO_Explained.md)
-- [Author Tags](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Author_Tags.md)
-=======
 1. All Project Contributors MUST follow the [FGI-Workflow](How_To_Participate_In_The_Project_Workflow.md).
 2. The use of GitKracken and GK-Boards is RECOMMENDED by all Project Contributors.
 3. The subscription to and use of the Project&rsquo;s Mailing List (<fgi@freelists.org>) is RECOMMENDED.
@@ -100,7 +61,6 @@ See also the Project&rsquo;s [`MD` Document Standards](MD_Document_Standards.md)
 
 - [The CCO Explained](CCO_Explained.md)
 - [Author Tags](Author_Tags.md)
->>>>>>> r0.2
 
 ---
 
