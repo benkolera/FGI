@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Non-Overlay Buttons and Icons -->
+	<icon name="iD10Blue" file="UDR/Icons/iD10Blue.png" />
+	<icon name="iD10Green" file="UDR/Icons/iD10Green.png" />
+	<icon name="iD10Purple" file="UDR/Icons/iD10Purple.png" />
+	<icon name="iD10Red" file="UDR/Icons/iD10Red.png" />
+	<icon name="iD12Blue" file="UDR/Icons/iD12Blue.png" />
+	<icon name="iD12Green" file="UDR/Icons/iD12Green.png" />
+	<icon name="iD12Purple" file="UDR/Icons/iD12Purple.png" />
+	<icon name="iD12Red" file="UDR/Icons/iD12Red.png" />
+	<icon name="iD20Blue" file="UDR/Icons/iD20Blue.png" />
+	<icon name="iD20Green" file="UDR/Icons/iD20Green.png" />
+	<icon name="iD20Purple" file="UDR/Icons/iD20Purple.png" />
+	<icon name="iD20Red" file="UDR/Icons/iD20Red.png" />
+	<icon name="iD4Blue" file="UDR/Icons/iD4Blue.png" />
+	<icon name="iD4Green" file="UDR/Icons/iD4Green.png" />
+	<icon name="iD4Purple" file="UDR/Icons/iD4Purple.png" />
+	<icon name="iD4Red" file="UDR/Icons/iD4Red.png" />
+	<icon name="iD6Blue" file="UDR/Icons/iD6Blue.png" />
+	<icon name="iD6Green" file="UDR/Icons/iD6Green.png" />
+	<icon name="iD6Purple" file="UDR/Icons/iD6Purple.png" />
+	<icon name="iD6Red" file="UDR/Icons/iD6Red.png" />
+	<icon name="iD8Blue" file="UDR/Icons/iD8Blue.png" />
+	<icon name="iD8Green" file="UDR/Icons/iD8Green.png" />
+	<icon name="iD8Purple" file="UDR/Icons/iD8Purple.png" />
+	<icon name="iD8Red" file="UDR/Icons/iD8Red.png" />
+	<icon name="iKeepDiceBox" file="UDR/Icons/iKeepDiceBox.png" />
+	<icon name="iSuccessRaiseBox" file="UDR/Icons/iSuccessRaiseBox.png" />
+	<icon name="iTNBox" file="UDR/Icons/iTNBox.png" />
+</root>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+	<die name="b2">
+		<model>d6</model>
+		<icon>iD6Blue</icon>
+	</die>
+	<die name="b3">
+		<model>d6</model>
+		<icon>iD6Blue</icon>
+	</die>
+	<die name="b4">
+		<model>d4</model>
+		<icon>iD4Blue</icon>
+	</die>
+	<die name="b5">
+		<model>d10</model>
+		<icon>iD10Blue</icon>
+	</die>
+	<die name="b6">
+		<model>d6</model>
+		<icon>iD6Blue</icon>
+	</die>
+	<die name="b8">
+		<model>d8</model>
+		<icon>iD8Blue</icon>
+	</die>
+	<die name="b10">
+		<model>d10</model>
+		<icon>iD10Blue</icon>
+	</die>
+	<die name="b12">
+		<model>d12</model>
+		<icon>iD12Blue</icon>
+	</die>
+	<die name="b20">
+		<model>d20</model>
+		<icon>iD20Blue</icon>
+	</die>
+	<die name="b100">
+		<model>d100</model>
+		<icon>iD10Blue</icon>
+	</die>
+	<die name="dF">
+		<icon>d6icon</icon>
+		<position>350,-135</position>
+	</die>
+	<die name="d4">
+		<icon>d4icon</icon>
+		<position>300,-135</position>
+	</die>
+	<die name="d6">
+		<icon>d6icon</icon>
+		<position>250,-135</position>
+	</die>
+	<die name="d8">
+		<icon>d8icon</icon>
+		<position>200,-135</position>
+	</die>
+	<die name="d10">
+		<icon>d10icon</icon>
+		<position>150,-135</position>
+	</die>
+	<die name="d12">
+		<icon>d12icon</icon>
+		<position>100,-135</position>
+	</die>
+	<die name="d20">
+		<icon>d20icon</icon>
+		<position>50,-135</position>
+	</die>
+	<die name="g2">
+		<model>d6</model>
+		<icon>iD6Green</icon>
+	</die>
+	<die name="g3">
+		<model>d6</model>
+		<icon>iD6Green</icon>
+	</die>
+	<die name="g4">
+		<model>d4</model>
+		<icon>iD4Green</icon>
+	</die>
+	<die name="g5">
+		<model>d10</model>
+		<icon>iD10Green</icon>
+	</die>
+	<die name="g6">
+		<model>d6</model>
+		<icon>iD6Green</icon>
+	</die>
+	<die name="g8">
+		<model>d8</model>
+		<icon>iD8Green</icon>
+	</die>
+	<die name="g10">
+		<model>d10</model>
+		<icon>iD10Green</icon>
+	</die>
+	<die name="g12">
+		<model>d12</model>
+		<icon>iD12Green</icon>
+	</die>
+	<die name="g20">
+		<model>d20</model>
+		<icon>iD20Green</icon>
+	</die>
+	<die name="g100">
+		<model>d100</model>
+		<icon>iD10Green</icon>
+	</die>
+	<die name="p2">
+		<model>d6</model>
+		<icon>iD6Purple</icon>
+	</die>
+	<die name="p3">
+		<model>d6</model>
+		<icon>iD6Purple</icon>
+	</die>
+	<die name="p4">
+		<model>d4</model>
+		<icon>iD4Purple</icon>
+	</die>
+	<die name="p5">
+		<model>d10</model>
+		<icon>iD10Purple</icon>
+	</die>
+	<die name="p6">
+		<model>d6</model>
+		<icon>iD6Purple</icon>
+	</die>
+	<die name="p8">
+		<model>d8</model>
+		<icon>iD8Purple</icon>
+	</die>
+	<die name="p10">
+		<model>d10</model>
+		<icon>iD10Purple</icon>
+	</die>
+	<die name="p12">
+		<model>d12</model>
+		<icon>iD12Purple</icon>
+	</die>
+	<die name="p20">
+		<model>d20</model>
+		<icon>iD20Purple</icon>
+	</die>
+	<die name="p100">
+		<model>d100</model>
+		<icon>iD10Purple</icon>
+	</die>
+	<die name="r2">
+		<model>d6</model>
+		<icon>iD6Red</icon>
+	</die>
+	<die name="r3">
+		<model>d6</model>
+		<icon>iD6Red</icon>
+	</die>
+	<die name="r4">
+		<model>d4</model>
+		<icon>iD4Red</icon>
+	</die>
+	<die name="r5">
+		<model>d10</model>
+		<icon>iD10Red</icon>
+	</die>
+	<die name="r6">
+		<model>d6</model>
+		<icon>iD6Red</icon>
+	</die>
+	<die name="r8">
+		<model>d8</model>
+		<icon>iD8Red</icon>
+	</die>
+	<die name="r10">
+		<model>d10</model>
+		<icon>iD10Red</icon>
+	</die>
+	<die name="r12">
+		<model>d12</model>
+		<icon>iD12Red</icon>
+	</die>
+	<die name="r20">
+		<model>d20</model>
+		<icon>iD20Red</icon>
+	</die>
+	<die name="r100">
+		<model>d100</model>
+		<icon>iD10Red</icon>
+	</die>
+	<customdie name="d2">
+		<model>d6</model>
+		<menuicon>customdice</menuicon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/3);
+			end
+		</script>
+	</customdie>
+	<customdie name="d3">
+		<model>d6</model>
+		<menuicon>customdice</menuicon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/2);
+			end
+		</script>
+	</customdie>
+	<customdie name="d5">
+		<model>d10</model>
+		<menuicon>customdice</menuicon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/2);
+			end
+		</script>
+	</customdie>
+</root>

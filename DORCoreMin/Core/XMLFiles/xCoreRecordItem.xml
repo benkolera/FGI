@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay WindowClasses -->
+	<windowclass name="item_main" merge="join">
+		<script file="Core/Scripts/lsCoreItemMain.lua" />
+		<sheetdata>
+			<label_column name="type_label" merge="add" insertbefore="cost_label">
+				<static textres="sItemLabelTypeString" />
+			</label_column>
+			<string_columnh name="type" merge="add" insertbefore="cost_label">
+				<nohide />
+				<gmeditonly />
+				<delaykeyupdate />
+				<script>
+					function onValueChanged()
+						window.update();
+					end
+				</script>
+			</string_columnh>
+			<label_column name="subtype_label" merge="add" insertbefore="cost_label">
+				<static textres="sItemLabelSubTypeString" />
+			</label_column>
+			<string_columnh name="subtype" merge="add" insertbefore="cost_label">
+				<gmeditonly />
+				<delaykeyupdate />
+			</string_columnh>
+			<line_column name="divider3" merge="add" insertbefore="cost_label" />
+			<tLabelColHeaderGMNotes merge="add">
+				<anchored>
+					<top parent="columnanchor" />
+				</anchored>
+			</tLabelColHeaderGMNotes>
+			<tTextFieldFullColNoBorderGMNotes merge="add">
+				<anchored>
+					<top parent="columnanchor" />
+				</anchored>
+			</tTextFieldFullColNoBorderGMNotes>
+		</sheetdata>
+	</windowclass>
+</root>

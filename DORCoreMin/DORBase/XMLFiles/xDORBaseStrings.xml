@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Non-Overlay Strings -->
+	<string name="sAbortStr">Abort</string>
+	<string name="sAlignmentStr">Alignment</string>
+	<string name="sButSelectSumSolDateStr">Sum. Sol.</string>
+	<string name="sButUseCampCalStr">Default</string>
+	<string name="sCancelStr">Cancel</string>
+	<string name="sClimateArcticStr">Arctic</string>
+	<string name="sClimateSubarcticStr">Subarctic</string>
+	<string name="sClimateSubtropicalStr">Subtropical</string>
+	<string name="sClimateTemperateStr">Temperate</string>
+	<string name="sClimateTropicalStr">Tropical</string>
+	<string name="sColourGizmoColourCodeTooltipStr">Hexadecimal Colour Code</string>
+	<string name="sCurrentDateStr">Current Date</string>
+	<string name="sDemographicsStr">Demographics</string>
+	<string name="sDirectionEastStr">East</string>
+	<string name="sDirectionNorthStr">North</string>
+	<string name="sDirectionNorthEastStr">North-East</string>
+	<string name="sDirectionNorthWestStr">North-West</string>
+	<string name="sDirectionSouthStr">South</string>
+	<string name="sDirectionSouthEastStr">South-East</string>
+	<string name="sDirectionSouthWestStr">South-West</string>
+	<string name="sDirectionWestStr">West</string>
+	<string name="sDisplayStr">Display:</string>
+	<string name="sEmptyFormatedTextStr">Click To Enter Details.</string>
+	<string name="sEmptyGMNotesStr">Click To Enter Details. Not Visible To Players.</string>
+	<string name="sEncounterListStr">Encounters</string>
+	<string name="sGenericLocationStr">&#171; Place &#187;</string>
+	<string name="sGMStr">GM</string>
+	<string name="sHeaderDescriptionStr">Description</string>
+	<string name="sHeaderGMNotesStr">GM Notes</string>
+	<string name="sHeaderHistoryStr">History</string>
+	<string name="sHeaderNotesStr">Notes</string>
+	<string name="sIgnoreStr">Ignore</string>
+	<string name="sLabelAltitudeStr">Altitude</string>
+	<string name="sLabelClimateStr">Climate Zone</string>
+	<string name="sLabelDaysInYearStr">Year Length</string>
+	<string name="sLabelHoursInDayStr">Day Length</string>
+	<string name="sLabelLatitudeStr">Latitude</string>
+	<string name="sLabelSpinDirectionStr">Spin Direction</string>
+	<string name="sLabelSumSolDateStr">Summer Sol.</string>
+	<string name="sLabelTemperatureStr">Temperature</string>
+	<string name="sLabelTerrainStr">Terrain</string>
+	<string name="sLabelTiltStr">Obliquity/Tilt</string>
+	<string name="sLabelWetnessStr">Hydrosphere</string>
+	<string name="sLengthFeetStr">Feet</string>
+	<string name="sLengthFootStr">Foot</string>
+	<string name="sLengthMetreStr">Metres</string>
+	<string name="sLicenseStr">License</string>
+	<string name="sLocationStr">Location</string>
+	<string name="sMapLinkListEmptyStr">Drop Map Links Here.</string>
+	<string name="sMapLinkListHeadingStr">Maps</string>
+	<string name="sMoneySysSetStr">Currency</string>
+	<string name="sNoStr">No</string>
+	<string name="sNoneSetStr">None Set</string>
+	<string name="sNoneStr">None</string>
+	<string name="sNormalStr">Normal</string>
+	<string name="sOKStr">OK</string>
+	<string name="sPurposeStr">Purpose</string>
+	<string name="sRecordNotExistStr">The record you are trying to view no longer exists or is not Shared.</string>
+	<string name="sRecordNotExistHeaderStr">Record Not Avaliable</string>
+	<string name="sResourcesStr">Resources</string>
+	<string name="sRetryStr">Retry</string>
+	<string name="sSelectDateButtonStr">Set Date</string>
+	<string name="sSelectDateStr">Use Current Date</string>
+	<string name="sSizeStr">Size</string>
+	<string name="sSoundLinkListEmptyStr">Drop Sound Links Here.</string>
+	<string name="sSoundLinkListHeadingStr">Sounds</string>
+	<string name="sSpinDirectionPlaneStr">Sun Movement</string>
+	<string name="sSpinEastToWestStr">East-To-West</string>
+	<string name="sSpinNoSpinStr">Does Not Spin</string>
+	<string name="sSpinWestToEastStr">West-To-East</string>
+	<string name="sTemperatureBoilingStr">Boiling (T5)</string>
+	<string name="sTemperatureColdStr">Cold (T1)</string>
+	<string name="sTemperatureCoolStr">Cool (T2)</string>
+	<string name="sTemperatureFreezingStr">Freezing (T0)</string>
+	<string name="sTemperatureHotStr">Hot (T4)</string>
+	<string name="sTemperatureNormalStr">Normal (T3)</string>
+	<string name="sTerrainCoastMarshStr">Coastal Marsh</string>
+	<string name="sTerrainCoastStr">Coast/Aquatic</string>
+	<string name="sTerrainDesertStr">Desert</string>
+	<string name="sTerrainForestMarshStr">Forest Marsh</string>
+	<string name="sTerrainForestStr">Forest</string>
+	<string name="sTerrainHillsStr">Hills</string>
+	<string name="sTerrainMountainsStr">Mountains</string>
+	<string name="sTerrainPlainsMarshStr">Scrub Marsh</string>
+	<string name="sTerrainPlainsStr">Plains</string>
+	<string name="sTimeDaysStr">Days</string>
+	<string name="sTimeHoursStr">Hours</string>
+	<string name="sTimeMinutesStr">Minutes</string>
+	<string name="sTooltipMsgboxButtonStr">Acknowledge Message And Close Window</string>
+	<string name="sTooltipSelectSumSolDateStr">Select Northern Hemisphere Summer Solstice Date</string>
+	<string name="sTypeStr">Type</string>
+	<string name="sUseCampaignCalendarStr">Use Campaign Calendar</string>
+	<string name="sWetnessBarenStr">Barren (H0)</string>
+	<string name="sWetnessDampStr">Damp (H4)</string>
+	<string name="sWetnessDryStr">Dry (H2)</string>
+	<string name="sWetnessNormalStr">Normal (H3)</string>
+	<string name="sWetnessParchedStr">Parched (H1)</string>
+	<string name="sWetnessSoppingStr">Sopping (H5)</string>
+	<string name="sWLChangeColourStr">Change Colour Group</string>
+	<string name="sYesStr">Yes</string>
+</root>

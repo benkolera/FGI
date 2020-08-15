@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay WindowClasses -->
+	<windowclass name="charselect_host" merge="join">
+		<placement width="676" height="430" />
+		<sizelimits>
+			<minimum width="676" height="430" />
+			<maximum width="676" height="430" />
+		</sizelimits>
+		<sheetdata>
+			<windowlist name="list" merge="join">
+				<anchored>
+					<top offset="3" />
+					<bottom parent="" offset="-65" />
+				</anchored>
+				<columns width="233" merge="join" />
+			</windowlist>
+			<resize_charselect name="resize_charselect"  merge="delete"/>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="charselect_host_entry" merge="join">
+		<sizelimits>
+			<minimum height="82" />
+			<maximum width= "233" />
+		</sizelimits>
+		<sheetdata>
+			<genericcontrol name="portraitbase" merge="join">
+				<bounds>6,6,70,70</bounds>
+			</genericcontrol>
+			<genericcontrol name="portrait" merge="join">
+				<bounds>6,6,70,70</bounds>
+			</genericcontrol>
+			<stringfield name="name" merge="join">
+				<anchored offset="79,15">
+					<right offset="-32" />
+				</anchored>
+			</stringfield>
+			<buttoncontrol name="base" merge="join">
+				<anchored>
+					<bottom offset="7" />
+				</anchored>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="charselect_client" merge="join">
+		<placement width="676" height="430" />
+		<sizelimits>
+			<minimum width="676" height="430" />
+			<maximum width="676" height="430" />
+		</sizelimits>
+		<sheetdata>
+			<windowlist name="list" merge="join">
+				<anchored>
+					<top offset="3" />
+					<bottom parent="" offset="-65" />
+				</anchored>
+				<columns width="233" merge="join" />
+			</windowlist>
+			<resize_charselect name="resize_charselect"  merge="delete"/>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="charselect_client_entry" merge="join">
+		<sizelimits>
+			<minimum height="82" />
+			<maximum width="233" />
+		</sizelimits>
+		<sheetdata>
+			<genericcontrol name="portraitbase" merge="join">
+				<bounds>6,6,70,70</bounds>
+			</genericcontrol>
+			<genericcontrol name="portrait" merge="join">
+				<bounds>6,6,70,70</bounds>
+			</genericcontrol>
+			<stringcontrol name="name" merge="join">
+				<anchored offset="79,15">
+					<right offset="-32" />
+				</anchored>
+			</stringcontrol>
+			<buttoncontrol name="base" merge="join">
+				<anchored>
+					<bottom offset="0" />
+				</anchored>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="charselect_local" merge="join">
+		<placement width="676" height="430" />
+		<sizelimits>
+			<minimum width="676" height="430" />
+			<maximum width="676" height="430" />
+		</sizelimits>
+		<sheetdata>
+			<windowlist name="list" merge="join">
+				<anchored>
+					<top offset="3" />
+					<bottom parent="" offset="-56" />
+				</anchored>
+				<columns width="233" merge="join" />
+			</windowlist>
+			<button_iedit name="button_localedit" merge="join">
+				<anchored>
+					<bottom offset="-32" />
+				</anchored>
+			</button_iedit>
+			<button_iadd name="button_localadd">
+				<anchored to="button_localedit" position="lefthigh" offset="5,0" />
+				<invisible merge="delete" />
+				<script>
+					function onButtonPress()
+						Interface.openWindow("charsheet",User.createLocalIdentity());
+					end
+				</script>
+			</button_iadd>
+			<resize_charselect name="resize_charselect"  merge="delete"/>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="charselect_local_entry">
+		<sizelimits>
+			<minimum height="82" />
+			<maximum width="233" />
+		</sizelimits>
+		<sheetdata>
+			<genericcontrol name="portraitbase" merge="join">
+				<bounds>6,6,70,70</bounds>
+			</genericcontrol>
+			<genericcontrol name="portrait" merge="join">
+				<bounds>6,6,70,70</bounds>
+			</genericcontrol>
+			<stringcontrol name="name" merge="join">
+				<anchored offset="79,15">
+					<right offset="-32" />
+				</anchored>
+			</stringcontrol>
+			<stringcontrol name="details">
+				<anchored to="name" position="belowleft">
+					<right />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselectbody</font>
+				<disabled />
+			</stringcontrol>
+			<buttoncontrol name="base" merge="join">
+				<anchored>
+					<bottom offset="0" />
+				</anchored>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="charselect_import" merge="join">
+		<frame>charselect</frame>
+		<placement>
+			<size width="676" height="430" />
+			<nosave />
+		</placement>
+		<sizelimits>
+			<minimum width="676" height="430" />
+			<maximum width="676" height="430" />
+		</sizelimits>
+		<nodelete />
+		<sheetdata>
+			<windowlist name="list" merge="join">
+				<anchored>
+					<top offset="3" />
+					<bottom parent="" offset="-65" />
+				</anchored>
+				<columns width="233" merge="join" />
+			</windowlist>
+			<resize_charselect name="resize_charselect"  merge="delete"/>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="charselect_import_entry">
+		<margins control="0,0,0,10" />
+		<frame>charselectentry</frame>
+		<sizelimits>
+			<maximum width="300" />
+		</sizelimits>
+		<script file="campaign/scripts/charselect_import_entry.lua" />
+		<sheetdata>
+			<genericcontrol name="portraitbase">
+				<bounds>10,10,72,72</bounds>
+				<icon>charlist_base</icon>
+				<disabled />
+			</genericcontrol>
+			<portraitselectioncontrol name="portrait">
+				<bounds>10,10,72,72</bounds>
+				<base>charlist_base</base>
+				<mask>charlist_mask</mask>
+			</portraitselectioncontrol>
+			<stringcontrol name="name">
+				<anchored position="insidetopleft" offset="90,20">
+					<right offset="-40" />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselecttitle</font>
+				<empty textres="library_recordtype_empty_charsheet" />
+				<disabled />
+			</stringcontrol>
+			<stringcontrol name="details">
+				<anchored to="name" position="belowleft">
+					<right />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselectbody</font>
+				<disabled />
+			</stringcontrol>
+			<stringcontrol name="source_label">
+				<anchored to="details" position="belowleft">
+					<right />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselecttitle</font>
+				<disabled />
+			</stringcontrol>
+			<stringcontrol name="source">
+				<anchored to="source_label" position="belowleft">
+					<right />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselectbody</font>
+				<disabled />
+			</stringcontrol>
+			<buttoncontrol name="base">
+				<anchored position="insidetopleft">
+					<right />
+					<bottom parent="source" offset="12" />
+				</anchored>
+			</buttoncontrol>
+			<button_importcharadd name="button_import">
+				<anchored to="base" position="insidetopright" offset="10,10" />
+				<script>
+					function onButtonPress()
+						window.importCharacter();
+					end
+				</script>
+			</button_importcharadd>
+			<button_exportchar name="button_export">
+				<anchored to="base" position="insidebottomright" offset="10,10" />
+				<script>
+					function onButtonPress()
+						window.exportCharacter();
+					end
+				</script>
+			</button_exportchar>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="pregencharselect">
+		<frame>charselect</frame>
+		<placement>
+			<size width="660" height="372" />
+			<nosave />
+		</placement>
+		<sizelimits>
+			<minimum width="660" height="372" />
+			<dynamic />
+		</sizelimits>
+		<nodelete />
+		<sheetdata>
+			<windowtitlebar name="title">
+				<resource>pregencharselect_window_title</resource>
+			</windowtitlebar>
+			<anchor_title_charselect name="contentanchor" />
+			<windowlist name="list">
+				<anchored to="contentanchor" position="below">
+					<bottom parent="" offset="-30" />
+				</anchored>
+				<datasource>.</datasource>
+				<class>pregencharselect_entry</class>
+				<columns width="300" fillwidth="true" />
+				<readonly />
+			</windowlist>
+			<scrollbar_list />
+			<resize_charselect name="resize_charselect" />
+			<close_charselect name="close_charselect" />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="pregencharselect_entry">
+		<frame>charselectentry</frame>
+		<sizelimits>
+			<maximum width="300" />
+		</sizelimits>
+		<script file="lsPreGenCharSelectEntry.lua" />
+		<script file="campaign/scripts/charselect_host_entry.lua" />
+		<sheetdata>
+			<genericcontrol name="portraitbase">
+				<bounds>10,10,72,72</bounds>
+				<disabled />
+				<icon>charlist_base</icon>
+			</genericcontrol>
+			<genericcontrol name="portrait">
+				<bounds>10,10,72,72</bounds>
+				<disabled />
+			</genericcontrol>
+			<stringfield name="name">
+				<anchored position="insidetopleft" offset="90,20">
+					<right offset="-40" />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselecttitle</font>
+				<empty textres="library_recordtype_empty_charsheet" />
+				<disabled />
+			</stringfield>
+			<stringcontrol name="details">
+				<anchored to="name" position="belowleft">
+					<right />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselectbody</font>
+				<disabled />
+			</stringcontrol>
+			<stringcontrol name="source_label">
+				<anchored to="details" position="belowleft">
+					<right />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselecttitle</font>
+				<disabled />
+			</stringcontrol>
+			<stringcontrol name="source">
+				<anchored to="source_label" position="belowleft">
+					<right />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>charselectbody</font>
+				<disabled />
+			</stringcontrol>
+			<buttoncontrol name="base">
+				<anchored position="insidetopleft">
+					<right />
+					<bottom parent="source" offset="12" />
+				</anchored>
+			</buttoncontrol>
+			<buttoncontrol name="iadd">
+				<anchored to="base" position="insidebottomright" offset="10,10" width="20" height="20" />
+				<icon normal="button_add" pressed="button_add_down" />
+				<tooltip textres="charselect_tooltip_pregen" />
+				<script>
+					function onButtonPress()
+						window.addCharacter();
+					end
+				</script>
+				<gmvisibleonly />
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+</root>

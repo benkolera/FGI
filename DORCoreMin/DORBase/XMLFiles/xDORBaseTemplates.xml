@@ -1,0 +1,1824 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay Templates -->
+	<template name="button_collapse">
+		<button_icon>
+			<icon normal="button_collapse_w" />
+			<tooltip textres="tooltip_collapse" />
+			<target>grouplist,list</target>
+			<collapse />
+			<script file="DORBase/Scripts/lsDORBaseButtonExpandCollapse.lua" />
+		</button_icon>
+	</template>
+
+	<template name="button_expand">
+		<button_icon>
+			<icon normal="button_expand_w" />
+			<tooltip textres="tooltip_expand" />
+			<target>grouplist,list</target>
+			<expand />
+			<script file="DORBase/Scripts/lsDORBaseButtonExpandCollapse.lua" />
+		</button_icon>
+	</template>
+
+	<template name="string_groupdesc">
+		<stringfield>
+			<anchored height="20">
+				<top parent="topanchor" anchor="bottom" relation="relative" offset="5" />
+				<left offset="15" />
+			</anchored>
+			<font>reference-groupdesc</font>
+			<static />
+			<script file="DORBase/Scripts/lsDORBaseStringGroupDesc.lua" />
+		</stringfield>
+	</template>
+
+<!-- Buttons -->
+	<template name="tButCal">
+		<button_text>
+			<anchored width="70" height="11">
+				<top anchor="top" offset="4" />
+				<right parent="gAnchorRight" anchor="left" offset="-14" />
+			</anchored>
+		</button_text>
+	</template>
+
+	<template name="tButCalGetSumSolDate">
+		<tButCal name="btGetSumSolDate">
+			<anchored>
+				<top parent="sSumSolDate" />
+			</anchored>
+			<state textres="sButSelectSumSolDateStr" />
+			<tooltip textres="sTooltipSelectSumSolDateStr" />
+			<script file="lsButCalGetSumSolDate.lua" />
+		</tButCal>
+	</template>
+
+	<template name="tButCalUseCampCal">
+		<tButCal name="btUseCampCal">
+			<anchored>
+				<top parent="sCalendar" />
+			</anchored>
+			<state textres="sButUseCampCalStr" />
+			<tooltip textres="sUseCampaignCalendarStr" />
+		</tButCal>
+	</template>
+
+	<template name="tButCalUseCampCalWithDaysInYear">
+		<tButCalUseCampCal>
+			<script file="lsButCalUseCampCalWithDaysInYear.lua" />
+		</tButCalUseCampCal>
+	</template>
+
+	<template name="tButCategoryCombo">
+		<buttoncontrol name="btCategoryCombobox">
+			<anchored width="20" height="20">
+				<right parent="gAnchorTitle" offset="10" />
+				<top parent="sLibMasterCategoryLabel" />
+			</anchored>
+			<state icon="combobox_button" />
+			<state icon="combobox_button_active" />
+			<invisible />
+			<script file="lsButCategoryCombo.lua" />
+		</buttoncontrol>
+	</template>
+
+	<template name="tButCloseUtilBox">
+		<close name="btClose">
+			<anchored>
+				<top offset="21" />
+				<right offset="-31" />
+			</anchored>
+		</close>
+	</template>
+
+	<template name="tButColourDome">
+		<genericcontrol>
+			<anchored position="insidetopleft" />
+			<script file="lsButColourDome.lua" />
+		</genericcontrol>
+	</template>
+
+	<template name="tButFilterShared">
+		<buttoncontrol name="btSharedOnlyFilter">
+			<anchored to="gAnchorBottomRight" height="20" width="60">
+				<top />
+				<right anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<font>button-white</font>
+			<state frame="buttonup" frameoffset="2,2,2,2" textres="masterindex_label_filter_sharedonly_all" tooltipres="masterindex_tooltip_filter_sharedonly" />
+			<state frame="buttondown" frameoffset="2,2,2,2" textres="masterindex_label_filter_sharedonly_shared" />
+			<script>
+				function onValueChanged()
+					window.fpOnSharedOnlyFilterChanged();
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+	<template name="tButIconAccess">
+		<icon_access name="bcAccess">
+			<anchored>
+				<right parent="gAnchorRight" />
+			</anchored>
+			<script file="lsButIconAccess.lua" />
+		</icon_access>
+	</template>
+
+	<template name="tButIconAdd">
+		<buttoncontrol>
+			<anchored width="20" height="20" />
+			<icon normal="button_add" pressed="button_add_down" />
+			<tooltip textres="button_add" />
+			<invisible />
+			<script>
+				function onButtonPress()
+					window[target[1]].fpAddEntry(true);
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+	<template name="tButIconAddCamp">
+		<tButIconAdd name="wlListIconAdd">
+			<anchored to="gAnchorBottomRight">
+				<top />
+				<right anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<script file="lsButIconAddCamp.lua" />
+		</tButIconAdd>
+	</template>
+
+	<template name="tButIconAddCategory">
+		<tButIconAdd name="btCategoryAdd">
+			<anchored to="btCategoryEdit" position="belowleft" offset="0,5" />
+			<tooltip textres="masterindex_button_category_add" />
+			<invisible />
+			<script>
+				function onButtonPress()
+					window.fpHandleCategoryAdd();
+				end
+			</script>
+		</tButIconAdd>
+	</template>
+
+	<template name="tButIconDel">
+		<buttoncontrol name="btIconDelete">
+			<anchored width="20" height="20">
+				<right parent="gAnchorRight" anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<state icon="button_delete" tooltipres="button_delete" />
+			<state icon="button_deleteconfirm" tooltipres="button_deleteconfirm" />
+			<tooltip textres="button_delete" />
+			<invisible />
+			<script file="lsButIconDel.lua" />
+		</buttoncontrol>
+	</template>
+
+	<template name="tButIconDelCamp">
+		<tButIconDel>
+			<anchored>
+				<top />
+			</anchored>
+		</tButIconDel>
+	</template>
+
+	<template name="tButIconDelCategory">
+		<tButIconDel>
+			<anchored>
+				<top />
+				<right parent="gAnchorLibMasterRight" />
+			</anchored>
+		</tButIconDel>
+	</template>
+
+	<template name="tButIconDelList">
+		<tButIconDel>
+			<anchored>
+				<top offset="5" />
+			</anchored>
+		</tButIconDel>
+	</template>
+
+	<template name="tButIconEdit">
+		<buttoncontrol>
+			<anchored width="20" height="20" />
+			<state icon="button_edit" tooltipres="button_editon" />
+			<state icon="button_edit_down" tooltipres="button_editoff" />
+		</buttoncontrol>
+	</template>
+
+	<template name="tButIconEditBase">
+		<tButIconEdit>
+			<script file="lsButIconEditBase.lua" />
+		</tButIconEdit>
+	</template>
+
+	<template name="tButIconEditCamp">
+		<tButIconEditBase name="wlListIconEdit">
+			<anchored to="gAnchorBottomRight">
+				<top />
+				<right anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<target>wlList</target>
+		</tButIconEditBase>
+	</template>
+
+	<template name="tButIEditCategory">
+		<tButIconEdit name="btCategoryEdit">
+			<anchored to="btCategoryCombobox" position="belowleft" />
+			<state tooltipres="masterindex_button_category_editon" />
+			<state tooltipres="masterindex_button_category_editoff" />
+			<invisible />
+			<script>
+				function onValueChanged()
+					window.btCategoryAdd.setVisible(getValue() == 1);
+					window.wlListCategory.update();
+				end
+			</script>
+		</tButIconEdit>
+	</template>
+
+	<template name="tButIconEditLink">
+		<tButIconEditBase name="wlListIconEdit">
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" offset="7" />
+				<right parent="gAnchorRight" anchor="left" relation="relative" offset="-22" />
+			</anchored>
+			<target>wlList</target>
+		</tButIconEditBase>
+	</template>
+
+	<template name="tButIconEditURLLink">
+		<tButIconEditBase name="wlListIconEdit">
+			<anchored to="gAnchorRight">
+				<top anchor="bottom" relation="relative" />
+				<right anchor="left" />
+			</anchored>
+			<target>wlList</target>
+		</tButIconEditBase>
+	</template>
+
+	<template name="tButLibMasterListPage">
+		<buttoncontrol >
+			<anchored to="LibMasListPgeInfoString" height="24" width="24" />
+			<frame name="fieldlight" offset="2,2,2,2" />
+			<script>
+				function onButtonPress()
+					window.fpHandlePageStart();
+					return true;
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+	<template name="tButLibMasterListPageEnd">
+		<tButLibMasterListPage name="ButLibMasListPgeEnd">
+			<anchored position="righthigh" offset="24,0" />
+			<state textres="masterindex_tooltip_page_end" icon="button_page_end" />
+			<script>
+				function onButtonPress()
+					window.fpHandlePageEnd();
+					return true;
+				end
+			</script>
+		</tButLibMasterListPage>
+	</template>
+
+	<template name="tButLibMasterListPageNext">
+		<tButLibMasterListPage name="ButLibMasListPgeNext">
+			<anchored position="righthigh" />
+			<state textres="masterindex_tooltip_page_next" icon="button_page_next" />
+			<script>
+				function onButtonPress()
+					window.fpHandlePageNext();
+					return true;
+				end
+			</script>
+		</tButLibMasterListPage>
+	</template>
+
+	<template name="tButLibMasterListPagePrev">
+		<tButLibMasterListPage name="ButLibMasListPgePrev">
+			<anchored position="lefthigh" />
+			<state textres="masterindex_tooltip_page_prev" icon="button_page_prev" />
+			<script>
+				function onButtonPress()
+					window.fpHandlePagePrev();
+					return true;
+				end
+			</script>
+		</tButLibMasterListPage>
+	</template>
+
+	<template name="tButLibMasterListPageStart">
+		<tButLibMasterListPage name="ButLibMasListPgeStart" >
+			<anchored position="lefthigh" offset="24,0" />
+			<state textres="masterindex_tooltip_page_start" icon="button_page_start" />
+			<script>
+				function onButtonPress()
+					window.fpHandlePageStart();
+					return true;
+				end
+			</script>
+		</tButLibMasterListPage>
+	</template>
+
+	<template name="tButLicenseBase">
+		<button_text_sm>
+			<state textres="sLicenseStr" />
+			<script file="DORBase/Scripts/lsDORBaseLicense.lua" />
+		</button_text_sm>
+	</template>
+
+	<template name="tButLicenseStandard">
+		<tButLicenseBase>
+			<anchored to="btClose" width="50">
+				<top offset="2" />
+				<right anchor="left" offset="-5" />
+			</anchored>
+		</tButLicenseBase>
+	</template>
+
+	<template name="tButLicenseLibrary">
+		<tButLicenseBase insertbefore="hsCategoryFilter">
+			<anchored to="gAnchorButton" width="50">
+				<top />
+				<left anchor="right" relation="relative" offset="5" />
+			</anchored>
+		</tButLicenseBase>
+	</template>
+
+	<template name="tButLinkDel">
+		<buttoncontrol>
+			<anchored width="20" height="20">
+				<right parent="gAnchorRight" anchor="left" offset="-5" />
+			</anchored>
+			<state icon="button_delete" tooltipres="button_delete" />
+			<state icon="button_deleteconfirm" tooltipres="button_deleteconfirm" />
+			<tooltip textres="button_delete" />
+		</buttoncontrol>
+	</template>
+
+	<template name="tButMsgbox">
+		<button_text>
+			<anchored width="50" height="20">
+				<bottom anchor="bottom" offset="-30" />
+			</anchored>
+			<tooltip textres="sTooltipMsgboxButtonStr" />
+			<invisible />
+			<script file="lsButMsgbox.lua" />
+		</button_text>
+	</template>
+
+	<template name="tButRecordLocked">
+		<button_record_locked name="bLocked">
+			<anchored to="gAnchorRight">
+				<right offset="-5" />
+			</anchored>
+			<script file="lsButRecordLocked.lua" />
+		</button_record_locked>
+	</template>
+
+	<template name="tButStatus">
+		<genericcontrol name="status">
+			<anchored to="description" position="left" offset="5" width="20" />
+			<icon>button_collapse_w</icon>
+			<script file="lsButStatus.lua" />
+		</genericcontrol>
+	</template>
+
+	<template name="tButWLChangeColour">
+		<genericcontrol name="btGroupColour">
+			<anchored width="20" height="20">
+				<top offset="5" />
+				<right parent="gAnchorRight" anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<source>nGroupColour</source>
+			<icon>iBtnRainbow</icon>
+			<tooltip textres="sWLChangeColourStr" />
+			<script file="lsButWLChangeColour.lua" />
+		</genericcontrol>
+	</template>
+
+<!-- Checkbox Controls -->
+	<template name="tBaseCheckboxCtrl">
+		<buttonc_checkbox>
+			<anchored position="insidetopleft" height="20" width="20" />
+		</buttonc_checkbox>
+	</template>
+
+	<template name="tCheckboxCtrlWindowlist">
+		<tBaseCheckboxCtrl name="CheckboxCtrlWindowlistSelected">
+			<script file="lsCheckboxCtrlWindowlist.lua" />
+		</tBaseCheckboxCtrl>
+	</template>
+
+	<template name="tCheckboxGMVisible">
+		<tBaseCheckboxField name="bGMVisible">
+			<anchored>
+				<top offset="5" />
+			</anchored>
+			<gmvisibleonly />
+		</tBaseCheckboxField>
+	</template>
+
+	<template name="tGraphDisplayCheckBoxCtrl">
+		<tBaseCheckboxCtrl>
+			<anchored to="gAnchorLeft">
+				<top anchor="bottom" relation="relative" offset="5" />
+				<left anchor="right" offset="25" />
+			</anchored>
+		</tBaseCheckboxCtrl>
+	</template>
+
+	<template name="tRadioButCtrl">
+		<tBaseCheckboxCtrl>
+			<script file="lsRadioButCtrl.lua" />
+		</tBaseCheckboxCtrl>
+	</template>
+
+<!-- Checkbox Fields -->
+	<template name="tBaseCheckboxField">
+		<button_checkbox>
+			<anchored position="insidetopleft" height="20" width="20" />
+		</button_checkbox>
+	</template>
+
+	<template name="tCheckboxFieldCol">
+		<tBaseCheckboxField>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="current" offset="7" />
+				<left />
+			</anchored>
+		</tBaseCheckboxField>
+	</template>
+
+	<template name="tRadioButField">
+		<tBaseCheckboxField>
+			<script file="lsRadioButField.lua" />
+		</tBaseCheckboxField>
+	</template>
+
+<!-- Comboboxes -->
+	<template name="tComboboxClimate">
+		<tComboboxColFull name="sClimate">
+			<default textres="sClimateTemperateStr" />
+			<script file="DORBase/Scripts/lsDORBaseClimateDropdownStringField.lua" />
+		</tComboboxColFull>
+	</template>
+
+	<template name="tComboboxCol">
+		<combobox>
+			<anchored height="20">
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<frame>
+				<hidereadonly />
+			</frame>
+			<center />
+			<listdirection>down</listdirection>
+			<listmaxsize>5</listmaxsize>
+			<multilinespacing>20</multilinespacing>
+			<nodrag />
+			<nodrop />
+			<noreset />
+			<script>
+				sOldMeasure = nil;
+
+				function onInit()
+					sOldMeasure = getValue();
+					super.onInit();
+				end
+			</script>
+		</combobox>
+	</template>
+
+	<template name="tComboboxColFull">
+		<tComboboxCol>
+			<anchored>
+				<right parent="gAnchorRight" anchor="left" offset="-12" />
+			</anchored>
+		</tComboboxCol>
+	</template>
+
+	<template name="tComboboxColHalfRight">
+		<tComboboxCol>
+			<anchored>
+				<top anchor="top" relation="absolute" offset="0" />
+				<left anchor="center" offset="48" />
+				<right parent="gAnchorRight" anchor="left" offset="-12" />
+			</anchored>
+			<script file="lsComboboxColHalfRight.lua" />
+		</tComboboxCol>
+	</template>
+
+	<template name="tComboboxDayHourMin">
+		<tComboboxColHalfRight>
+			<script file="lsComboboxDayHourMin.lua" />
+		</tComboboxColHalfRight>
+	</template>
+
+	<template name="tComboboxDayHourMinDay">
+		<tComboboxDayHourMin name="sDayMeasure">
+			<anchored>
+				<top parent="nHoursInDay" />
+			</anchored>
+			<default textres="sTimeHoursStr" />
+			<target>nHoursInDay</target>
+		</tComboboxDayHourMin>
+	</template>
+
+	<template name="tComboboxDayHourMinYear">
+		<tComboboxDayHourMin name="sYearMeasure">
+			<anchored>
+				<top parent="nDaysInYear" />
+			</anchored>
+			<default textres="sTimeDaysStr" />
+			<target>nDaysInYear</target>
+		</tComboboxDayHourMin>
+	</template>
+
+	<template name="tComboboxFeetMetreAltitude">
+		<tComboboxColHalfRight name="sAltitudeMeasure">
+			<anchored>
+				<top parent="snAltitude" />
+			</anchored>
+			<default textres="sLengthFeetStr" />
+			<target>snAltitude</target>
+			<script file="lsComboboxFeetMetreAltitude.lua" />
+		</tComboboxColHalfRight>
+	</template>
+
+	<template name="tComboboxNorthSouthLat">
+		<tComboboxColHalfRight name="sLatHemisphere">
+			<anchored>
+				<top parent="nLatitude" />
+			</anchored>
+			<default textres="sDirectionNorthStr" />
+			<script>
+				function onInit()
+					super.onInit();
+					addItems({Interface.getString("sDirectionNorthStr"),Interface.getString("sDirectionSouthStr")});
+				end
+			</script>
+		</tComboboxColHalfRight>
+	</template>
+
+	<template name="tComboboxTerrain">
+		<tComboboxColFull name="sTerrain">
+			<default textres="sTerrainPlainsStr" />
+			<script file="DORBase/Scripts/lsDORBaseTerrainDropdownStringField.lua" />
+		</tComboboxColFull>
+	</template>
+
+<!-- Die Fields -->
+	<template name="tDieFieldColumn">
+		<diefield>
+			<anchored height="20">
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<frame name="fieldlight" offset="7,5,7,5" />
+			<script file="DORBase/Scripts/lsDORBaseControlHideOnEmpty.lua" />
+		</diefield>
+	</template>
+
+<!-- Formatted Text Fields -->
+	<template name="tTextFieldFullColNoBorder">
+		<simpleft>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="5" />
+				<right offset="-7" />
+			</anchored>
+			<empty textres="sEmptyFormatedTextStr" />
+			<script file="DORBase/Scripts/lsDORBaseControlHideOnEmpty.lua" />
+		</simpleft>
+	</template>
+
+	<template name="tTextFieldFullColNoBorderGMNotes">
+		<tTextFieldFullColNoBorder name="fsGMNotes">
+			<empty textres="sEmptyGMNotesStr" />
+			<gmvisibleonly />
+			<script file="lsTextFieldFullColNoBorderGMNotes.lua" />
+		</tTextFieldFullColNoBorder>
+	</template>
+
+<!-- Generic Controls -->
+	<template name="tAnchorBottomList">
+		<genericcontrol name="gAnchorBottomList">
+			<anchored to="wlList" height="0">
+				<left />
+				<right />
+				<top anchor="bottom" relation="relative" offset="15" />
+			</anchored>
+		</genericcontrol>
+	</template>
+
+	<template name="tAnchorBottomRightList">
+		<tAnchorLeft name="gAnchorBottomRight">
+			<anchored position="insidebottomright" offset="20,40" />
+		</tAnchorLeft>
+	</template>
+
+	<template name="tAnchorCentre">
+		<tAnchorLeft name="gAnchorCentre">
+			<anchored>
+				<left anchor="center" />
+			</anchored>
+		</tAnchorLeft>
+	</template>
+
+	<template name="tAnchorCentreBottom">
+		<tAnchorCentre name="gAnchorCentreBottom">
+			<anchored position="insidebottomleft" />
+		</tAnchorCentre>
+	</template>
+
+	<template name="tAnchorLeft">
+		<genericcontrol name="gAnchorLeft">
+			<anchored position="insidetopleft" height="0" width="0" />
+			<disabled />
+			<invisible />
+		</genericcontrol>
+	</template>
+
+	<template name="tAnchorLibMasterBottom">
+		<genericcontrol name="gAnchorLibMasterBottom">
+			<anchored>
+				<bottom offset="-20" />
+				<left parent="" anchor="left" offset="35" />
+				<right parent="" anchor="right" offset="-40" />
+			</anchored>
+		</genericcontrol>
+	</template>
+
+	<template name="tAnchorLibMasterButton">
+		<genericcontrol insertbefore="hsCategoryFilter">
+			<anchored to="gAnchorTitle" height="30" width="0">
+				<top anchor="bottom" relation="relative" />
+				<left offset="-5" />
+			</anchored>
+		</genericcontrol>
+	</template>
+
+	<template name="tAnchorLibMasterRight">
+		<genericcontrol name="gAnchorLibMasterRight">
+			<anchored height="20" width="0">
+				<top offset="2" />
+				<right />
+			</anchored>
+		</genericcontrol>
+	</template>
+
+	<template name="tAnchorRight">
+		<tAnchorLeft name="gAnchorRight">
+			<anchored position="insidetopright" />
+		</tAnchorLeft>
+	</template>
+
+	<template name="tAnchorRightHeader">
+		<tAnchorRight>
+			<anchored>
+				<top offset="5" />
+				<right offset="-5" />
+			</anchored>
+		</tAnchorRight>
+	</template>
+
+	<template name="tAnchorTitle">
+		<genericcontrol name="gAnchorTitle">
+			<anchored height="0">
+				<top parent="LibMasterTitle" anchor="bottom" offset="3" />
+				<left parent="" anchor="left" offset="35" />
+				<right parent="" anchor="right" offset="-40" />
+			</anchored>
+		</genericcontrol>
+	</template>
+
+	<template name="tColourDome">
+		<genericcontrol>
+			<anchored position="insidetopleft" />
+			<script file="lsColourDome.lua" />
+		</genericcontrol>
+	</template>
+
+	<template name="tFooterNarrowCol">
+		<genericcontrol>
+			<anchored height="19" width="68">
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left anchor="center" offset="-34" />
+			</anchored>
+			<frame name="footernarrowframe" />
+			<disabled />
+		</genericcontrol>
+	</template>
+
+	<template name="tIconModified">
+		<icon_modified name="gIconModified">
+			<anchored>
+				<right parent="gAnchorRight" />
+			</anchored>
+		</icon_modified>
+	</template>
+
+	<template name="tIconRecordLocked">
+		<icon_record_locked name="bHardLocked">
+			<anchored to="gAnchorRight">
+				<right offset="-5" />
+			</anchored>
+		</icon_record_locked>
+	</template>
+
+	<template name="tLineCol">
+		<genericcontrol>
+			<anchored height="3">
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left parent="gAnchorLeft" anchor="right" />
+				<right parent="gAnchorRight" anchor="left" />
+			</anchored>
+			<frame name="separatorline" />
+			<disabled />
+		</genericcontrol>
+	</template>
+
+	<template name="tLineColWindowlistSeperator">
+		<tLineCol>
+			<anchored>
+				<top offset="3" />
+			</anchored>
+		</tLineCol>
+	</template>
+
+	<template name="tLineColTrimRight">
+		<tLineCol>
+			<anchored>
+				<left offset="10" />
+				<right offset="-20" />
+			</anchored>
+		</tLineCol>
+	</template>
+
+	<template name="tTabs">
+		<buttongroup_tabs name="gcTabs">
+			<anchored width="18" height="92">
+				<top offset="50" />
+				<right offset="-4" />
+			</anchored>
+			<script>
+				function onInit()
+					setFrame(DesktopManager2.sTabFrame);
+					super.onInit()
+				end
+			</script>
+		</buttongroup_tabs>
+	</template>
+
+	<template name="tTabsList">
+		<tTabs>
+			<anchored>
+				<top offset="25" />
+			</anchored>
+		</tTabs>
+	</template>
+
+	<template name="tWindowFrame">
+		<genericcontrol>
+			<frame name="groupbox" />
+		</genericcontrol>
+	</template>
+
+	<template name="tWindowFrameAnchoredLeft">
+		<tWindowFrame>
+			<anchored>
+				<top />
+				<left />
+			</anchored>
+		</tWindowFrame>
+	</template>
+
+	<template name="tWindowFrameContent">
+		<tWindowFrame name="vFrame">
+			<anchored>
+				<top parent="swHeader" anchor="bottom" offset="15" />
+				<left offset="30" />
+				<right offset="-40" />
+				<bottom offset="-30" />
+			</anchored>
+			<frame offset="20,17,20,17" />
+		</tWindowFrame>
+	</template>
+
+	<template name="tWindowFrameContentFooter">
+		<tWindowFrameContent>
+			<anchored>
+				<bottom offset="-65" />
+			</anchored>
+		</tWindowFrameContent>
+	</template>
+
+	<template name="tWindowFrameContentNoTabs">
+		<tWindowFrameContent>
+			<anchored>
+				<right offset="-30" />
+			</anchored>
+		</tWindowFrameContent>
+	</template>
+
+<!-- Number Controls -->
+	<template name="tDispNumCtrl">
+		<numbercontrol>
+			<frame name="fieldlight" offset="7,5,7,5" />
+			<anchored position="righthigh" height="20" />
+			<font>sheetnumber</font>
+			<nodrop />
+			<noreset />
+			<readonly />
+		</numbercontrol>
+	</template>
+
+<!-- Number Fields -->
+	<template name="tDispNumField">
+		<numberfield>
+			<anchored position="righthigh" height="20" />
+			<font>sheetnumber</font>
+			<nodrop />
+			<noreset />
+			<readonly />
+		</numberfield>
+	</template>
+
+	<template name="tDispNumFieldFrm">
+		<tDispNumField>
+			<frame name="fieldlight" offset="7,5,7,5" />
+		</tDispNumField>
+	</template>
+
+	<template name="tNumField">
+		<basicnumber>
+			<frame mergerule="replace" name="fielddark" offset="7,5,7,5" hidereadonly="true" />
+			<anchored height="20" />
+			<script file="DORBase/Scripts/lsDORBaseControlHideOnEmpty.lua" />
+		</basicnumber>
+	</template>
+
+	<template name="tNumFieldCol">
+		<tNumField>
+			<anchored height="18">
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+		</tNumField>
+	</template>
+
+	<template name="tNumFieldColFull">
+		<tNumFieldCol>
+			<anchored>
+				<right parent="gAnchorRight" anchor="left" offset="-12" />
+			</anchored>
+		</tNumFieldCol>
+	</template>
+
+	<template name="tNumFieldColFullMin0">
+		<tNumFieldColFull>
+			<min>0</min>
+		</tNumFieldColFull>
+	</template>
+
+	<template name="tNumFieldColFullMin0Tilt">
+		<tNumFieldColFullMin0 name="nTilt">
+			<max>90</max>
+			<default>22.5</default>
+		</tNumFieldColFullMin0>
+	</template>
+
+	<template name="tNumFieldColHalf">
+		<tNumFieldCol>
+			<anchored>
+				<right anchor="center" offset="38" />
+			</anchored>
+		</tNumFieldCol>
+	</template>
+
+	<template name="tNumFieldColHalfDaysInYear">
+		<tNumFieldColHalf name="nDaysInYear">
+			<min>0</min>
+			<default>365</default>
+		</tNumFieldColHalf>
+	</template>
+
+	<template name="tNumFieldColHalfHoursInDay">
+		<tNumFieldColHalf name="nHoursInDay">
+			<min>0</min>
+			<default>24</default>
+		</tNumFieldColHalf>
+	</template>
+
+	<template name="tNumFieldColHalfLatitude">
+		<tNumFieldColHalf name="nLatitude">
+			<default>40</default>
+			<min>0</min>
+			<max>90</max>
+		</tNumFieldColHalf>
+	</template>
+
+<!-- Scrollbars -->
+	<template name="tCampListScrollbar">
+		<tListScrollbar>
+			<anchored offset="0,-8" />
+		</tListScrollbar>
+	</template>
+
+	<template name="tCategoryListScrollbar">
+		<scrollbar name="sbCategoryListScroll">
+			<anchored to="wlListCategory" offset="-5,-15" />
+			<target>wlListCategory</target>
+		</scrollbar>
+	</template>
+
+	<template name="tContentFrameScrollbar">
+		<scrollbar>
+			<anchored to="vFrame" offset="-8,-8" />
+		</scrollbar>
+	</template>
+
+	<template name="tContentFrameScrollbarNotes">
+		<tContentFrameScrollbar>
+			<target>swNotes</target>
+		</tContentFrameScrollbar>
+	</template>
+
+	<template name="tListScrollbar">
+		<scrollbar>
+			<anchored to="wlList" />
+			<target>wlList</target>
+		</scrollbar>
+	</template>
+
+	<template name="tWindowlistScrollbar">
+		<scrollbar>
+			<anchored offset="-16,-8" />
+			<normal name="scrollbutton_normal">
+				<minimum height="20" />
+			</normal>
+		</scrollbar>
+	</template>
+
+<!-- String Controls -->
+	<template name="tCampCategory">
+		<stringcontrol name="sCategory">
+			<anchored to="gAnchorRight" height="20">
+				<top />
+				<right anchor="left" relation="relative" offset="-5" />
+				<sizelimits>
+					<maximum width="150" />
+				</sizelimits>
+			</anchored>
+			<font>reference-r</font>
+			<nodrag />
+			<static />
+			<script file="lsCampCategory.lua" />
+		</stringcontrol>
+	</template>
+
+	<template name="tCampFilter">
+		<filter name="sCampFilter">
+			<anchored to="gAnchorBottomRight" height="20">
+				<top />
+				<left parent="wlList" offset="15" />
+				<right anchor="left" relation="relative" offset="-10" />
+			</anchored>
+			<script>
+				function onValueChanged()
+					super.onValueChanged();
+					window.fpOnNameFilterChanged();
+				end
+			</script>
+		</filter>
+	</template>
+
+	<template name="tCheckboxColLabel">
+		<tDispStrCtrl>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="25" />
+				<right offset="-12" />
+			</anchored>
+			<multilinespacing>20</multilinespacing>
+		</tDispStrCtrl>
+	</template>
+
+	<template name="tCheckboxLabel">
+		<tLabel>
+			<anchored>
+				<top offset="2" />
+				<left anchor="right" offset="5" />
+			</anchored>
+		</tLabel>
+	</template>
+
+	<template name="tDispStrCtrl">
+		<stringcontrol>
+			<multilinespacing>15</multilinespacing>
+			<font>sheettext</font>
+			<readonly />
+			<nodrag />
+			<nodrop />
+			<noreset />
+		</stringcontrol>
+	</template>
+
+	<template name="tDispStrCtrlMid">
+		<tDispStrCtrl>
+			<center />
+		</tDispStrCtrl>
+	</template>
+
+	<template name="tDispStrCtrlMidFrm">
+		<tDispStrCtrlMid>
+			<anchored height="20" />
+			<frame name="fieldlight" offset="7,5,7,5" />
+		</tDispStrCtrlMid>
+	</template>
+
+	<template name="tDispStrCtrlMidFrmCol">
+		<tDispStrCtrlMidFrm>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+		</tDispStrCtrlMidFrm>
+	</template>
+
+	<template name="tDispStrCtrlMidFrmColFull">
+		<tDispStrCtrlMidFrmCol>
+			<anchored>
+				<right parent="gAnchorRight" anchor="left" offset="-12" />
+			</anchored>
+		</tDispStrCtrlMidFrmCol>
+	</template>
+
+	<template name="tDispStrCtrlMidFrmColHalf">
+		<tDispStrCtrlMidFrmCol>
+			<anchored>
+				<right anchor="center" offset="38" />
+			</anchored>
+		</tDispStrCtrlMidFrmCol>
+	</template>
+
+	<template name="tDispStrCtrlMidFrmColHalfRight">
+		<tDispStrCtrlMidFrmColFull>
+			<anchored>
+				<left anchor="center" offset="48" />
+			</anchored>
+		</tDispStrCtrlMidFrmColFull>
+	</template>
+
+	<template name="tDispStrCtrlMidLinkListGM">
+		<tDispStrCtrlMid name="GMOnlyLabel">
+			<anchored width="20">
+				<top parent="gAnchorLeft" anchor="bottom" offset="7" />
+				<left parent="gAnchorLeft" anchor="right" relation="relative" offset="0" />
+			</anchored>
+			<gmvisibleonly />
+			<static textres="sGMStr" />
+		</tDispStrCtrlMid>
+	</template>
+
+	<template name="tDispStrCtrlMidLinkListHeading">
+		<tDispStrCtrlMid>
+			<anchored>
+				<top parent="GMOnlyLabel" anchor="top" />
+				<left parent="GMOnlyLabel" anchor="right" offset="5"/>
+				<right offset="-47" />
+			</anchored>
+		</tDispStrCtrlMid>
+	</template>
+
+	<template name="tLabel">
+		<tDispStrCtrl>
+			<font>sheetlabel</font>
+		</tDispStrCtrl>
+	</template>
+
+	<template name="tLabelMid">
+		<tLabel>
+			<center />
+		</tLabel>
+	</template>
+
+	<template name="tLabelCampCategory">
+		<stringcontrol name="sCategoryLabel">
+			<anchored position="insidetopleft" offset="30,2" height="20">
+				<right parent="gAnchorLibMasterRight" anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<frame name="fielddark" offset="7,3,7,3" hidereadonly="true" />
+			<stateframe>
+				<keyedit name="fieldfocus" offset="7,3,7,3" />
+				<hover name="fieldfocus" offset="7,3,7,3" hidereadonly="true" />
+			</stateframe>
+			<font>reference-r</font>
+			<nodrag />
+			<static />
+			<delaykeyupdate />
+			<droptypes>
+				<type>shortcut</type>
+			</droptypes>
+			<script file="lsLabelCampCategory.lua" />
+		</stringcontrol>
+	</template>
+
+	<template name="tLabelCol">
+		<tLabel>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="current" offset="7" />
+				<left />
+			</anchored>
+			<multilinespacing>20</multilinespacing>
+		</tLabel>
+	</template>
+
+	<template name="tLabelColAlignment">
+		<tLabelCol name="sAlignmentLabel">
+			<anchor>sAlignment</anchor>
+			<static textres="sAlignmentStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColAltitude">
+		<tLabelCol name="snAltitudeLabel">
+			<anchor>snAltitude</anchor>
+			<static textres="sLabelAltitudeStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColCalendar">
+		<tLabelCol name="sCalendarLabel">
+			<anchor>sCalendar</anchor>
+			<static textres="calendar_window_title" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColClimate">
+		<tLabelCol name="sClimateLabel">
+			<anchor>sClimate</anchor>
+			<static textres="sLabelClimateStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColDaysInYear">
+		<tLabelCol name="nDaysInYearLabel">
+			<anchor>nDaysInYear</anchor>
+			<static textres="sLabelDaysInYearStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColDemographics">
+		<tLabelCol name="sDemographicsLabel">
+			<anchor>sDemographics</anchor>
+			<static textres="sDemographicsStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColHeader">
+		<tLabel>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="10" />
+				<left offset="10" />
+				<right offset="-17" />
+			</anchored>
+			<frame name="headersimple" offset="10,3,10,3" />
+		</tLabel>
+	</template>
+
+	<template name="tLabelColHeaderGMNotes">
+		<tLabelColHeader name="fsGMNotesLabel">
+			<static textres="sHeaderGMNotesStr" />
+		</tLabelColHeader>
+	</template>
+
+	<template name="tLabelColHeaderHistory">
+		<tLabelColHeader name="fsHistoryLabel">
+			<static textres="sHeaderHistoryStr" />
+		</tLabelColHeader>
+	</template>
+
+	<template name="tLabelColHeaderNotes">
+		<tLabelColHeader name="fsNotesLabel">
+			<static textres="sHeaderNotesStr" />
+		</tLabelColHeader>
+	</template>
+
+	<template name="tLabelColHoursInDay">
+		<tLabelCol name="nHoursInDayLabel">
+			<anchor>nHoursInDay</anchor>
+			<static textres="sLabelHoursInDayStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColLatitude">
+		<tLabelCol name="nLatitudeLabel">
+			<anchor>nLatitude</anchor>
+			<static textres="sLabelLatitudeStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColPurpose">
+		<tLabelCol name="sPurposeLabel">
+			<anchor>sPurpose</anchor>
+			<static textres="sPurposeStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColResources">
+		<tLabelCol name="sResourcesLabel">
+			<anchor>Resources</anchor>
+			<static textres="sResourcesStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColSize">
+		<tLabelCol name="sSizeLabel">
+			<anchor>sSize</anchor>
+			<static textres="sSizeStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColSpinDirection">
+		<tLabelCol name="sSpinDirectionLabel">
+			<anchor>sSpinDirection</anchor>
+			<static textres="sLabelSpinDirectionStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColSumSolDate">
+		<tLabelCol name="sSumSolDateLabel">
+			<anchor>sSumSolDate</anchor>
+			<static textres="sLabelSumSolDateStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColTemperature">
+		<tLabelCol name="sTemperatureLabel">
+			<anchor>sTemperature</anchor>
+			<static textres="sLabelTemperatureStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColTerrain">
+		<tLabelCol name="sTerrainLabel">
+			<anchor>sTerrain</anchor>
+			<static textres="sLabelTerrainStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColTilt">
+		<tLabelCol name="nTiltLabel">
+			<anchor>nTilt</anchor>
+			<static textres="sLabelTiltStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColType">
+		<tLabelCol name="sTypeLabel">
+			<anchor>sType</anchor>
+			<static textres="sTypeStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelColWetness">
+		<tLabelCol name="sWetnessLabel">
+			<anchor>sWetness</anchor>
+			<static textres="sLabelWetnessStr" />
+		</tLabelCol>
+	</template>
+
+	<template name="tLabelLibMasterCategory">
+		<stringcontrol name="sLibMasterCategoryLabel">
+			<anchored to="gAnchorTitle">
+				<left />
+				<top anchor="bottom" relation="current" />
+			</anchored>
+			<font>reference-header</font>
+			<static textres="masterindex_label_category" />
+			<invisible />
+		</stringcontrol>
+	</template>
+
+	<template name="tLabelLibMasterCategoryFilter">
+		<stringcontrol name="sLibMasterCategoryFilterLabel">
+			<anchored to="gAnchorTitle" height="20">
+				<left parent="sLibMasterCategoryLabel" anchor="right" offset="10" />
+				<top anchor="bottom" relation="relative" />
+				<right offset="-25" />
+			</anchored>
+			<frame name="groupbox" offset="7,7,45,7" />
+			<center />
+			<static />
+			<invisible />
+			<script file="lsLabelLibMasterCategoryFilter.lua" />
+		</stringcontrol>
+	</template>
+
+	<template name="tLibMasterListPageInfoString">
+		<tDispStrCtrlMid name="LibMasListPgeInfoString">
+			<anchored to="gAnchorBottomList" height="24">
+				<left offset="48" />
+				<right offset="-48" />
+				<top anchor="bottom" relation="relative" offset="0" />
+			</anchored>
+			<frame name="fieldlight" offset="2,2,2,2" />
+			<multilinespacing>24</multilinespacing>
+			<invisible />
+		</tDispStrCtrlMid>
+	</template>
+
+	<template name="tSciNumCtrl">
+		<stringcontrol>
+			<delaykeyupdate />
+			<font>sheettext</font>
+			<frame mergerule="replace" name="fielddark" offset="7,5,7,5" hidereadonly="true" />
+			<stateframe>
+				<keyedit name="fieldfocus" offset="7,5,7,5" />
+				<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+			</stateframe>
+			<center />
+			<script file="lsSciNumCtrl.lua" />
+		</stringcontrol>
+	</template>
+
+	<template name="tSmallLabel">
+		<tDispStrCtrlMid>
+			<font>sheetlabelmini</font>
+			<anchored position="insidetop" offset="0,8" />
+			<multilinespacing>12</multilinespacing>
+		</tDispStrCtrlMid>
+	</template>
+
+	<template name="tTwoLayerFilter">
+		<filter>
+			<anchored height="20">
+				<left parent="contentanchor" offset="85" />
+				<right parent="contentanchor" />
+				<bottom offset="-25" />
+			</anchored>
+			<target>wlLevel1,wlLevel2</target>
+			<script file="lsTwoLayerFilter.lua" />
+		</filter>
+	</template>
+
+	<template name="tWindowlistSelectedStr">
+		<tDispStrCtrlMid name="sWindowlistSelectedItem">
+			<anchored position="insidetop" offset="-20,0" />
+		</tDispStrCtrlMid>
+	</template>
+
+	<template name="tWindowlistSelectedMidStr">
+		<tDispStrCtrlMidFrm>
+			<anchored position="insidetop" offset="-15,25" />
+		</tDispStrCtrlMidFrm>
+	</template>
+
+<!-- String Fields -->
+	<template name="tDispStrField">
+		<stringfield>
+			<font>sheettext</font>
+			<multilinespacing>20</multilinespacing>
+			<nodrag />
+			<nodrop />
+			<noreset />
+			<readonly />
+		</stringfield>
+	</template>
+
+	<template name="tDispStrFieldListItem">
+		<tDispStrField name="name">
+			<anchored>
+				<left parent="bGMVisible" anchor="right" offset="10" />
+				<top offset="5" />
+			</anchored>
+		</tDispStrField>
+	</template>
+
+	<template name="tDispStrFieldListItemFull">
+		<tDispStrFieldListItem>
+			<anchored>
+				<right parent="gAnchorRight" anchor="left" relation="relative" offset="-5" />
+			</anchored>
+		</tDispStrFieldListItem>
+	</template>
+
+	<template name="tDispStrFieldListItemHalf">
+		<tDispStrFieldListItem>
+			<anchored>
+				<right anchor="center" offset="-5" />
+			</anchored>
+		</tDispStrFieldListItem>
+	</template>
+
+	<template name="tDispStrFieldLinkName">
+		<tDispStrFieldMidFrm>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="122" />
+				<right offset="-40" />
+			</anchored>
+			<script file="lsDispStrFieldLinkName.lua" />
+		</tDispStrFieldMidFrm>
+	</template>
+
+	<template name="tDispStrFieldMid">
+		<tDispStrField>
+			<center />
+		</tDispStrField>
+	</template>
+
+	<template name="tDispStrFieldMidFrm">
+		<tDispStrFieldMid>
+			<anchored height="20" />
+			<frame name="fieldlight" offset="7,5,7,5" />
+		</tDispStrFieldMid>
+	</template>
+
+	<template name="tDispStrFieldMidFrmCol">
+		<tDispStrFieldMidFrm>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+		</tDispStrFieldMidFrm>
+	</template>
+
+	<template name="tDispStrFieldMidFrmColFull">
+		<tDispStrFieldMidFrmCol>
+			<anchored>
+				<right parent="gAnchorRight" anchor="left" offset="-12" />
+			</anchored>
+		</tDispStrFieldMidFrmCol>
+	</template>
+
+	<template name="tDispStrFieldMidFrmColFullDate">
+		<tDispStrFieldMidFrmColFull>
+			<anchored>
+				<right offset="-95" />
+			</anchored>
+			<default>
+				<textres>sNoneSetStr</textres>
+			</default>
+		</tDispStrFieldMidFrmColFull>
+	</template>
+
+	<template name="tDispStrFieldMidFrmColHalf">
+		<tDispStrFieldMidFrmCol>
+			<anchored>
+				<right anchor="center" offset="38" />
+			</anchored>
+		</tDispStrFieldMidFrmCol>
+	</template>
+
+	<template name="tDispStrFieldMidFrmColHalfRight">
+		<tDispStrFieldMidFrmCol>
+			<anchored>
+				<left anchor="center" offset="48" />
+				<right parent="gAnchorRight" anchor="left" offset="-12" />
+			</anchored>
+		</tDispStrFieldMidFrmCol>
+	</template>
+
+	<template name="tSciNumField">
+		<tSciNumCtrl>
+			<script file="lsSciNumField.lua" />
+		</tSciNumCtrl>
+	</template>
+
+	<template name="tSciNumFieldCol">
+		<tSciNumField>
+			<anchored height="18">
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<multilinespacing>20</multilinespacing>
+		</tSciNumField>
+	</template>
+
+	<template name="tSciNumFieldColFull">
+		<tSciNumFieldCol>
+			<anchored>
+				<right parent="gAnchorRight" anchor="left" offset="-10" />
+			</anchored>
+		</tSciNumFieldCol>
+	</template>
+
+	<template name="tSciNumFieldColHalf">
+		<tSciNumFieldCol>
+			<anchored>
+				<right anchor="center" offset="38" />
+			</anchored>
+		</tSciNumFieldCol>
+	</template>
+
+	<template name="tSciNumFieldColHalfAltitude">
+		<tSciNumFieldColHalf name="snAltitude">
+			<default>500</default>
+		</tSciNumFieldColHalf>
+	</template>
+
+	<template name="tStrFieldCol">
+		<basicstring>
+			<anchored height="18">
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<center />
+			<multilinespacing>20</multilinespacing>
+			<script file="DORBase/Scripts/lsDORBaseControlHideOnEmpty.lua" />
+		</basicstring>
+	</template>
+
+	<template name="tStrFieldColFull">
+		<tStrFieldCol>
+			<anchored>
+				<right parent="gAnchorRight" anchor="left" offset="-12" />
+			</anchored>
+		</tStrFieldCol>
+	</template>
+
+	<template name="tStrFieldListName">
+		<string_list_name name="name">
+			<anchored height="20">
+				<top parent="lcShortcutLinkCtrl" />
+				<left parent="lcShortcutLinkCtrl" anchor="right" offset="5" />
+				<right parent="gAnchorRight" anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<linktarget>lcShortcutLinkCtrl</linktarget>
+		</string_list_name>
+	</template>
+
+	<template name="tStrFieldRecordName">
+		<string_record_name name="name">
+			<anchored>
+				<top offset="5" />
+				<left offset="40" />
+				<right parent="gAnchorRight" anchor="left" relation="current" offset="-15" />
+			</anchored>
+		</string_record_name>
+	</template>
+
+<!-- Subwindows -->
+	<template name="tSubwindowHeader">
+		<subwindow name="swHeader">
+			<anchored>
+				<top offset="23" />
+				<left offset="15" />
+				<right offset="-15" />
+			</anchored>
+			<activate />
+		</subwindow>
+	</template>
+
+	<template name="tSubwindowFooterLength">
+		<tSubwindowFullLength>
+			<anchored>
+				<bottom offset="-65" />
+			</anchored>
+			<fastinit /> 
+		</tSubwindowFullLength>
+	</template>
+
+	<template name="tSubwindowFooterLengthList">
+		<tSubwindowFooterLength>
+			<anchored>
+				<right offset="-30" />
+			</anchored>
+		</tSubwindowFooterLength>
+	</template>
+
+	<template name="tSubwindowFooterLengthListSounds">
+		<tSubwindowFooterLength name="swSounds">
+			<class>wcSounds</class>
+		</tSubwindowFooterLength>
+	</template>
+
+	<template name="tSubwindowFooterLengthNotes">
+		<tSubwindowFooterLength name="swNotes">
+			<class>wcNotes</class>
+		</tSubwindowFooterLength>
+	</template>
+
+	<template name="tSubwindowFullLength">
+		<subwindow>
+			<anchored position="over">
+				<top parent="swHeader" anchor="bottom" offset="15" />
+				<left offset="30" />
+				<right offset="-40" />
+				<bottom offset="-30" />
+			</anchored>
+		</subwindow>
+	</template>
+
+	<template name="tSubwindowFullLengthList">
+		<tSubwindowFullLength>
+			<anchored>
+				<right offset="-30" />
+			</anchored>
+		</tSubwindowFullLength>
+	</template>
+
+	<template name="tSubwindowFullLengthListMaps">
+		<tSubwindowFullLengthList name="swMaps">
+			<class>wcMaps</class>
+		</tSubwindowFullLengthList>
+	</template>
+
+	<template name="tSubwindowFullLengthNotes">
+		<tSubwindowFullLength name="swNotes">
+			<class>wcNotes</class>
+		</tSubwindowFullLength>
+	</template>
+
+	<template name="tSubwindowFullLengthListSounds">
+		<tSubwindowFullLengthList name="swSounds">
+			<class>wcSounds</class>
+		</tSubwindowFullLengthList>
+	</template>
+
+	<template name="tSubwindowPartialLengthList">
+		<subwindow>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="3" />
+				<left />
+				<right />
+			</anchored>
+			<fastinit />
+		</subwindow>
+	</template>
+
+	<template name="tSubwindowTab">
+		<subwindow>
+			<anchored position="over" />
+			<class>wcTabbedLibMasterList</class>
+		</subwindow>
+	</template>
+
+	<template name="tSubwindowTabNoAdd">
+		<tSubwindowTab>
+			<class>wcTabbedLibMasterListNoAdd</class>
+		</tSubwindowTab>
+	</template>
+
+<!-- Windowlists -->
+	<template name="tCampListBaseWindowlist">
+		<windowlist name="wlList">
+			<anchored>
+				<top parent="gAnchorTitle" anchor="bottom" relation="relative" offset="20" />
+				<left offset="35" />
+				<right offset="-50" />
+				<bottom offset="-60" />
+			</anchored>
+			<class>wcLibMasterListSmall</class>
+			<frame name="groupbox" offset="15,15,30,15" />
+			<footer>footer_narrow</footer>
+			<useallmodules />
+			<sortby>
+				<control>name</control>
+			</sortby>
+			<child>
+				<backcolor>1A40301E</backcolor>
+			</child>
+			<child></child>
+			<script file="lsCampListBaseWindowlist.lua" />
+		</windowlist>
+	</template>
+
+	<template name="tCampListWindowlist">
+		<tCampListBaseWindowlist>
+			<allowcreate />
+		</tCampListBaseWindowlist>
+	</template>
+
+	<template name="tCheckboxWindowlist">
+		<windowlist>
+			<anchored position="over" offset="-15,-15">
+				<top offset="55" />
+			</anchored>
+			<skipempty />
+			<sortby mergerule="replace">
+				<control>sWindowlistSelectedItem</control>
+			</sortby>
+			<script>
+				function fpResetCheckboxes()
+					local aList = getWindows();
+					for i=1,#aList do
+						aList[i].CheckboxCtrlWindowlistSelected.setValue(0);
+					end
+				end
+			</script>
+		</windowlist>
+	</template>
+
+	<template name="tWindowlistLibMasterCategory">
+		<windowlist name="wlListCategory">
+			<anchored to="gAnchorTitle">
+				<left parent="sLibMasterCategoryLabel" anchor="right" offset="10" />
+				<top anchor="bottom" relation="relative" />
+				<right offset="-25" />
+				<sizelimits>
+					<minimum height="65" />
+					<maximum height="120" />
+				</sizelimits>
+			</anchored>
+			<frame name="groupbox" offset="7,7,45,7" />
+			<class>wcLibMasterCategory</class>
+			<skipempty />
+			<sortby>
+				<control>sCategoryLabel</control>
+			</sortby>
+			<invisible />
+			<script file="lsWindowlistLibMasterCategory.lua" />
+		</windowlist>
+	</template>
+
+	<template name="tWindowlistLinks">
+		<windowlist name="wlList">
+			<anchored>
+				<left />
+				<top offset="28" />
+				<right offset="-17" />
+			</anchored>
+			<allowdelete />
+			<gmeditonly />
+			<empty font="list-empty" />
+			<child backcolor="1A40301E" mergerule="resetandadd" />
+			<sortby mergerule="replace">
+				<control>name</control>
+			</sortby>
+			<script file="lsWindowlistLinks.lua" />
+		</windowlist>
+	</template>
+
+	<template name="tWindowlistLinksFull">
+		<tWindowlistLinks>
+			<anchored position="over">
+				<bottom offset="-5" />
+			</anchored>
+		</tWindowlistLinks>
+	</template>
+
+	<template name="tWindowlistLinksPartial">
+		<tWindowlistLinksFull>
+			<anchored>
+				<top parent="gAnchorLeft" anchor="bottom" relation="relative" offset="10" />
+			</anchored>
+		</tWindowlistLinksFull>
+	</template>
+
+	<template name="tWindowlistSoundLinksFull">
+		<tWindowlistLinksFull>
+			<datasource>.soundlist</datasource>
+			<class>wcSoundsList</class>
+			<empty gmtextres="sSoundLinkListEmptyStr" />
+			<script file="lsWindowlistSoundLinksFull.lua" />
+		</tWindowlistLinksFull>
+	</template>
+
+<!-- Window Reference Fields -->
+	<template name="tRefFieldShortcutLink">
+		<linkfield>
+			<anchored width="20" height="20">
+				<top />
+				<right anchor="left" offset="-7" />
+			</anchored>
+			<script file="lsRefFieldShortcutLink.lua" />
+		</linkfield>
+	</template>
+
+	<template name="tRefFieldShortcutListLink">
+		<tRefFieldShortcutLink name="lShortcutLink">
+			<anchored>
+				<top offset="5" />
+				<right parent="gAnchorRight" relation="relative" offset="-5" />
+			</anchored>
+			<readonly />
+		</tRefFieldShortcutLink>
+	</template>
+
+	<template name="tSoundFieldShortcutLink">
+		<tRefFieldShortcutLink name="lSoundLink">
+			<icon normal="iBtnSoundLink" pressed="iBtnSoundLinkDown" empty="button_link_empty" />
+			<script file="lsSoundFieldShortcutLink.lua" />
+		</tRefFieldShortcutLink>
+	</template>
+</root>

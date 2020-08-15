@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay Frames -->
+	<framedef name="charselect">
+		<bitmap file="Core/Images/imgPCSelectionBox.png" />
+		<middle rect="0,0,676,430" />
+	</framedef>
+
+	<framedef name="chatbox">
+		<bitmap file="Core/Images/imgChatBox.png" />
+		<offset>44,44,44,44</offset>
+		<insideoffset>0,0,7,3</insideoffset>
+	</framedef>
+
+	<framedef name="desktop">
+		<bitmap file="Core/Images/imgDesktop.png" />
+		<topleft rect="0,0,15,15" />
+		<top rect="15,0,485,15" />
+		<left rect="0,15,15,485" />
+		<middle rect="15,15,485,485" />
+		<bottomleft rect="0,500,15,15" />
+		<bottom rect="15,500,480,15" />
+	</framedef>
+
+<!-- Non-Overlay Frames -->
+	<framedef name="frmReferenceChapter">
+		<bitmap file="Core/Images/imgRefChapter.png" />
+		<middle rect="0,10,80,40" />
+		<top rect="0,0,80,10" />
+		<bottom rect="0,50,80,10" />
+		<topright rect="86,0,41,17" />
+		<right rect="86,17,41,25" />
+		<bottomright rect="86,42,41,18" />
+	</framedef>
+
+	<framedef name="frmReferenceSection">
+		<bitmap file="Core/Images/imgRefSection.png" />
+		<topleft rect="0,0,1,0" />
+		<top rect="1,0,70,4" />
+		<topright rect="91,0,12,1" />
+		<right rect="84,0,19,40" />
+		<middle rect="0,4,80,40" />
+	</framedef>
+
+	<framedef name="shortcuts">
+		<bitmap file="Core/Images/imgDesktop.png" />
+		<topleft rect="500,0,15,15" />
+		<left rect="500,15,15,500" />
+		<middle rect="515,0,50,100" />
+		<topright rect="500,0,11,15" />
+		<right rect="500,15,11,500" />
+	</framedef>
+</root>

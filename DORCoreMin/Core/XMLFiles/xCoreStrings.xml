@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay Strings -->
+	<string name="chat_unknown_string">Unknown</string>
+	<string name="dice_tower_off_string">Dice Tower is turned off.</string>
+	<string name="item_label_unidentifiednotes">Non-ID Notes</string>
+	<string name="name_of_non-players">NPC</string>
+	<string name="option_label_ANPC">Chat: Anonymize NPC attacks</string>
+	<string name="option_label_ESAV">Turn: Auto-roll saving throws</string>
+	<string name="option_label_HRIR">CT: Roll init each round</string>
+	<string name="option_label_HRNH">CT: NPC hit points</string>
+	<string name="option_label_INIT">Add: Auto NPC initiative</string>
+	<string name="option_label_MICN">Desktop: Menubar Icon Style</string>
+	<string name="option_label_PSMN">Party: Show characters to clients</string>
+	<string name="option_label_RMMT">Target: Remove on miss</string>
+	<string name="option_label_SHRR">Chat: Show results to client</string>
+	<string name="option_val_group">Group</string>
+	<string name="option_val_max">Max</string>
+	<string name="option_val_multi">Multi</string>
+	<string name="option_val_npc">NPC</string>
+	<string name="option_val_standard">Standard</string>
+<!-- Non-Overlay Strings -->
+	<string name="sItemLabelTypeString">Type</string>
+	<string name="sItemLabelSubTypeString">Subtype</string>
+	<string name="sMenubarStyleFantasyString">Fantasy</string>
+	<string name="sMenubarStyleGumshoeString">Gumshoe</string>
+	<string name="sMenubarStyleOrientalString">Oriental</string>
+	<string name="sMenubarStyleSciFiString">SciFi</string>
+	<string name="sMenubarStyleWesternString">Western</string>
+	<string name="sOptionValueDORCoreString">DORCore</string>
+	<string name="sSidebarTooltipModulesStr">Modules</string>
+	<string name="sSidebarTooltipPortraitStr">Portraits</string>
+</root>

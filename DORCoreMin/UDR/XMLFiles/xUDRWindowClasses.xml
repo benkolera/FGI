@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay WindowClasses -->
+	<windowclass name="dicetower" merge="join">
+		<sheetdata>
+			<genericcontrol name="base" merge="join">
+				<script file="lsDiceTower.lua" />
+			</genericcontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="modifierstack" merge="join">
+		<sheetdata>
+			<buttoncontrol name="bcExplodeButton" merge="add">
+				<anchored position="insidetopleft" offset="60,2" width="15" height="15" />
+				<state icon="iBang" color="77FFFFFF" frame="mini_name" frameoffset="2,2,1,2" tooltipres="sModStackExplodingDiceOffTooltip" />
+				<state icon="iBang" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,1,2" tooltipres="sModStackExplodingDiceOnTooltip" />
+				<default>0</default>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+
+<!-- Non-Overlay WindowClasses -->
+	<windowclass name="wcKeepDiceBox">
+		<sizelimits>
+			<minimum width="64" height="57" />
+		</sizelimits>
+		<noclose />
+		<script file="lsKeepDiceBox.lua" />
+		<sheetdata>
+			<genericcontrol name="gcBase">
+				<bounds>5,5,64,52</bounds>
+				<icon>iKeepDiceBox</icon>
+				<acceptdrop>
+					<type>number</type>
+				</acceptdrop>
+				<script file="lsKeepDiceBoxBase.lua" />
+			</genericcontrol>
+			<numbercontrol name="nKeepDice">
+				<bounds>15,15,42,22</bounds>
+				<stateframe>
+					<keyedit name="modstackfocus" />
+					<hover name="modstackfocus" />
+					<drophilight name="modstackfocus" />
+				</stateframe>
+				<font>modcollector</font>
+				<droptypes>
+					<type>number</type>
+				</droptypes>
+				<hideonvalue>0</hideonvalue>
+				<script file="lswcKeepDiceBoxKeepDice.lua" />
+			</numbercontrol>
+			<stringcontrol name="sLabel">
+				<bounds>9,37,54,12</bounds>
+				<font>modcollectorlabel</font>
+				<static textres="sKeepDiceBoxLable" />
+				<center />
+				<script>
+					function onDrop(nXPox,nYPos,oDragData)
+						return window.gcBase.onDrop(nXPox,nYPos,oDragData);
+					end
+				</script>
+			</stringcontrol>
+			<buttoncontrol name="bcPoolButton" merge="add">
+				<anchored position="insidetopleft" offset="2,2" width="15" height="15" />
+				<state icon="record_public" color="77FFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="sModStackPoolDiceOffTooltip" />
+				<state icon="record_public" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="sModStackPoolDiceOnTooltip" />
+				<default>0</default>
+			</buttoncontrol>
+			<buttoncontrol name="bcKeepHighButton">
+				<anchored position="insidetopleft" offset="60,2" width="15" height="15" />
+				<state icon="tool_up_30" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,1,2" tooltipres="sKeepDiceBoxKeepHighTooltip" />
+				<state icon="tool_down_30" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,1,2" tooltipres="sKeepDiceBoxKeepLowTooltip" />
+				<default>0</default>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcTNBox">
+		<sizelimits>
+			<minimum width="64" height="57" />
+		</sizelimits>
+		<noclose />
+		<script file="lsTNBox.lua" />
+		<sheetdata>
+			<genericcontrol name="gcBase">
+				<bounds>5,5,64,52</bounds>
+				<icon>iTNBox</icon>
+				<acceptdrop>
+					<type>number</type>
+					<type>targetnumber</type>
+				</acceptdrop>
+				<script file="lsTNBoxBase.lua" />
+			</genericcontrol>
+			<numbercontrol name="nTN">
+				<bounds>15,15,42,22</bounds>
+				<stateframe>
+					<keyedit name="modstackfocus" />
+					<hover name="modstackfocus" />
+					<drophilight name="modstackfocus" />
+				</stateframe>
+				<font>modcollector</font>
+				<droptypes>
+					<type>number</type>
+					<type>targetnumber</type>
+				</droptypes>
+				<script file="lsTNBoxTN.lua" />
+			</numbercontrol>
+			<stringcontrol name="sLabel">
+				<bounds>9,37,54,12</bounds>
+				<font>modcollectorlabel</font>
+				<static textres="sTNBoxLable" />
+				<center />
+				<script>
+					function onDrop(nXPox,nYPos,oDragData)
+						return window.gcBase.onDrop(nXPox,nYPos,oDragData);
+					end
+				</script>
+			</stringcontrol>
+			<buttoncontrol name="bcActivateButton">
+				<anchored position="insidetopleft" offset="2,2" width="15" height="15" />
+				<state icon="poll_negative" color="77FFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="sTNBoxDeactivateTooltip" />
+				<state icon="poll_check" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="sTNBoxActivateTooltip" />
+				<default>0</default>
+			</buttoncontrol>
+			<buttoncontrol name="bcAboveBelowButton">
+				<anchored position="insidetopleft" offset="60,2" width="15" height="15" />
+				<state icon="tool_up_30" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,1,2" tooltipres="sTNBoxAboveTooltip" />
+				<state icon="tool_down_30" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,1,2" tooltipres="sTNBoxBelowTooltip" />
+				<default>0</default>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcSuccessRaiseBox">
+		<sizelimits>
+			<minimum width="64" height="57" />
+		</sizelimits>
+		<noclose />
+		<script file="lsSuccessRaiseBox.lua" />
+		<sheetdata>
+			<genericcontrol name="gcBase">
+				<bounds>5,5,64,52</bounds>
+				<icon>iSuccessRaiseBox</icon>
+				<acceptdrop>
+					<type>number</type>
+				</acceptdrop>
+				<script file="lsSuccessRaiseBoxBase.lua" />
+			</genericcontrol>
+			<numbercontrol name="nSN">
+				<bounds>15,15,42,22</bounds>
+				<stateframe>
+					<keyedit name="modstackfocus" />
+					<hover name="modstackfocus" />
+					<drophilight name="modstackfocus" />
+				</stateframe>
+				<font>modcollector</font>
+				<droptypes>
+					<type>number</type>
+				</droptypes>
+				<script file="lsSuccessRaiseBoxSN.lua" />
+			</numbercontrol>
+			<stringcontrol name="sLabel">
+				<bounds>9,37,54,12</bounds>
+				<font>modcollectorlabel</font>
+				<static textres="sSuccessRaiseBoxLable" />
+				<center />
+				<script>
+					function onDrop(nXPox,nYPos,oDragData)
+						return window.gcBase.onDrop(nXPox,nYPos,oDragData);
+					end
+				</script>
+			</stringcontrol>
+			<buttoncontrol name="bcActivateButton">
+				<anchored position="insidetopleft" offset="2,2" width="15" height="15" />
+				<state icon="poll_negative" color="77FFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="sSuccessRaiseBoxDeactivateTooltip" />
+				<state icon="poll_check" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="sSuccessRaiseBoxActivateTooltip" />
+				<default>0</default>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcUDRF">
+		<frame>recordsheet</frame>
+		<placement>
+			<size width="400" height="650" />
+		</placement>
+		<sizelimits>
+			<minimum width="400" height="650" />
+			<dynamic />
+		</sizelimits>
+		<minimize>minimized_utility</minimize>
+		<tooltip field="name" />
+		<nodelete />
+		<sharable />
+		<script file="lsUDRF.lua" />
+		<sheetdata>
+			<tSubwindowHeader>
+				<class>wcUDRFHeader</class>
+			</tSubwindowHeader>
+			<tWindowFrameContentUDRF name="gCodeFrame">
+				<anchored height="60" />
+			</tWindowFrameContentUDRF>
+			<tWindowFrameContentUDRF name="gGroupFrame">
+				<anchored height="120">
+					<bottom parent="gCodeFrame" anchor="top" />
+				</anchored>
+			</tWindowFrameContentUDRF>
+			<tWindowFrameContentUDRF name="vFrame">
+				<anchored>
+					<top parent="swHeader" anchor="bottom" offset="15" />
+					<bottom parent="gGroupFrame" anchor="top" />
+				</anchored>
+			</tWindowFrameContentUDRF>
+			<subwindow name="swMain">
+				<anchored to="vFrame">
+					<top offset="30" />
+					<left offset="30" />
+					<right offset="-40" />
+					<bottom offset="-30" />
+				</anchored>
+			</subwindow>
+<!--
+			<tSubwindowFullLength name="swMain">
+				<anchored to="gCodeFrame" position="over">
+					<bottom offset="150" />
+				</anchored>
+				<class>wcUDRFMain</class>
+			</tSubwindowFullLength>
+-->
+			<tContentFrameScrollbar>
+				<target>swMain</target>
+			</tContentFrameScrollbar>
+			<tAnchorLeft>
+				<anchored to="gGroupFrame" />
+			</tAnchorLeft>
+			<tAnchorRight>
+				<anchored to="gGroupFrame" />
+			</tAnchorRight>
+			<tSmallLabel>
+				<anchored to="gGroupFrame" offset="0,-8" />
+				<static textres="sGroupRollModsLable" />
+			</tSmallLabel>
+			<tBaseCheckboxField name="bGroupKeepHi">
+				<anchored to="gGroupFrame" offset="65,5" />
+				<script file="lsGroupKeepHi.lua" />
+			</tBaseCheckboxField>
+			<tBaseCheckboxField name="bGroupKeepLo">
+				<anchored to="gGroupFrame" offset="65,25" />
+				<script file="lsGroupKeepLo.lua" />
+			</tBaseCheckboxField>
+			<tBaseCheckboxField name="bGroupKeepNum">
+				<anchored to="gGroupFrame" offset="175,5" />
+				<script file="lsGroupKeepNum.lua" />
+			</tBaseCheckboxField>
+			<tBaseCheckboxField name="bGroupKeepField">
+				<anchored to="gGroupFrame" offset="175,25" />
+				<script file="lsGroupKeepNum.lua" />
+			</tBaseCheckboxField>
+			<tNumField name="nGroupNumKeepDie">
+				<anchored to="gGroupFrame" position="insidetopleft" offset="270,15" width="30"/>
+				<min>1</min>
+			</tNumField>
+			<tLabel>
+				<anchored to="gGroupFrame" position="insidetopleft" offset="0,7" width="60" />
+				<static textres="sGroupKeepDieLabel" />
+			</tLabel>
+			<tCheckboxLabel>
+				<anchored to="bGroupKeepHi" width="75" />
+				<static textres="sGroupKeepHiDieLabel" />
+			</tCheckboxLabel>
+			<tCheckboxLabel>
+				<anchored to="bGroupKeepLo" width="75" />
+				<static textres="sGroupKeepLoDieLabel" />
+			</tCheckboxLabel>
+			<tCheckboxLabel>
+				<anchored to="bGroupKeepNum" width="75" />
+				<static textres="sGroupKeepNumLabel" />
+			</tCheckboxLabel>
+			<tCheckboxLabel>
+				<anchored to="bGroupKeepField" width="60" />
+				<static textres="sGroupKeepFieldLabel" />
+			</tCheckboxLabel>
+			<tLabel>
+				<anchored to="nGroupNumKeepDie" position="righthigh" offset="7,2" width="60" />
+				<static textres="sDiceStopStr" />
+			</tLabel>
+			<genericcontrol>
+				<anchored height="3">
+					<top parent="bGroupKeepLo" anchor="bottom" offset="5" />
+					<left parent="gAnchorLeft" anchor="right" />
+					<right parent="gAnchorRight" anchor="left" />
+				</anchored>
+				<frame name="separatorline" />
+				<disabled />
+			</genericcontrol>
+<!--
+<tLineCol />
+-->
+			<tButIconAddUDRF>
+				<anchored to="gGroupFrame" position="insidetopright" offset="5,62" />
+				<target></target>
+			</tButIconAddUDRF>
+			<windowlist name="wlGroupTargetNoList">
+				<anchored to="gGroupFrame">
+					<top offset="30" />
+					<left offset="30" />
+					<right offset="-40" />
+					<bottom offset="-30" />
+				</anchored>
+				<datasource>.grouptargetnolist</datasource>
+				<class>wcUDRFGroupTargetNo</class>
+				<script file="UDR/Scripts/lsUDRFGroupTargetNoList.lua" />
+			</windowlist>
+			<scrollbar>
+				<anchored to="wlGroupTargetNoList" />
+				<target>wlGroupTargetNoList</target>
+			</scrollbar>
+			<tLabel>
+				<anchored to="gGroupFrame" position="insidetopleft" offset="0,62" width="60" />
+				<static textres="sGroupTargetNoLabel" />
+			</tLabel>
+
+			<tDispStrFieldMidFrm name="sDieFormula">
+				<anchored to="gCodeFrame" position="insidetopright" offset="5,5">
+					<left offset="80" />
+				</anchored>
+			</tDispStrFieldMidFrm>
+			<tDispStrFieldMidFrm name="sDieFormula">
+				<anchored to="gCodeFrame" position="insidebottomright" offset="5,5">
+					<left offset="80" />
+				</anchored>
+			</tDispStrFieldMidFrm>
+			<tLabel name="sDieFormulaLabel">
+				<anchored to="gCodeFrame" position="insidetopleft" offset="0,7" width="70" />
+				<static textres="sDieFormulaLable" />
+			</tLabel>
+			<tLabel name="sDieCodeLabel">
+				<anchored to="gCodeFrame" position="insidebottomleft" offset="0,7" width="70" />
+				<static textres="sDieCodeLable" />
+			</tLabel>
+			<resize_recordsheet />
+			<close_recordsheet />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcUDRFHeader">
+		<margins control="0,0,0,7" />
+		<sheetdata>
+			<link_record_header>
+				<class>wcUDRF</class>
+			</link_record_header>
+			<tAnchorRightHeader />
+			<tIconRecordLocked />
+			<tButRecordLocked />
+			<tStrFieldRecordName>
+				<empty textres="library_recordtype_empty_udr" />
+			</tStrFieldRecordName>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcUDRFGroupTargetNo">
+		<margins control="0,0,0,2" />
+--		<script file="UDR/Scripts/lsUDRFGroupTargetNo.lua" />
+		<sheetdata>
+			<tAnchorLeft />
+<!--
+<tAnchorCentre />
+<tAnchorRight />
+-->
+			<tFooterNarrowCol />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcUDRFGroup">
+		<margins control="0,0,0,2" />
+		<script file="UDR/Scripts/lsUDRFGroup.lua" />
+		<sheetdata>
+			<tAnchorLeft />
+<!--
+<tAnchorCentre />
+<tAnchorRight />
+-->
+			<tFooterNarrowCol />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcUDRFMain">
+		<margins control="0,0,0,2" />
+<!--
+		<script file="UDR/Scripts/lsUDRFMain.lua" />
+-->
+		<sheetdata>
+			<tAnchorLeft />
+<!--
+<tAnchorCentre />
+<tAnchorRight />
+-->
+			<tFooterNarrowCol />
+		</sheetdata>
+	</windowclass>
+</root>

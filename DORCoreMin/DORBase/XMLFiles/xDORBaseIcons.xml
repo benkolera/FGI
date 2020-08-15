@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Non-Overlay Buttons and Icons -->
+<!-- Common Icons -->
+	<icon name="iBtnBase" file="graphics/icons/colorgizmo_bigbtn_base.png" />
+	<icon name="iBtnColour" file="graphics/icons/colorgizmo_bigbtn_color.png" />
+	<icon name="iBtnEffects" file="graphics/icons/colorgizmo_bigbtn_effects.png" />
+	<icon name="iBtnRainbow" file="DORBase/Icons/iBtnRainbow.png" />
+	<icon name="iBtnSoundLink" file="DORBase/Icons/iBtnSoundLink.png" />
+	<icon name="iBtnSoundLinkDown" file="DORBase/Icons/iBtnSoundLinkDown.png" />
+	<icon name="imgMenubarButtonBase" file="DORBase/Images/imgMenubarButtonBase.png" />
+	<icon name="imgMenubarButtonColour" file="DORBase/Images/imgMenubarButtonColour.png" />
+	<icon name="imgMenubarButtonEffect" file="DORBase/Images/imgMenubarButtonEffect.png" />
+	<icon name="iMsgboxError" file="DORBase/Images/imgError.png" />
+	<icon name="iMsgboxHelp" file="DORBase/Images/imgHelp.png" />
+	<icon name="iMsgboxInfo" file="DORBase/Images/imgInfo.png" />
+	<icon name="iMsgboxWarning" file="DORBase/Images/imgWarning.png" />
+<!-- DORCore Icons -->
+	<icon name="iTabLocationDORCore" file="DORBase/Icons/iTabLocations.png" />
+	<icon name="iTabMapDORCore" file="DORBase/Icons/iTabMaps.png" />
+	<icon name="iTabNPCDORCore" file="DORBase/Icons/iTabNPCs.png" />
+	<icon name="iTabSetupDORCore" file="DORBase/Icons/iTabSetup.png" />
+	<icon name="iTabSoundDORCore" file="DORBase/Icons/iTabSound.png" />
+</root>

@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay WindowClasses -->
+	<windowclass name="pointerselection">
+		<frame>utilitybox3</frame>
+		<placement>
+			<size width="285" height="265" />
+		</placement>
+		<sheetdata>
+			<genericcontrol name="gcColourGizmo">
+				<bounds>25,-240,210,205</bounds>
+				<script file="DORBase/Scripts/lsDORBaseColourGizmo.lua" />
+			</genericcontrol>
+			<hsc name="hscOldColourCode" />
+			<stringcontrol name="sColourCode">
+				<bounds>-85,-55,50,20</bounds>
+				<frame name="fielddark" offset="7,5,7,5" />
+				<font>sheettext</font>
+				<center />
+				<tooltip textres="sColourGizmoColourCodeTooltipStr" />
+				<delaykeyupdate />
+				<script file="lsOldColourCode.lua" />
+			</stringcontrol>
+			<helper_color>
+				<anchored>
+					<top offset="21" />
+					<right offset="-55" />
+				</anchored>
+			</helper_color>
+			<tButCloseUtilBox />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="reference_colindexgroup">
+		<script file="lsReferenceColIndexGroup.lua" />
+		<sheetdata>
+			<anchor_column name="topanchor" />
+			<frame_groupdesc name="descframe" />
+			<string_groupdesc name="description">
+				<anchored>
+					<left offset="30" />
+				</anchored>
+				<target>list</target>
+			</string_groupdesc>
+			<tButStatus />
+			<list_reftablegroupitems name="list">
+				<datasource>.index</datasource>
+				<class>reference_colindexitem</class>
+			</list_reftablegroupitems>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="reference_manual" merge="join">
+		<script file="lsReferenceManual.lua" />
+	</windowclass>
+
+<!-- Non-Overlay Windowclasses -->
+	<windowclass name="wcBuildingsList">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<tAnchorRight />
+			<tButIconDelList>
+				<script>
+					function onButtonPress()
+						if getValue() == 0 then
+							MiscFunctions.fpDeleteListNode(window.getDatabaseNode(),"BuildingParent");
+						end
+					end
+				</script>
+			</tButIconDelList>
+			<tButWLChangeColour />
+			<tRefFieldShortcutListLink>
+				<class>wcBuilding</class>
+			</tRefFieldShortcutListLink>
+			<tCheckboxGMVisible />
+			<tDispStrFieldListItemFull />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcEncountersList">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<tAnchorRight />
+			<tButIconDelList />
+			<tButWLChangeColour />
+			<tRefFieldShortcutListLink>
+				<class>encounter</class>
+			</tRefFieldShortcutListLink>
+			<tCheckboxGMVisible />
+			<tDispStrFieldListItemFull />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcHelpWindow">
+		<frame>referencepage</frame>
+		<placement>
+			<size width="400" height="400" />
+		</placement>
+		<sharable />
+		<sizelimits>
+			<dynamic />
+		</sizelimits>
+		<minimize>minimized_reference</minimize>
+		<tooltip field="name" />
+		<nodelete />
+		<sheetdata>
+			<frame_ref_content>
+				<anchored>
+					<top parent="" anchor="top" offset="40" />
+				</anchored>
+			</frame_ref_content>
+			<ft_record name="ftHelp">
+				<anchored to="contentframe" position="over" />
+				<footer>footer_wide</footer>
+			</ft_record>
+			<scrollbar>
+				<anchored to="ftHelp" />
+				<target>ftHelp</target>
+			</scrollbar>
+			<resize_referencepage />
+			<close_referencepage />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcHelpWindowWide">
+		<frame>referencepage</frame>
+		<placement>
+			<size width="650" height="650" />
+		</placement>
+		<sharable />
+		<sizelimits>
+			<minimum width="650" height="650" />
+			<dynamic />
+		</sizelimits>
+		<minimize>minimized_reference</minimize>
+		<tooltip field="name" />
+		<nodelete />
+		<sheetdata>
+			<frame_ref_content>
+				<anchored>
+					<top parent="" anchor="top" offset="40" />
+				</anchored>
+			</frame_ref_content>
+			<ft_record name="ftHelp">
+				<anchored to="contentframe" position="over" />
+				<footer>footer_wide</footer>
+			</ft_record>
+			<scrollbar>
+				<anchored to="ftHelp" />
+				<target>ftHelp</target>
+			</scrollbar>
+			<resize_referencepage />
+			<close_referencepage />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcLibMasterCategory">
+		<margins control="0,0,0,2" />
+		<script file="lsLibMasterCategory.lua" />
+		<sheetdata>
+			<hs name="hsCategory" />
+			<tAnchorLibMasterRight />
+			<tButIconDelCategory />
+			<tLabelCampCategory />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcLibMasterList">
+		<frame>referencelist</frame>
+		<placement>
+			<size width="450" height="450" />
+		</placement>
+		<sizelimits>
+			<minimum width="450" height="450" />
+			<dynamic />
+		</sizelimits>
+		<minimize>minimized_reference</minimize>
+		<softclose />
+		<nodelete />
+		<script file="DORBase/Scripts/lsDORBaseLibMasterList.lua" />
+		<sheetdata>
+			<windowtitlebar name="LibMasterTitle" />
+			<tAnchorTitle />
+			<tAnchorLibMasterBottom />
+			<hsc name="hsCategoryFilter" />
+			<tLabelLibMasterCategory />
+			<tLabelLibMasterCategoryFilter />
+			<tWindowlistLibMasterCategory />
+			<tCategoryListScrollbar />
+			<tButCategoryCombo />
+			<tButIEditCategory />
+			<tButIconAddCategory />
+			<tCampListWindowlist />
+			<tCampListScrollbar />
+			<tAnchorBottomList />
+			<tLibMasterListPageInfoString />
+			<tButLibMasterListPageStart />
+			<tButLibMasterListPagePrev />
+			<tButLibMasterListPageNext />
+			<tButLibMasterListPageEnd />
+			<tAnchorBottomRightList />
+			<tButIconEditCamp />
+			<tButIconAddCamp />
+			<tButFilterShared />
+			<tCampFilter />
+			<resize_referencelist />
+			<close_referencelist />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcLibMasterListSmall">
+		<margins control="0,0,0,2" />
+		<script file="DORBase/Scripts/lsDORBaseLibMasterListRecord.lua" />
+		<sheetdata>
+			<link_list name="lcShortcutLinkCtrl">
+				<bounds>5,5,20,20</bounds>
+			</link_list>
+			<tAnchorRight />
+			<tButIconDelCamp />
+			<tButWLChangeColour />
+			<tButIconAccess />
+			<tIconModified />
+			<tCampCategory />
+			<tStrFieldListName />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcLocationsList">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<tAnchorRight />
+			<tButIconDelList>
+				<script>
+					function onButtonPress()
+						if getValue() == 0 then
+							MiscFunctions.fpDeleteListNode(window.getDatabaseNode(),"LocationParent");
+						end
+					end
+				</script>
+			</tButIconDelList>
+			<tButWLChangeColour />
+			<tRefFieldShortcutListLink>
+				<class>MJB_Locations.Location</class>
+			</tRefFieldShortcutListLink>
+			<tCheckboxGMVisible />
+			<tDispStrFieldListItemFull />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcMaps">
+		<margins control="0,0,0,2" />
+		<script file="lsMaps.lua" />
+		<sheetdata>
+			<tAnchorLeft />
+			<tAnchorRight />
+			<tWindowlistLinksFull name="wlMapsList">
+				<datasource>.maplist</datasource>
+				<class>wcMapsList</class>
+				<empty gmtextres="sMapLinkListEmptyStr" />
+				<script file="lsMapsOnDrop.lua" />
+			</tWindowlistLinksFull>
+			<tListScrollbar />
+			<tButIconEditLink />
+			<tDispStrCtrlMidLinkListGM />
+			<tDispStrCtrlMidLinkListHeading>
+				<static textres="sMapLinkListHeadingStr" />
+			</tDispStrCtrlMidLinkListHeading>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcMapsList">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<tAnchorRight />
+			<tButIconDelList />
+			<tButWLChangeColour />
+			<tRefFieldShortcutListLink>
+				<class>imagewindow</class>
+			</tRefFieldShortcutListLink>
+			<tCheckboxGMVisible />
+			<tDispStrFieldListItemFull />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcMsgbox">
+		<frame>utilitybox3</frame>
+		<placement>
+			<size width="400" />
+		</placement>
+		<nomove />
+		<playercontrol />
+		<sheetdata>
+			<windowtitlebar name="title" />
+			<tAnchorLeft>
+				<anchored>
+					<left offset="20" />
+				</anchored>
+			</tAnchorLeft>
+			<genericcontrol name="gcIcon">
+				<anchored height="50" width="50">
+					<top offset="50" />
+					<left parent="gAnchorLeft" anchor="right" offset="10" relation="relative"/>
+				</anchored>
+			</genericcontrol>
+			<tDispStrCtrlMid name="sMessage">
+				<anchored >
+					<top offset="50" />
+					<left parent="gAnchorLeft" anchor="right" offset="10" relation="relative"/>
+					<right offset="-30" />
+				</anchored>
+				<multilinespacing>25</multilinespacing>
+				<font>button-white</font>
+			</tDispStrCtrlMid>
+			<tButMsgbox name="btButMsgboxCancel">
+				<anchored>
+					<left anchor="center" offset="50" />
+				</anchored>
+				<state textres="sCancelStr" />
+			</tButMsgbox>
+			<tButMsgbox name="btButMsgboxYes">
+				<anchored>
+					<right anchor="center" offset="-50" />
+				</anchored>
+				<state textres="sYesStr" />
+			</tButMsgbox>
+			<tButMsgbox name="btButMsgboxOK">
+				<anchored>
+					<right anchor="center" offset="25" />
+				</anchored>
+				<state textres="sOKStr" />
+			</tButMsgbox>
+			<tButMsgbox name="btButMsgboxAbort">
+				<anchored>
+					<right anchor="center" offset="-50" />
+				</anchored>
+				<state textres="sAbortStr" />
+			</tButMsgbox>
+			<tButMsgbox name="btButMsgboxRetry">
+				<anchored>
+					<right anchor="center" offset="25" />
+				</anchored>
+				<state textres="sRetryStr" />
+			</tButMsgbox>
+			<tButMsgbox name="btButMsgboxIgnore">
+				<anchored>
+					<left anchor="center" offset="50" />
+				</anchored>
+				<state textres="sIgnoreStr" />
+			</tButMsgbox>
+			<tButMsgbox name="btButMsgboxNo">
+				<anchored>
+					<left anchor="center" offset="-25" />
+				</anchored>
+				<state textres="sNoStr" />
+			</tButMsgbox>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcNotes">
+		<margins control="0,0,0,2" />
+		<script file="lsNotes.lua" />
+		<sheetdata>
+			<tAnchorLeft />
+			<ft_record name="ftNotes">
+				<anchored parent="gcAnchorLeft" position="over" offset="-5,-7" />
+				<empty textres="sEmptyFormatedTextStr" />
+			</ft_record>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcRefGroupTwoLayer">
+		<frame>referencelist</frame>
+		<placement>
+			<size width="450" height="450" />
+		</placement>
+		<sizelimits>
+			<minimum width="450" height="450" />
+			<dynamic />
+		</sizelimits>
+		<minimize>minimized_reference</minimize>
+		<tooltip field="description" />
+		<nodelete />
+		<sheetdata>
+			<windowtitlebar name="reftitle">
+				<field>description</field>
+			</windowtitlebar>
+			<anchor_reftitle name="contentanchor" />
+			<list_reftablegroup name="wlLevel1">
+				<datasource>.groups</datasource>
+				<class>wcRefGroupTwoLayerLevel1</class>
+			</list_reftablegroup>
+			<scrollbar_reftablegroup>
+				<anchored to="wlLevel1" />
+				<target>wlLevel1</target>
+			</scrollbar_reftablegroup>
+			<tTwoLayerFilter name="filter">
+				<target>wlLevel1,wlLevel2,wlList</target>
+			</tTwoLayerFilter>
+			<button_reftable_expand>
+				<target>wlLevel1,wlLevel2,wlList</target>
+			</button_reftable_expand>
+			<button_reftable_collapse>
+				<target>wlLevel1,wlLevel2,wlList</target>
+			</button_reftable_collapse>
+			<resize_referencelist />
+			<close_referencelist />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcRefGroupTwoLayerLevel1">
+		<script file="lsRefGroupTwoLayerLevel1.lua" />
+		<sheetdata>
+			<anchor_column name="topanchor" />
+			<frame_groupdesc name="descframe">
+				<frame name="headerblack" />
+			</frame_groupdesc>
+			<string_groupdesc name="description">
+				<anchored>
+					<left offset="30" />
+				</anchored>
+				<target>wlLevel2</target>
+			</string_groupdesc>
+			<tButStatus />
+			<windowlist name="wlLevel2">
+				<anchored>
+					<top parent="topanchor" anchor="bottom" relation="relative" />
+					<left />
+					<right />
+				</anchored>
+				<noscroll />
+				<datasource>.subgroups</datasource>
+				<class>wcRefGroupTwoLayerLevel2</class>
+				<readonly />
+			</windowlist>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcRefGroupTwoLayerLevel2">
+		<script file="lsRefGroupTwoLayerLevel2.lua" />
+		<sheetdata>
+			<anchor_column name="topanchor" />
+			<frame_groupdesc name="descframe" />
+			<string_groupdesc name="description">
+				<anchored>
+					<left offset="40" />
+				</anchored>
+				<target>wlList</target>
+			</string_groupdesc>
+			<tButStatus />
+			<list_reftablegroupitems name="wlList">
+				<datasource>.index</datasource>
+				<class>reference_colindexitem</class>
+			</list_reftablegroupitems>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcSounds">
+		<margins control="0,0,0,2" />
+		<script file="lsSounds.lua" />
+		<sheetdata>
+			<tAnchorLeft />
+			<tAnchorRight />
+			<tWindowlistSoundLinksFull />
+			<tListScrollbar />
+			<tButIconEditLink />
+			<tDispStrCtrlMidLinkListGM />
+			<tDispStrCtrlMidLinkListHeading>
+				<static textres="sSoundLinkListHeadingStr" />
+			</tDispStrCtrlMidLinkListHeading>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcSoundsList">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<tAnchorRight />
+			<tButIconDelList />
+			<tButWLChangeColour />
+			<tSoundFieldShortcutLink>
+				<anchored>
+					<top offset="5" />
+					<right parent="gAnchorRight" relation="relative" offset="-5" />
+				</anchored>
+				<readonly />
+			</tSoundFieldShortcutLink>
+			<tCheckboxGMVisible />
+			<tDispStrFieldListItemFull />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcTabbedLibMasterList">
+		<margins control="0,0,10,0" />
+		<script file="DORBase/Scripts/lsDORBaseLibMasterList.lua" />
+		<sheetdata>
+			<windowtitlebar name="LibMasterTitle" />
+			<tAnchorTitle />
+			<tAnchorLibMasterBottom />
+			<hsc name="hsCategoryFilter" />
+			<tLabelLibMasterCategory />
+			<tLabelLibMasterCategoryFilter />
+			<tWindowlistLibMasterCategory />
+			<tCategoryListScrollbar />
+			<tButCategoryCombo />
+			<tButIEditCategory />
+			<tButIconAddCategory />
+			<tCampListWindowlist />
+			<tCampListScrollbar />
+			<tAnchorBottomList />
+			<tLibMasterListPageInfoString />
+			<tButLibMasterListPageStart />
+			<tButLibMasterListPagePrev />
+			<tButLibMasterListPageNext />
+			<tButLibMasterListPageEnd />
+			<tAnchorBottomRightList />
+			<tButIconEditCamp />
+			<tButIconAddCamp />
+			<tButFilterShared />
+			<tCampFilter />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcTabbedLibMasterListNoAdd">
+		<margins control="0,0,10,0" />
+		<script file="DORBase/Scripts/lsDORBaseLibMasterList.lua" />
+		<sheetdata>
+			<windowtitlebar name="LibMasterTitle" />
+			<tAnchorTitle />
+			<tAnchorLibMasterBottom />
+			<hsc name="hsCategoryFilter" />
+			<tLabelLibMasterCategory />
+			<tLabelLibMasterCategoryFilter />
+			<tWindowlistLibMasterCategory />
+			<tCategoryListScrollbar />
+			<tButCategoryCombo />
+			<tButIEditCategory />
+			<tButIconAddCategory />
+			<tCampListBaseWindowlist />
+			<tCampListScrollbar />
+			<tAnchorBottomList />
+			<tLibMasterListPageInfoString />
+			<tButLibMasterListPageStart />
+			<tButLibMasterListPagePrev />
+			<tButLibMasterListPageNext />
+			<tButLibMasterListPageEnd />
+			<tAnchorBottomRightList />
+			<tButIconEditCamp />
+			<tButFilterShared />
+			<tCampFilter />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="wcTownsList">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<tAnchorRight />
+			<tButIconDelList>
+				<script>
+					function onButtonPress()
+						if getValue() == 0 then
+							MiscFunctions.fpDeleteListNode(window.getDatabaseNode(),"TownParent");
+						end
+					end
+				</script>
+			</tButIconDelList>
+			<tButWLChangeColour />
+			<tRefFieldShortcutListLink>
+				<class>wcTown</class>
+			</tRefFieldShortcutListLink>
+			<tCheckboxGMVisible />
+			<tDispStrFieldListItemFull />
+		</sheetdata>
+	</windowclass>
+</root>

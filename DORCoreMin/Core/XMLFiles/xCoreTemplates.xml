@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay Templates -->
+	<template name="anchor_library">
+		<genericcontrol>
+			<anchored>
+				<top parent="title" anchor="bottom" offset="5" />
+				<left parent="" anchor="left" offset="45" />
+				<right parent="" anchor="right" offset="-50" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+
+	<template name="anchor_title_charselect">
+		<genericcontrol>
+			<anchored height="0">
+				<top parent="title" anchor="bottom" offset="0" />
+				<left parent="" anchor="left" offset="101" />
+				<right parent="" anchor="right" offset="-108" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+
+	<template name="button_library_sidebar">
+		<desktop_dockitem name="icon">
+			<script file="Core/Scripts/lsCoreButtonLibrarySidebar.lua" />
+		</desktop_dockitem>
+	</template>
+
+	<template name="button_library_sidebar_create">
+		<button_text_sm>
+			<anchored to="recordlist" position="aboveright" offset="120,15" width="80" />
+			<state textres="library_button_sidebar_create" />
+			<script>
+				function onButtonPress()
+					DesktopManager.resetSidebar("create");
+					for _,oWindow in ipairs(window.recordlist.getWindows()) do
+						oWindow.synchState();
+					end
+				end
+			</script>
+		</button_text_sm>
+	</template>
+
+	<template name="button_library_sidebar_all">
+		<button_text_sm>
+			<anchored to="recordlist" position="aboveright" offset="35,15" width="80" />
+			<state textres="library_button_sidebar_all" />
+			<script>
+				function onButtonPress()
+					DesktopManager.resetSidebar("all");
+					for _,oWindow in ipairs(window.recordlist.getWindows()) do
+						oWindow.synchState();
+					end
+				end
+			</script>
+		</button_text_sm>
+	</template>
+
+	<template name="chatwindow_step" merge="join">
+		<chatwindow name="chat" merge="join">
+			<linkicon normal="button_link" pressed="button_link_down" />
+			<script file="Core/Scripts/lsCoreChatWindow.lua" />
+		</chatwindow>
+	</template>
+
+	<template name="close_utilitybox3">
+		<close>
+			<anchored>
+				<top offset="21" />
+				<right offset="-31" />
+			</anchored>
+		</close>
+	</template>
+
+	<template name="desktop_dockitem">
+		<desktop_stackitem>
+			<bounds>0,0,100,100</bounds>
+			<size>100</size>
+		</desktop_stackitem>
+	</template>
+
+	<template name="desktop_stackitem">
+		<genericcontrol>
+			<bounds>0,0,50,50</bounds>
+			<nodrag />
+			<noreset />
+			<size>50</size>
+			<script file="Core/Scripts/lsCoreDesktopStackItem.lua" />
+		</genericcontrol>
+	</template>
+
+	<template name="help_utilitybox3">
+		<help>
+			<anchored>
+				<top offset="21" />
+				<right offset="-55" />
+			</anchored>
+		</help>
+	</template>
+</root>

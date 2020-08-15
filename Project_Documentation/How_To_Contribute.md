@@ -1,0 +1,142 @@
+# How To Contribute
+
+---
+
+Version 1.0.0
+
+## WELCOME! And THANK YOU!
+
+First of all, let us say both *&ldquo;Thank You!&rdquo;* and *&ldquo;Welcome!&rdquo;* Like most Collaborative Projects we&rsquo;re only as good as our Contributors and we rely on them &mdash; on *you* &mdash; to keep this Project alive and growing!
+
+You&rsquo;re here (we hope) because you&rsquo;re excited about joining us in developing the better working versions of FG Rulesets, specifically designed for the Role Playing Games we play &mdash; or at the very least interested in finding out how you can help. So no-matter what your particular skill-set is or what interests you, we *have* got a place for you! And even if you feel as if you don&rsquo;t have any useful skills but want to help out anyway, then you can find a place here in the Project.
+
+This *How To* document is simply the first in a series of related documents all explaining how you can contribute to the Project. No, you won&rsquo;t have to read them all, because different documents explain different parts of the Project so that different people can get the information they need to contribute to the parts of the Project they&rsquo;re interested in. We&rsquo;ve broken things up like this so that each piece of information is relevant, easily digestible, and focussed on the parts of the Project you&rsquo;re interested in.
+
+The Project natural falls into a number of sub-Projects, and each sub-Project will naturally appeal to different people. The first sub-Project concerns the finalisation of the Project Documentation &mdash; everyone can contribute to this sub-Project, either in direct contributions, proof-reading, editing, or in other ways.
+
+The second sub-Project is the development of the *Universal Die-Roller (UDR)* and the *Universal Die-Roller Foundry (UDRF)*. This sub-Project impacts all future Ruleset devevelopment, because having a good, solid, working die-rolling system is fundemental to practically *all* RPGs and therefore Rulesets.
+
+The third sub-Project will be the further development of the *Deadlands Classic* and *Deadlands Hell On Earth Classic* Rulesets, followed by other Rulesets and enhancements to the existing *DORCore* Ruleset.
+
+In addition to all of the above are any extra &ldquo;features&rdquo; that Contributors would like to see in a Ruleset, or in *all* Rulesets, plus any refinement and further development of the Project&rsquo; documentation..
+
+All of this is laid out in the Project&rsquo;s [Roadmap](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Project_Roadmap.md).
+
+All of the Project Documentation is listed below in logical groupings, so read the ones you need to (and the others that you want to) and find out how to effectively contribute to the Project.
+
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+
+## Getting Started How To&rsquo;s
+
+The Documents in this section explain all about how the to get started in contributing to the Project, how to download and use the tools required, and what the Project&rsquo;s workflow is and how to participate in that workflow.
+
+The Documents should be should be read in order presented so that you can get a really good understanding of how the Project actually operates.
+
+1. [How To Participate In The Project Workflow](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md)
+2. [Project Workflow Example](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Project_Workflow_Example.md)
+3. [The Project&rsquo;s Glossary](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Glossary.md)
+4. [Getting Started](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Getting_Started.md)
+5. [GitKraken Basics](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/GitKraken_Basics.md)
+6. [GK-Boards Basics](https://support.gitkraken.com/boards/quick-start/)
+7. [How To Fork The Project](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Fork_The_Project.md)
+8. [How To Clone A Repository](https://github.com/master/Project_Documentation/How_To_Clone_A_Repository.md)
+9. [Useful Software Tools](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Tools.md)
+
+## Project Standards
+
+The Documents in this section cover the *Coding* and *Writing Standards*  of the Project. These Standards need to be followed for your work to be included in the Project.
+
+We use these Standards to ensure that *everyone* is working, coding, and writing in the same way so that *everyone* can understand and work with *everyone else*.
+
+The Documents are listed in alphabetical order and can be read in any order.
+
+- [Contributor Certificate Of Origin](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/CCO.md)
+- [Project Standards](https://github.com/Dulux-Oz/FGI/master/Project_DocumentsStandards.md)
+
+## Project Governance And Information
+
+The Documents in this section explain how the Project is Governed &mdash; how decisions are made, who makes those decisions, etc, plus important Project Documents such as the Project&rsquo;s *LICENSE*, *CODE OF CONDUCT*, etc.
+
+The Documents can be read in any order, although the order they are presented is a good one to read them in.
+
+- [The Project&rsquo;s LICENSE](https://github.com/Dulux-Oz/FGI/master/LICENSE.md)
+- [The Project&rsquo;s CODE OF CONDUCT](https://github.com/Dulux-Oz/FGI/master/CODE_OF_CONDUCT.md)
+- [The Project&rsquo;s Misson Statement](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Mission_Statement.md)
+- [The Project&rsquo;s Governance](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Project_Governance.md)
+- [The Project&rsquo;s Contributor Certificate Of Origin Explained](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/CCO_Explained.md)
+- [Versioning &mdash; Semver+](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Semantic_Versioning_Plus.md)
+- [Voting](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Voting.md)
+- [File Locations](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/File_Locations.md)
+- [Project Roadmap](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Project_Roadmap.md)
+- [Project Acknowledgements](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Acknowledgements.md)
+- [Project FAQs](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FAQs.md)
+
+## Design Documents
+
+The Documents in this section contain information and notes on the UDR, the UDRF, FG, the DORCore Ruleset, and similar topics that will help you understand the &ldquo;high-level&rdquo; and &ldquo;low-level&rdquo; design and workings of the code, etc.
+
+The Documents can be read in any order, although the order they are presented is a good one to read them in.
+
+- [The FG Architecture](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FG_Architecture.md)
+- [FG Coding](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FG_Coding.md)
+- [Die-Code EBNF Grammar Definition](https://github.com/Dulux-Oz/FGI/master/Support_Files/Die-Code_EBNF_Grammar_Definition.md)
+- [Die-Roll Data Structure](https://github.com/Dulux-Oz/FGI/master/Support_Files/Die-Roll_Data_Structure.md)
+- [Die-Roll Flowchart](https://github.com/Dulux-Oz/FGI/master/Support_Files/Die_Roll_Flowchart.md)
+
+## How To&rsquo;s
+
+The Documents in this Section are all of the Project&rsquo;s *How To* Documents. Many of these are also listed in other Sections but are also listed here in one place so as to be easier to locate when needed.
+
+The Documents are listed in alphabetical order and can be read in any order.
+
+- [How To Clone A Repository](https://github.com/master/Project_Documentation/How_To_Clone_A_Repository.md)
+- [How To Commit A Change](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Commit_A_Change.md)
+- [How To Communicate Effectively](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Communicate_Effectively.md)
+- [How To Contribute](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Contribute.md)
+- [How To Create A Branch](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Create_A_Branch.md)
+- [How To File A Pull Request](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Document_A_Pull_Request.md)
+- [How To Fork The Project](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Fork_The_Project.md)
+- [How To Merge A Branch](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Merge_A_Branch.md)
+- [How To Participate In The Project Workflow](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md)
+- [How To Perform A Release](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Perform_A_Release.md)
+- [How To Pull From A Repository](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Pull_From_A_Repository.md)
+- [How To Push A Commit](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Push_A_Commit.md)
+- [How To Recognise Rudeness](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Recognise_Rudeness.md)
+- [How To Stage A Change](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Stage_A_Change.md)
+- [How To Test](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/How_To_Test.md)
+
+## Support Documents
+
+The Documents in this section are primarily secondary informational documents and *Templates* that we use to help us follow the Project Standards and other parts of the Project. 
+
+The Documents are listed in alphabetical order and can be read in any order.
+
+- [Why We Don&rsquo;t Use Author Tags](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Author_Tags.md)
+- [Boilerplate Statements](https://github.com/Dulux-Oz/FGI/master/Support_Files/Boilerplate_Statements.md)
+- [Commit Message Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/Commit_Message_Template.md)
+- [Community Roles &mdash; Maintainers](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Maintainers.md)
+- [GitHub Flavoured Markdown (GFM) Quick Spec](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/GFM_Quick_Spec.md)
+- [Links &amp; Resources](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Links.md)
+- [Lua File Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/lua_file_template.lua)
+- [MD Document With Images Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/MD_Document_With_Images_Template.md)
+- [MD Document Without Images Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/MD_Document_Without_Images_Template.md)
+- [PDF File With Images Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/PDF_File_With_Images_Template.pdf)
+- [PDF File Without Images Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/PDF_File_Without_Images_Template.pdf)
+- [OO Word Document With Images Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/OO_Word_Document_With_Images_Template.odt)
+- [OO Word Document Without Images Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/OO_Word_Document_Without_Images_Template.odt)
+- [Possible Die-Codes](https://github.com/Dulux-Oz/FGI/master/Support_Files/Possible_Die-Codes.md)
+- [Project Hooks](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Project_Hooks.md)
+- [Project Secrecy](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Secrecy.md)
+- [Project Workflow Example](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Workflow_Example.md)
+- [Recommended GitKracken Preferences](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/GitKracken_Preferences.md)
+- [Suggested Tools](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Tools.md)
+- [Video Tutorials](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Video_Tutorials.md)
+- [XML File Template](https://github.com/Dulux-Oz/FGI/master/Support_Files/xml_file_template.xml)
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png "Creative Commons License")
+
+This work is Copyright &copy;2004-2020 PEREGRINE I.T. Pty Ltd and is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) License.](https://creativecommons.org/licenses/by-sa/4.0/)
+
+All Rights Reserved.

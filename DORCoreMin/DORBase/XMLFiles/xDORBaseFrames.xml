@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay Frames -->
+	<framedef name="footernarrowframe">
+		<bitmap file="graphics/icons/footer_narrow.png" />
+		<decal rect="1,1,68,19" />
+	</framedef>
+
+<!-- Non-Overlay Frames -->
+	<framedef name="frmGraphLight">
+		<bitmap file="DORBase/Images/imgGraphLight.png" />
+		<offset>18,18,17,17</offset>
+	</framedef>
+
+	<framedef name="frmTabsDORCore">
+		<bitmap file="DORBase/Images/imgTabs.png" />
+		<topleft rect="0,0,18,13" />
+		<left rect="0,13,18,589" />
+		<bottomleft rect="0,602,18,24" />
+	</framedef>
+
+	<framedef name="frmWLBlue">
+		<bitmap file="DORBase/Images/imgWLBlue.png" />
+		<offset>10,10,10,10</offset>
+	</framedef>
+
+	<framedef name="frmWLBrown">
+		<bitmap file="DORBase/Images/imgWLBrown.png" />
+		<offset>10,10,10,10</offset>
+	</framedef>
+
+	<framedef name="frmWLGreen">
+		<bitmap file="DORBase/Images/imgWLGreen.png" />
+		<offset>10,10,10,10</offset>
+	</framedef>
+
+	<framedef name="frmWLOrange">
+		<bitmap file="DORBase/Images/imgWLOrange.png" />
+		<offset>10,10,10,10</offset>
+	</framedef>
+
+	<framedef name="frmWLPurple">
+		<bitmap file="DORBase/Images/imgWLPurple.png" />
+		<offset>10,10,10,10</offset>
+	</framedef>
+
+	<framedef name="frmWLRed">
+		<bitmap file="DORBase/Images/imgWLRed.png" />
+		<offset>10,10,10,10</offset>
+	</framedef>
+
+	<framedef name="frmWLYellow">
+		<bitmap file="DORBase/Images/imgWLYellow.png" />
+		<offset>10,10,10,10</offset>
+	</framedef>
+</root>

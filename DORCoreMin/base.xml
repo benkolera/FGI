@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root version="3.3" release="1.0.0" logo="iDORCoreSymbolSmall.png">
+	<description>
+		<text>DORCore Minimal Ruleset</text>
+		<author>Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd.</author>
+		<website>http://www.mjb-it.net</website>
+	</description>
+	<importinfo>
+		<acceptfrom ruleset="DORCoreMin" />
+	</importinfo>
+	<announcement text="DORCore Minimal Ruleset v1.0.0\nFor Fantasy Grounds v3.3.11+\nBy Matthew J BLACK.\nCopyright ©2004-2020 PEREGRINE I.T. Pty Ltd." font="emotefont" icon="iDORRulesetIcon" />
+	<importruleset source="CoreRPG" />
+<!-- XML Files -->
+	<includefile source="Core/XMLFiles/xCoreFiles.xml" />
+	<includefile source="DORBase/XMLFiles/xDORBaseFiles.xml" />
+<!--
+	<includefile source="DOEAlignmentGraph/XMLFiles/xAGFiles.xml" />
+	<includefile source="DOECSG/XMLFiles/xCSGFiles.xml" />
+	<includefile source="DOELocations/XMLFiles/xLocationsFiles.xml" />
+	<includefile source="DOEOLE/XMLFiles/xOLEFiles.xml" />
+	<includefile source="DOEOrganisations/XMLFiles/xOrganisationsFiles.xml" />
+	<includefile source="DOESound/XMLFiles/xSoundFiles.xml" />
+	<includefile source="DOEWeather/XMLFiles/xWeatherFiles.xml" />
+-->
+	<includefile source="UDR/XMLFiles/xUDRFiles.xml" />
+<!-- Lua Script Files -->
+	<script name="RulesetOptions" file="lsRulesetOptions.lua" />
+</root>

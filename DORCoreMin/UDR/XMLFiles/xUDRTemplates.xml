@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Buttons -->
+	<template name="tButIconAddUDRF">
+		<buttoncontrol>
+			<anchored width="20" height="20" />
+			<icon normal="button_add" pressed="button_add_down" />
+			<tooltip textres="button_add" />
+			<script>
+				function onButtonPress()
+					window[target[1]].fpAddEntry(true);
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+<!-- Generic Controls -->
+	<template name="tWindowFrameContentUDRF">
+		<tWindowFrame>
+			<anchored>
+				<left offset="30" />
+				<right offset="-30" />
+				<bottom offset="-30" />
+			</anchored>
+			<frame offset="20,17,20,17" />
+		</tWindowFrame>
+	</template>
+
+</root>

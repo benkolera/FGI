@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Overlay Strings -->
+	<string name="library_recordtype_empty_udr">&#171; New Dice Roll Foundry Record &#187;</string>
+	<string name="library_recordtype_label_udr">Dice Roll Foundry</string>
+<!-- Non-Overlay Strings -->
+	<string name="sDiceRollFoundryStr">Dice Roll Foundries</string>
+	<string name="sDieCodeLable">Die Code</string>
+	<string name="sDieFormulaLable">Die Formula</string>
+	<string name="sDiceStopStr">Dice.</string>
+	<string name="sGroupKeepDieLabel">Keep Dice:</string>
+	<string name="sGroupKeepFieldLabel">Num Field</string>
+	<string name="sGroupKeepHiDieLabel">Keep Highest</string>
+	<string name="sGroupKeepLoDieLabel">Keep Lowest</string>
+	<string name="sGroupKeepNumLabel">Number</string>
+	<string name="sGroupRollModsLable">Group Roll Modifiers</string>
+	<string name="sGroupTargetNoLabel">Target No:</string>
+	<string name="sKeepDiceBoxKeepHighTooltip">Keep The Highest Dice</string>
+	<string name="sKeepDiceBoxKeepLowTooltip">Keep The Lowest Dice</string>
+	<string name="sKeepDiceBoxLable">Keep Dice</string>
+	<string name="sMessageSlashDieCodeHelp">DieCode Help</string>
+	<string name="sModStackExplodingDiceOffTooltip">Do Not Roll As Exploding Dice</string>
+	<string name="sModStackExplodingDiceOnTooltip">Roll As Exploding (Highest) Dice</string>
+	<string name="sModStackPoolDiceOffTooltip">Do Not Roll As Pool Dice</string>
+	<string name="sModStackPoolDiceOnTooltip">Roll As Pool Dice</string>
+	<string name="sSidebarTooltipUDRFStr">Dice Roll Foundry</string>
+	<string name="sSuccessRaiseBoxActivateTooltip">Report Degree Of Success For Chat Window Rolls</string>
+	<string name="sSuccessRaiseBoxDeactivateTooltip">Do Not Report Degree Of Success For Chat Window Rolls</string>
+	<string name="sSuccessRaiseBoxLable">Raises</string>
+	<string name="sTNBoxActivateTooltip">Use Current Target Number For Chat Window Rolls</string>
+	<string name="sTNBoxAboveTooltip">Roll Equal To Or Above The Current Target Number</string>
+	<string name="sTNBoxBelowTooltip">Roll Equal To Or Below The Current Target Number</string>
+	<string name="sTNBoxDeactivateTooltip">Do Not Use Current Target Number For Chat Window Rolls</string>
+	<string name="sTNBoxLable">Target No.</string>
+</root>

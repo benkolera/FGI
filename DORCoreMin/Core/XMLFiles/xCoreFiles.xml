@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- XML Files -->
+	<includefile source="Core/XMLFiles/xCoreCampaignCharactersWindowClasses.xml" />
+	<includefile source="Core/XMLFiles/xCoreFonts.xml" />
+	<includefile source="Core/XMLFiles/xCoreFrames.xml" />
+	<includefile source="Core/XMLFiles/xCoreIcons.xml" />
+	<includefile source="Core/XMLFiles/xCorePanels.xml" />
+	<includefile source="Core/XMLFiles/xCoreRecordItem.xml" />
+	<includefile source="Core/XMLFiles/xCoreStrings.xml" />
+	<includefile source="Core/XMLFiles/xCoreTemplates.xml" />
+	<includefile source="Core/XMLFiles/xCoreUtilityLibraryWindowClasses.xml" />
+<!-- Lua Script Files -->
+	<script name="ChatManager2" file="Core/Scripts/lsCoreChatManager.lua" />
+	<script name="OptionsDORCore" file="Core/Scripts/lsCoreDataOptions.lua" />
+	<script name="MenubarIcons" file="Core/Scripts/lsCoreMenubarIcons.lua" />
+	<script name="DesktopManager2" file="Core/Scripts/lsCoreDesktopManager.lua" />
+</root>
