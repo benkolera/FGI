@@ -8,7 +8,11 @@ Because we&rsquo;ve set up GitKraken to connect to GitHub, we can create pull re
 
 You can also right-click the target branch and select `Create pull request`, or click the green `+` in the `Pull Requests` section on the left panel, and select the repository and branch to create the pull request.
 
+<<<<<<< HEAD
 Because Pull Requests occur from your public server-side repository, you will need to [push](How_To_Push_A_Commit.md) your branch before you create the request.
+=======
+Because Pull Requests occur from your public server-side repository, you will need to [push](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Push_A_Commit.md) your branch before you create the request.
+>>>>>>> develop
 
 ![GitKraken Pull Requests](https://support.gitkraken.com/img/documentation/repositories/pull-request.png)
 
@@ -29,7 +33,11 @@ If other changes are required, you can make the change to your code, then commit
 
 ---
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> develop
 
 ## Attribution
 

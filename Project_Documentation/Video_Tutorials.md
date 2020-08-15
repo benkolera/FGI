@@ -6,7 +6,11 @@ Version 1.0.0
 
 Here is a list of useful Video Tutorials on Git, GitKracken, and GK Boards.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> develop
 
 1. [What Is A Git Repository?](https://youtu.be/A-4WltCTVms)
 2. [What Is A Commit?](https://youtu.be/XfDbGgSwa5I)

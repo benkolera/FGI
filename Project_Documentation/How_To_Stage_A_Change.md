@@ -4,7 +4,11 @@
 
 Version 1.0.0
 
+<<<<<<< HEAD
 When you are working on a project, whether it&rsquo;s adding brand new files, moving old ones, or making updates, the staging pane is where changes are prepped for [commit](How_To_Commit_A_Change.md).
+=======
+When you are working on a project, whether it&rsquo;s adding brand new files, moving old ones, or making updates, the staging pane is where changes are prepped for [commit](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Commit_A_Change.md).
+>>>>>>> develop
 
 ## Staging Files
 
@@ -21,7 +25,11 @@ will appear demanding attention. You may of course decide whether or not you wil
 
 You may alternatively choose to `Stage all changes` or click on any files you wish to review in the difference engine *diff*.
 
+<<<<<<< HEAD
 From here you should be set to [commit!](How_To_Commit_A_Change.md)
+=======
+From here you should be set to [commit!](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Commit_A_Change.md)
+>>>>>>> develop
 
 ## Unstaging
 
@@ -29,9 +37,15 @@ Conversely, you may unstage a file by selecting a staged file and hitting the re
 
 ![GitKraken Unstage](https://support.gitkraken.com/img/documentation/working-with-files/staging/unstage.png)
 
+<<<<<<< HEAD
 If you need to unstage all your files, we then use the red `Unstage all changes` button just above the `Staged Files` section. From here you should be set to [commit!](How_To_Commit_A_Change.md)
 
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you need to unstage all your files, we then use the red `Unstage all changes` button just above the `Staged Files` section. From here you should be set to [commit!](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Commit_A_Change.md)
+
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> develop
 
 ## Attribution
 

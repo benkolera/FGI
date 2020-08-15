@@ -6,13 +6,21 @@ Version 1.0.0
 
 These are the Project&rsquo;s *XML Coding Standards*.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> develop
 
 ## Interpretations
 
 The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;, &ldquo;SHALL&rdquo;, &ldquo;SHALL NOT&rdquo;, &ldquo;SHOULD&rdquo;, &ldquo;SHOULD NOT&rdquo;, &ldquo;RECOMMENDED&rdquo;, &ldquo;MAY&rdquo;, and &ldquo;OPTIONAL&rdquo; in this and all &ldquo;child&rdquo; Documents are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+<<<<<<< HEAD
 &lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
+=======
+&lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
+>>>>>>> develop
 
 All references to various HTML Entity Templates (Classes) should also be interpreted to include any and all &ldquo;child&rdquo; (derived) Templates.
 
@@ -23,8 +31,13 @@ If in doubt about anything to do with XML Files and their contents, etc, please 
 ## `XML` File Standards
 
 1. All XML Files SHALL be stored in the appropriate `DORCoreMin/<Feature>/XMLFiles` Folder/Directory.
+<<<<<<< HEAD
 2. All XML Files must follow the *XML File Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](Naming_Standards.md) Document.
 3. All XML Files MUST have the appropriate [Boilerplate Statement](../Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [xml\_file\_template.xml](../Support_Files/xml_file_template.xml) File (located in the Project&rsquo;s `Support_Files` Folder/Directory) MAY be copied and used.
+=======
+2. All XML Files must follow the *XML File Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
+3. All XML Files MUST have the appropriate [Boilerplate Statement](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [xml\_file\_template.xml](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/xml_file_template.xml) File (located in the Project&rsquo;s `Support_Files` Folder/Directory) MAY be copied and used.
+>>>>>>> develop
 4. Each *Feature* SHALL have the following XML File created for them in the `DORCoreMin/<Feature>/XMLFiles/` Folder/Directory:
 	1. x\<Feature>Files.xml
 5. Each `x<Feature>Files.xml` File SHALL have an appropriate `<includefile />` tag added to the `DORCoreMin/base.xml` File.
@@ -77,7 +90,11 @@ If in doubt about anything to do with XML Files and their contents, etc, please 
 8. The `x<Feature>WindowClasses.xml` File MAY have a more &lsquo;descriptive&rsquo; name than as in (6-6). If so, this XML File MUST be named such that the &lsquo;descriptive&rsquo; part of the name is placed between the `x<Feature>` and the `Windowclasess.xml` parts of the file name.
 9. The `x<Feature>WindowClasses.xml` File MAY be broken up into a two or more &ldquo;functional areas&rdquo;. If so, each resulting file MUST be named as in (8).
 10. Other XML Files MAY (and probably will) be required. Such files SHALL:
+<<<<<<< HEAD
 	1. Be named (as per the Project&rsquo;s [Naming Standards](Naming_Standards.md)) logically.
+=======
+	1. Be named (as per the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md)) logically.
+>>>>>>> develop
 	2. Contain logically grouped XML Objects.
 	3. Contain *Comments* as per and similar to (7).
 11. Each XML File (not including the `DORCoreMin/<Feature>/XMLFiles/x<Feature>Files.xml` File) SHALL have an appropriate `<includefile />` tag added to the appropriate `/DORCoreMin/<Feature>/XMLFiles/x<Feature>Files.xml` File.

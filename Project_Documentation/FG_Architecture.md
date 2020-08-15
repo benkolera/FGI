@@ -6,7 +6,11 @@ Version 1.0.0
 
 For those of you new to coding for FG (or new to coding &mdash; period) we have put together this primer on how FG &ldquo;works in the background&rdquo;.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> develop
 
 ---
 
@@ -90,7 +94,11 @@ So now you should have a good idea of how the various components of FG fit toget
 
 ## Further Information
 
+<<<<<<< HEAD
 - [FG-Coding](FG_Coding.md)
+=======
+- [FG-Coding](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FG_Coding.md)
+>>>>>>> develop
 
 ---
 

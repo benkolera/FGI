@@ -6,7 +6,11 @@ Version 1.0.0
 
 Here are some general notes, tips, and pointers to help us all become better communicators within the FGI Project (and outside of it, as well).
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> develop
 
 ## The Written Word
 

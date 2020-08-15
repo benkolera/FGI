@@ -6,7 +6,11 @@ Version 1.0.0
 
 The following is a list of useful (free) software tools you&rsquo;ll probably need to fully participate in the FGI Project. These are only suggestions/recommendations; if you have a favourite tool that does the same job as one of these, then by all means, use the program you are more comfotable with (and perhaps suggest it here in this list as well).
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> develop
 
 ## Version Control
 
