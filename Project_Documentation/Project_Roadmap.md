@@ -10,7 +10,7 @@ When a Task is completed the text `- Completed` is placed at the end of the Task
 
 **Note:** Some of these Task may occur in parallel.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 
 ## Completed Milestones
@@ -25,7 +25,7 @@ None so far.
 	1. Get confirmation from Project&rsquo;s Contributors that they agree with the Project Documentation.
 	2. Fix/Complete any Documentation (ongoing, as required).
 2. Develop the Universal Die-Roller (UDR) for the DORCoreMinimal (DORCM) Ruleset:
-	1. Confirm that every possible Die-Roll has been captured (and documented ([Possible Die-Codes](https://github.com/Dulux-Oz/FGI/master/Support_Files/Possible_Die-Codes.md))).
+	1. Confirm that every possible Die-Roll has been captured (and documented ([Possible Die-Codes](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Possible_Die-Codes.md))).
 	2. Finalise the various Die-Codes (and document).
 	3. Confirm the Die-Roll Data Structure(s) (and document).
 	4. Develop/Extend the UDR-Parser Routine(s).

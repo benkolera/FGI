@@ -1,4 +1,4 @@
-# The Project&rsquo;s Covenant Code Of Conduct
+# The Project&rsquo;s Contributor Code Of Conduct
 
 ---
 

@@ -4,7 +4,7 @@ Version 1.0.0
 
 [To Be Completed]
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 Simply raise an Issue on the Project&rsquo;s [GitHub](https://www.github.com/Dulux-Oz/fgi) Site with the details of your contribution bug report, suggestion, and/or feature request.
 

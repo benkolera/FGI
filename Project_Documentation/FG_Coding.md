@@ -6,11 +6,11 @@ Version 1.0.0
 
 This document discusses the detailsof the various entities that go in to making an FG Ruleset or Extension.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## Interpretations
 
-&lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
+&lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
 
 ## Examples
 
@@ -185,7 +185,7 @@ XML Coding is simply a matter of creating XML Entities (or reusing existing XML 
 
 ## See Also
 
-- [The FG-Architecture](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/The_FG_Architecture.md)
+- [The FG-Architecture](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/The_FG_Architecture.md)
 - [Lua Tutorial](http://lua-users.org/wiki/LuaTutorial)
 - [FG Ruleset Modification Guide](https://www.fantasygrounds.com/modguide/)
 - [FG XML And Scripting Reference](https://www.fantasygrounds.com/refdoc/)
