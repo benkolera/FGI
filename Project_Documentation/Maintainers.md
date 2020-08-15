@@ -30,11 +30,7 @@ Be careful that maintainership doesn&rsquo;t start to turn into a matter of memb
 
 ## Adding New Maintainers
 
-<<<<<<< HEAD
 The [voting system](Voting.md) itself is used to add new maintainers. Here is one of the rare instances where, unlike practically all the rest of the Project, [secrecy](Secrecy.md) is appropriate. We can&rsquo;t have votes about potential new maintainers posted to a public mailing list, because the candidate&rsquo;s feelings (and reputation) could be hurt. Instead, the FGI Project has a private mailing list to which only existing maintainers can subscribe: an existing maintainer posts to this list, proposing that someone be invited to join. The other maintainers speak their minds freely, knowing the discussion is private. Often there will be no disagreement, and therefore no vote necessary. After waiting a few days to make sure every maintainer has had a chance to respond, the proposer mails the candidate and makes the offer. If there is disagreement, discussion ensues as for any other question, possibly resulting in a vote.
-=======
-The [voting system](https://github.com/FGI/tree/master/Project_Documentation/Voting.md) itself is used to add new maintainers. Here is one of the rare instances where, unlike practically all the rest of the Project, [secrecy](https://github.com/FGI/tree/master/Project_Documentation/Secrecy.md) is appropriate. We can&rsquo;t have votes about potential new maintainers posted to a public mailing list, because the candidate&rsquo;s feelings (and reputation) could be hurt. Instead, the FGI Project has a private mailing list to which only existing maintainers can subscribe: an existing maintainer posts to this list, proposing that someone be invited to join. The other maintainers speak their minds freely, knowing the discussion is private. Often there will be no disagreement, and therefore no vote necessary. After waiting a few days to make sure every maintainer has had a chance to respond, the proposer mails the candidate and makes the offer. If there is disagreement, discussion ensues as for any other question, possibly resulting in a vote.
->>>>>>> develop
 
 For this process to be open and frank, the mere fact that the discussion is taking place at all should be secret. If the person under consideration knew it was going on, and then were never offered maintainership, they could conclude that they had lost the vote, and would likely feel hurt. Of course, if someone explicitly asks to be considered, then there is no choice but to take up the proposal and explicitly accept or reject them. If the latter, then it will be done as politely as possible, with a clear explanation: &ldquo;We liked your patches, but haven&rsquo;t seen enough of them yet,&rdquo; or &ldquo;We appreciate all the work you did for the conference, but you haven&rsquo;t been very active in the project since then, so we don&rsquo;t feel comfortable making you a maintainer just yet. We hope that this will change over time, though.&rdquo; Remember, what is said could come as a blow, depending on the person&rsquo;s temperament or confidence level. We should try to see it from their point of view as we write the mail.
 
@@ -54,11 +50,7 @@ We use a two-tier model of maintainership access in the FGI Project. The first t
 
 ---
 
-<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
-=======
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
->>>>>>> develop
 
 ## Attribution
 
