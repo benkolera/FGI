@@ -18,7 +18,7 @@ Please see the [*Project Documentation*](https://github.com/Dulux-Oz/FGI/tree/ma
 
 **Please note** that this Project is conducted with a [Contributor Code Of Conduct](https://github.com/Dulux-Oz/FGI/tree/master/CODE_OF_CONDUCT.md). By participating in this Project you agree to abide by its terms.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## Subscribing To The Project&rsquo;s Mailing List
 

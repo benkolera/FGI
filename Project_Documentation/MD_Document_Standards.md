@@ -6,7 +6,7 @@ Version 1.0.0
 
 These are the Project&rsquo;s *Documentation Standards* for MD Documents.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## Interpretations
 
@@ -22,8 +22,8 @@ If in doubt about anything to do with MD Files and their contents, etc, please s
 2. The Project&rsquo;s RECOMMENDED formatting for MD Documents is a sub-set of the [GFM](https://github.github.com/gfm/) Specification.
 3. While the full GFM Specification MAY be used, the following &lsquo;commands&rsquo; should be sufficient to cover practically all the formatting requirements for the Project.
 4. When two or more &lsquo;formatting commands&rsquo; are listed below that perform the same function, the first one listed is the RECOMMENDED &lsquo;command&rsquo; and the alternatives should only be used if the RECOMMENDED &lsquo;command&rsquo; cannot be used for some reason.
-5. All MD Documents SHALL follow the *MD Document Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Naming_Standards.md) Document.
-6. All MD Files SHALL have the appropriate [Boilerplate Statement](https://github.com/Dulux-Oz/FGI/master/Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [MD\_Document\_With\_Images\_Template.lua](https://github.com/Dulux-Oz/FGI/master/Support_Files/MD_Document_With_Images_Template.lua) Document or the [MD\_Document\_Without\_Images\_Template.lua](https://github.com/Dulux-Oz/FGI/master/Support_Files/MD_Document_Without_Images_Template.lua) Document (both located in the Project&rsquo;s `Support_Files` Folder/Directory), as appropriate, MAY be copied and used.
+5. All MD Documents SHALL follow the *MD Document Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
+6. All MD Files SHALL have the appropriate [Boilerplate Statement](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [MD\_Document\_With\_Images\_Template.lua](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/MD_Document_With_Images_Template.lua) Document or the [MD\_Document\_Without\_Images\_Template.lua](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/MD_Document_Without_Images_Template.lua) Document (both located in the Project&rsquo;s `Support_Files` Folder/Directory), as appropriate, MAY be copied and used.
 7. All MD Documents SHALL use *Australian English*.
 8. All MD Documents MUST start:
 	1. With a &ldquo;Level 1 Heading&rdquo; (see below).
@@ -31,7 +31,7 @@ If in doubt about anything to do with MD Files and their contents, etc, please s
 	3. Then be followed by three Hyphen characters (`---`) (forming a Line).
 	4. Then be followed by a blank line.
 	5. Then be followed by the text `Version `. (Note the trailing space character (` `).)
-	6. Then be followed by a [SemVer+](https://github.com/Dulux-Oz/FGI/master/Project_Documentation/Semantic_Versioning_Plus.md) Version Number.
+	6. Then be followed by a [SemVer+](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) Version Number.
 	7. Then be followed by a blank line.
 9. As a &lsquo;rule of thumb&rsquo; it is RECOMMENDED to separate all formatting into discrete &lsquo;blocks&rsquo; by a Blank Line, except where noted.
 
