@@ -6,7 +6,7 @@ Version 0.1
 
 This is the EBNF Grammer [ISO:14977](https://www.iso.org/standard/26153.html) Definition of a Die-Code.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](../Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## EBNF Definition (ISO:14977) Of The Grammar Of A Dice Roll
 

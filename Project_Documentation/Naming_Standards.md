@@ -6,7 +6,7 @@ Version 1.0.0
 
 These are the Project&rsquo;s *Naming Standards*, organised in alphabetic order.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## Interpretations
 
@@ -25,7 +25,7 @@ If in doubt about anything to do with naming Files please see the existing Files
 3. **Release Branches**,in addition to the above, SHALL be named as follows:
 	1. SHALL NOT use [Title Case](https://en.wikipedia.org/wiki/Title_Case) format, but instead MUST use [Dromedary (Camel) Case](https://en.wikipedia.org/wiki/Camel_case) for their names.
 	2. MUST start with the lower-case letter `r``.
-	3. SHALL be followed by a [SemVer](http://semver.org) or a [SemVer+](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) version number, as appropriate.
+	3. SHALL be followed by a [SemVer](http://semver.org) or a [SemVer+](Semantic_Versioning_Plus.md) version number, as appropriate.
 
 
 ## Feature Branch Directories

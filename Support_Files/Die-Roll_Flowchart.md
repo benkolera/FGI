@@ -6,7 +6,7 @@ Version 1.0.0
 
 The following is a flow&ndash;chart of an FG UDR Die Roll. It includes the files and functions that are called, showing the flow from one file:function to another and the flow of dependencies from one file:function to another.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](../Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 
 ## Die Roll Cases

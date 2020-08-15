@@ -6,7 +6,7 @@ Version 1.0.0
 
 To fully participate in the FGI Project you need to set up your working copy of the Git repository and the tools necessary to work with the Project. This is all outlined and explained below.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## 1. Read The Relevant Project Documentation
 
@@ -14,24 +14,24 @@ These are the relevant Project Documents to read (if you haven't done so already
 
 **Note:** Some of these Documents you will have probably already read, while some of them you may not need to read because you already have the relevantr knowledge (skim these anyway, just to be complete). These documents are listed here for completeness, and also as a further reference.
 
-- [README](https://github.com/Dulux-Oz/FGI/tree/master/README.md)
-- [CODE OF CONDUCT](https://github.com/Dulux-Oz/FGI/tree/master/CODE_OF_CONDUCT.md)
-- [LICENSE](https://github.com/Dulux-Oz/FGI/tree/master/LICENSE.md)
-- [Getting_Started](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Getting Started.md) &mdash; this document.
-- [Project Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documents/Project_Standards.md)
+- [README](README.md)
+- [CODE OF CONDUCT](CODE_OF_CONDUCT.md)
+- [LICENSE](LICENSE.md)
+- [Getting_Started](Getting Started.md) &mdash; this document.
+- [Project Standards](Project_Documents/Project_Standards.md)
 
-- [FG Architecture](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/The_FG_Architecture.md)
+- [FG Architecture](The_FG_Architecture.md)
 
-- [FG Coding](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FG_Coding.md)
+- [FG Coding](FG_Coding.md)
 
 - [Lua Tutorial](http://lua-users.org/wiki/LuaTutorial)
 
-- [How To Participate In The Project&rsquo;s Workflow](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documents/How_To_Participate_In_The_Project_Workflow.md)
-- [Project Raodmap](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documents/Project_Roadmap.md)
+- [How To Participate In The Project&rsquo;s Workflow](Project_Documents/How_To_Participate_In_The_Project_Workflow.md)
+- [Project Raodmap](Project_Documents/Project_Roadmap.md)
 
 ## 2. Watch The GitKracken Tutorial Videos
 
-If you&rsquo;ve never used GitKracken, GK-Boards, or Git before, or you need a refresher then tak a moment or two to watch the [Videos Tutorials](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documents/Video_Tutorials.md) in the order presented.
+If you&rsquo;ve never used GitKracken, GK-Boards, or Git before, or you need a refresher then tak a moment or two to watch the [Videos Tutorials](Project_Documents/Video_Tutorials.md) in the order presented.
 
 ## 3. Set Up A Gravatar
 
@@ -49,7 +49,7 @@ If you don&rsquo;t already have a GitHub Account you will need to create one. Go
 
 ## 5. Fork The Project&rsquo;s Repository
 
-See [How To Fork The Project](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Fork_The_Project.md).
+See [How To Fork The Project](How_To_Fork_The_Project.md).
 
 ## 6. Download And Install GitKraken
 
@@ -91,13 +91,13 @@ Click on the green `Generate SSH key and add to GitHub` Button.
 
 **Optional**
 
-[Here](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documents/GitKracken_Preferences.md) is a list of Project Recommended GitKracken Preferences which, as the name says, the Project recommends all Contributors use. These preferences and settings are not required to Contribute to the Project, but they are highly recommended.
+[Here](Project_Documents/GitKracken_Preferences.md) is a list of Project Recommended GitKracken Preferences which, as the name says, the Project recommends all Contributors use. These preferences and settings are not required to Contribute to the Project, but they are highly recommended.
 
 ## 9. Clone Your Public Server-Side Repository
 
 In the top left-hand corner of GitKracken, click the `Exit Preferences` Button.
 
-See [How To Clone A Repository](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Clone_A_Repository.md)
+See [How To Clone A Repository](How_To_Clone_A_Repository.md)
 
 ## 10. Develop Your Git Knowledge
 
@@ -107,7 +107,7 @@ Read any further Project Documents and watch any further Tutorial Videos to *rea
 
 ## 12. Get To Work
 
-Start working by following the Project&rsquo;s [*FGI-Workflow*](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Participate_In_The_Project_Workflow.md) and become one of our valuable Contributors.
+Start working by following the Project&rsquo;s [*FGI-Workflow*](How_To_Participate_In_The_Project_Workflow.md) and become one of our valuable Contributors.
 
 ---
 

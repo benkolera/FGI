@@ -4,9 +4,9 @@ Version 1.0.0
 
 ---
 
-This page lists all of the external links to information referenced throughout the Project&rsquo;s Documentaion. Links to the Tutorial Videos are listed on the [Video Tutorials](https://github.com/Dulux-Oz/FGI/Project_Documentation/Video_Tutorials.md) Page.
+This page lists all of the external links to information referenced throughout the Project&rsquo;s Documentaion. Links to the Tutorial Videos are listed on the [Video Tutorials](https://github.com/Dulux-Oz/FGI//Video_Tutorials.md) Page.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 - A Really, Really, Really Good Introduction To XML &mdash; <https://www.sitepoint.com/really-good-introduction-xml/>
 - Creative Commons Licenses &mdash; <https://creativecommons.org/licenses/>

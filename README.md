@@ -14,20 +14,20 @@ We really do want to hear from you and hear your ideas and contributions to the 
 
 ## MOST IMPORTANT
 
-Please see the [*Project Documentation*](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation), and in particular the [*How To Contribute*](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Contribute.md) Document for information on how to participate in the Project. The *How To Contribute* Document has been designed as the start or entry document to the Project, after this *README* Document.
+Please see the [*Project Documentation*](Project_Documentation), and in particular the [*How To Contribute*](Project_Documentation/How_To_Contribute.md) Document for information on how to participate in the Project. The *How To Contribute* Document has been designed as the start or entry document to the Project, after this *README* Document.
 
-**Please note** that this Project is conducted with a [Contributor Code Of Conduct](https://github.com/Dulux-Oz/FGI/tree/master/CODE_OF_CONDUCT.md). By participating in this Project you agree to abide by its terms.
+**Please note** that this Project is conducted with a [Contributor Code Of Conduct](CODE_OF_CONDUCT.md). By participating in this Project you agree to abide by its terms.
 
-If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 
 ## Subscribing To The Project&rsquo;s Mailing List
 
 To subscribe to the Project&rsquo;s Mailing List at <fgi@freelists.org> (and we encourage you to do so):
 
  - Send an email to <fgi-request@freelists.org> with &rsquo;subscribe&rsquo; in the *Subject* field, OR,
- - See the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document in the [Project_Documentation](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation) folder.
+ - See the Project&rsquo;s [FAQs](Project_Documentation/FAQs.md) Document in the [Project_Documentation](Project_Documentation) folder.
 
-Please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document for instructions on how to unsubscribe from the Project&rsquo;s Mailing List.
+Please see the Project&rsquo;s [FAQs](Project_Documentation/FAQs.md) Document for instructions on how to unsubscribe from the Project&rsquo;s Mailing List.
 
 ---
 
