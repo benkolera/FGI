@@ -11,7 +11,6 @@ If you have any further questions or require any further help, please see the Pr
 ### 1. Bill (one of the Project Maintainers) initialises the official repository.
 
 ![Project Workflow 7](../Support_Files/Workflow07.png)
-=======
 
 As with any Git-based project, the first step is to create an official repository on a server publicly accessible to everyone.
 

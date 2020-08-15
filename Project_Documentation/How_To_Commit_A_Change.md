@@ -15,7 +15,6 @@ To make a commit in GitKraken, select your Work in Progress (// WIP) and you wil
 Select the files you wish to [stage](How_To_Stage_A_Change.md), and click on any files you wish to review.
 
 When you’re ready, type your Commit Message (following the [Commit Message Template](../Support_Files/Commit_Message_Template.md)) and hit the green `Commit` button to commit your changes.
-=======
 
 ![GitKraken Commit](https://support.gitkraken.com/img/documentation/working-with-files/commits/commit.png)
 

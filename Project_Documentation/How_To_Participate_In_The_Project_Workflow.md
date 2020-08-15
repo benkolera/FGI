@@ -130,7 +130,6 @@ The contribution is now part of the Project, and other Contributors should pull 
 ![Project Workflow 5](../Support_Files/Workflow05.png)
 
 Once the official repository&rsquo;s `develop` branch has acquired enough features for a release (or a predetermined release date is approaching), the Project&rsquo;s Release Manager creates a release branch off of `develop` (in their own, local copy of the repository, after making sure their local copy is fully synchronised with the official repository). Creating this branch starts the next release cycle, so no new features can be added after this point — only bug fixes and other release-oriented tasks should go in this branch. Once it&rsquo;s ready to be deployed, the release gets merged into `master` and tagged with a [SemVer](http://semver.org) or a [SemVer+](Semantic_Versioning_Plus.md) version number as appropriate. In addition, the branch should also be merged back into `develop`, which may have progressed since the release was initiated. Other Contributors should now pull from the official repository to synchronise their local repositories.
-=======
 
 Using a dedicated branch to prepare releases makes it possible for the Release Manager (and their team, if one exists) to polish the current release while other teams and individuals continues working on features for the next release. It also creates well-defined phases of development (eg it&rsquo;s easy to say, &ldquo;this week we&rsquo;re preparing for version 4.0&rdquo; and to actually see it in the structure of the repository).
 
@@ -143,7 +142,6 @@ Using a dedicated branch to prepare releases makes it possible for the Release M
 
 **Further Information:**
 
-<<<<<<< HEAD
 - [How To Perform A Release](How_To_Perform_A_Release.md)
 
 ### 7. Maintenance Or &ldquo;Hotfix&rdquo; Branches
@@ -153,17 +151,6 @@ Using a dedicated branch to prepare releases makes it possible for the Release M
 Maintenance or &ldquo;hotfix&rdquo; branches are used to quickly patch production releases. They work the same as feature branches and anyone can work on a maintenance branch (not just the Project Maintainer(s)). However, maintenance branches branch directly off of `master` (and are the only branches to do so).
 
 As soon as the fix is complete, a pull request should be filed with the official repository and one of the Project Maintainers will then review it and merge it into both `master` and `develop` (or the current release branch), and `master` will be tagged with an updated [SemVer](http://semver.org) or a [SemVer+](Semantic_Versioning_Plus.md) version number as appropriate. Other Contributors should now pull from the official repository to synchronise their local repositories.
-=======
-- [How To Perform A Release](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/How_To_Perform_A_Release.md)
-
-### 7. Maintenance Or &ldquo;Hotfix&rdquo; Branches
-
-![Project Workflow 6](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Workflow06.png)
-
-Maintenance or &ldquo;hotfix&rdquo; branches are used to quickly patch production releases. They work the same as feature branches and anyone can work on a maintenance branch (not just the Project Maintainer(s)). However, maintenance branches branch directly off of `master` (and are the only branches to do so).
-
-As soon as the fix is complete, a pull request should be filed with the official repository and one of the Project Maintainers will then review it and merge it into both `master` and `develop` (or the current release branch), and `master` will be tagged with an updated [SemVer](http://semver.org) or a [SemVer+](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) version number as appropriate. Other Contributors should now pull from the official repository to synchronise their local repositories.
->>>>>>> develop
 
 Having a dedicated line of development for bug fixes lets Contributors address issues without interrupting the rest of the workflow or waiting for the next release cycle.
 
