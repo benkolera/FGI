@@ -6,7 +6,11 @@ Version 1.0.0
 
 These are the Project&rsquo;s *Documentation Standards* for PDF Documents.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> r0.2
 
 ## Interpretations
 
@@ -14,16 +18,24 @@ The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;
 
 ## Examples
 
-If in doubt about anything to do with PDF Files and their contents, etc, please see the existing PDF Files in the `Project_Documentation` Folder/Directory for examples.
+If in doubt about anything to do with PDF Files and their contents, etc, please see the existing PDF Files in the `` Folder/Directory for examples.
 
 ## General Standards
 
 1. `MD` Documents SHOULD be used in preference to `PDF` Documents.
+<<<<<<< HEAD
 2. All PDF Documents SHALL follow the *PDF Document Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
 3. All non-Project-generated PDF Documents obtained from other sources SHALL be renamed as per (1).
 4. All non-Project-generated PDF Documents SHALL NOT have their contents modified.
 5. All of the remaining *`PDF` Document Standards* SHALL NOT apply to non-Project-generated PDF Documents.
 6. All Project-generated PDF Documents SHALL have the appropriate [Boilerplate Statement](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [OO\_Word\_Document\_With\_Images\_Template.lua](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/OO_Word_Document_With_Images_Template.lua) File or the [OO\_Word\_Document\_Without\_Images\_Template.lua](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/OO_Word_Document_Without_Images_Template.lua) File,as appropriate, MAY be copied and used, and then converted to a `PDF` Document.
+=======
+2. All PDF Documents SHALL follow the *PDF Document Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](Naming_Standards.md) Document.
+3. All non-Project-generated PDF Documents obtained from other sources SHALL be renamed as per (1).
+4. All non-Project-generated PDF Documents SHALL NOT have their contents modified.
+5. All of the remaining *`PDF` Document Standards* SHALL NOT apply to non-Project-generated PDF Documents.
+6. All Project-generated PDF Documents SHALL have the appropriate [Boilerplate Statement](../Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [OO\_Word\_Document\_With\_Images\_Template.lua](../Support_Files/OO_Word_Document_With_Images_Template.lua) File or the [OO\_Word\_Document\_Without\_Images\_Template.lua](../Support_Files/OO_Word_Document_Without_Images_Template.lua) File,as appropriate, MAY be copied and used, and then converted to a `PDF` Document.
+>>>>>>> r0.2
 7. All Project-generated PDF Documents SHALL use *Australian English*.
 
 ## Page Dimensions
@@ -43,7 +55,11 @@ If in doubt about anything to do with PDF Files and their contents, etc, please 
 4. The text of each Header SHALL consist of:
 	1. The *Document&rsquo;s Name*, with spaces (` `) and not underscores (`_`), if appropriate, on the first line.
 	2. Followed by the text `Version: `. on the second line. (Note the trailing space character (` `).)
+<<<<<<< HEAD
 	3. Followed by a [SemVer+](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) Version Number, also on the second line.
+=======
+	3. Followed by a [SemVer+](Semantic_Versioning_Plus.md) Version Number, also on the second line.
+>>>>>>> r0.2
 	
 For example:
 

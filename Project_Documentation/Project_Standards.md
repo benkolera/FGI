@@ -8,17 +8,26 @@ Version 1.0.0
 
 The following *Standards* are the &ldquo;rules&rdquo; that all Project Contributors MUST follow. All Documents and Templates referenced by this Document (&ldquo;child&rdquo; Documents and Templates), and all &ldquo;child&rdquo; Documents and Templates referenced by those &ldquo;child&rdquo; Documents, etc, are considered Project Standards.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> r0.2
 
 ## Interpretations
 
 The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;, &ldquo;SHALL&rdquo;, &ldquo;SHALL NOT&rdquo;, &ldquo;SHOULD&rdquo;, &ldquo;SHOULD NOT&rdquo;, &ldquo;RECOMMENDED&rdquo;, &ldquo;MAY&rdquo;, and &ldquo;OPTIONAL&rdquo; in this and all &ldquo;child&rdquo; Documents are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+<<<<<<< HEAD
 &lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
+=======
+&lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
+>>>>>>> r0.2
 
 ## General Project Standards
 
 1. All Project Contributors MUST follow the Project Standards.
+<<<<<<< HEAD
 2. All Project Contributors MUST follow the Project&rsquo;s [CODE OF CONDUCT](https://github.com/Dulux-Oz/FGI/tree/master/CODE_OF_CONDUCT.md).
 
 ## Contributing Standards
@@ -32,6 +41,21 @@ See the [Lua Coding Standards](https://github.com/Dulux-Oz/FGI/tree/master/Proje
 ## Documentation Standards
 
 See the [MD Document Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/MD_Document_Standards.md) Document and the [PDF Document Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/PDF_Document_Standards.md) Document for all Document-specific Standards.
+=======
+2. All Project Contributors MUST follow the Project&rsquo;s [CODE OF CONDUCT](CODE_OF_CONDUCT.md).
+
+## Contributing Standards
+
+See the [Contibuting Standards](Contributing_Standards.md) Document for all Contributing-specific Standards.
+
+## Coding Standards
+
+See the [Lua Coding Standards](Lua_Coding_Standards.md) Document and the [XML Coding Standards](XML_Coding_Standards.md) Document for all Coding-specific Standards.
+
+## Documentation Standards
+
+See the [MD Document Standards](MD_Document_Standards.md) Document and the [PDF Document Standards](PDF_Document_Standards.md) Document for all Document-specific Standards.
+>>>>>>> r0.2
 
 1. `MD` Documents SHOULD be used in preference to `PDF` Documents.
 2. All digits and numbers in all Project-generated Documents SHALL be *Arabic Numbers*.
@@ -52,7 +76,11 @@ See the [MD Document Standards](https://github.com/Dulux-Oz/FGI/tree/master/Proj
 
 ## Further Information:
 
+<<<<<<< HEAD
 - [Author Tags](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/CCO.md)
+=======
+- [Author Tags](CCO.md)
+>>>>>>> r0.2
 
 ---
 

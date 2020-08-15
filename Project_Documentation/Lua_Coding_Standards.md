@@ -6,13 +6,21 @@ Version 1.0.0
 
 These are the Project&rsquo;s *Lua Coding Standards*.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> r0.2
 
 ## Interpretations
 
 The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;, &ldquo;SHALL&rdquo;, &ldquo;SHALL NOT&rdquo;, &ldquo;SHOULD&rdquo;, &ldquo;SHOULD NOT&rdquo;, &ldquo;RECOMMENDED&rdquo;, &ldquo;MAY&rdquo;, and &ldquo;OPTIONAL&rdquo; in this and all &ldquo;child&rdquo; Documents are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+<<<<<<< HEAD
 &lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
+=======
+&lsquo;\<Feature>&rsquo; is used in File Names and in Folder/Directory Names and is a &ldquo;placeholder&rdquo; for, and should be replaced by (as per the Project&rsquo;s [Naming Standards](Naming_Standards.md)), the name of the *Feature* that the File and/or Folder/Directory relates too.
+>>>>>>> r0.2
 
 ## Examples
 
@@ -23,8 +31,13 @@ If in doubt about anything to do with Lua Files and their contents, etc, please 
 1. Lua File Scripts SHOULD be used for any script more than 6 lines.
 2. Lua File Scripts SHOULD be used for any script that contains more than a single function.
 3. All Lua Files SHALL be stored in the appropriate `DORCoreMin/<Feature>/Scripts/` Folder/Directory.
+<<<<<<< HEAD
 4. All Lua Files must follow the *Lua File Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/Naming_Standards.md) Document.
 5. All Lua Files MUST have the appropriate [Boilerplate Statement](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [lua\_file\_template.lua](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/lua_file_template.lua) File (located in the Project&rsquo;s `Support_Files` Folder/Directory) MAY be copied and used.
+=======
+4. All Lua Files must follow the *Lua File Naming Standards* as outlined in the Project&rsquo;s [Naming Standards](Naming_Standards.md) Document.
+5. All Lua Files MUST have the appropriate [Boilerplate Statement](../Support_Files/Boilerplate_Statements.md) included within them. When doing so, the [lua\_file\_template.lua](../Support_Files/lua_file_template.lua) File (located in the Project&rsquo;s `Support_Files` Folder/Directory) MAY be copied and used.
+>>>>>>> r0.2
 6. Globally scoped Script Files MUST be defined by an appropriate `<script />` tag
 7. Each globally scoped File Script `<script />` tag SHALL:
 	1. Be placed after the text `<!-- Lua Files -->` in the relevant `DORCoreMin/base.xml` or `DORCoreMin/<Feature>/XMLFiles/x<Feature>Files.xml` File.

@@ -8,7 +8,11 @@ This Document contains Boilerplate Statements for use with all FGI Project files
 
 Under ***NO*** exceptions may the relevant Boilerplate Statements be omitted or changed in anyway without the written consent of the Project Maintainer.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](../Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> r0.2
 
 ## MD Documents
 
@@ -30,7 +34,11 @@ All other aspects of this work are Copyright &copy;2004-2020 PEREGRINE I.T. Pty 
 All Rights Reserved.
 ~~~
 
+<<<<<<< HEAD
 The [MD\_Document\_With\_Images\_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/MD_Document_With_Images_Template.md) Document can be copied and used for a new MD Document with Images and/or Video (apart from the Creative Commons Licensing Images).
+=======
+The [MD\_Document\_With\_Images\_Template](MD_Document_With_Images_Template.md) Document can be copied and used for a new MD Document with Images and/or Video (apart from the Creative Commons Licensing Images).
+>>>>>>> r0.2
 
 ### Without Images
 
@@ -46,7 +54,11 @@ This work is Copyright &copy;2004-2020 PEREGRINE I.T. Pty Ltd and is licensed un
 All Rights Reserved.
 ~~~
 
+<<<<<<< HEAD
 The [MD\_Document\_Without\_Images\_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/MD_Document_Without_Images_Template.md) Document can be copied and used for a new MD Document without Images and/or Video (apart from the Creative Commons Licensing Images).
+=======
+The [MD\_Document\_Without\_Images\_Template](MD_Document_Without_Images_Template.md) Document can be copied and used for a new MD Document without Images and/or Video (apart from the Creative Commons Licensing Images).
+>>>>>>> r0.2
 
 ## PDF Documents
 
@@ -54,7 +66,11 @@ The [MD\_Document\_Without\_Images\_Template](https://github.com/Dulux-Oz/FGI/tr
 
 Copy and paste this Boilerplate Statement at the *end* of a new PDF Document that contains Images and/or Video (apart from the Creative Commons Licensing Images).
 
+<<<<<<< HEAD
 **Note:** The [CC BY-NC-ND 4.0](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/CC_BY_NC_ND_4_88x31.png) Image will need to be inserted into the PDF Document right *before* the Boilerplate Statement, and the [CC BY-SA 4.0](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/CC_BY_SA_4_88x31.png) Image will need to be inserted into the PDF Document right *before* the second paragraph of the Boilerplate Statement.
+=======
+**Note:** The [CC BY-NC-ND 4.0](CC_BY_NC_ND_4_88x31.png) Image will need to be inserted into the PDF Document right *before* the Boilerplate Statement, and the [CC BY-SA 4.0](CC_BY_SA_4_88x31.png) Image will need to be inserted into the PDF Document right *before* the second paragraph of the Boilerplate Statement.
+>>>>>>> r0.2
 
 ~~~
 Images and Video within this work are Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd and are licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
@@ -64,15 +80,25 @@ All other aspects of this work are Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd 
 All Rights Reserved.
 ~~~
 
+<<<<<<< HEAD
 The [PDF\_Document\_With\_Images\_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/PDF_Document_With_Images_Template.pdf) Document can be copied and used for a new PDF Document with Images and/or Video (apart from the Creative Commons Licensing Images).
 
 Alternately, the [OO\_Word\_Document\_With\_Images\_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/OO_Word_Document_With_Images_Template.odt) Document can be copied, used, and saved/printed as a new PDF Document with Images and/or Video (apart from the Creative Commons Licensing Images).
+=======
+The [PDF\_Document\_With\_Images\_Template](PDF_Document_With_Images_Template.pdf) Document can be copied and used for a new PDF Document with Images and/or Video (apart from the Creative Commons Licensing Images).
+
+Alternately, the [OO\_Word\_Document\_With\_Images\_Template](OO_Word_Document_With_Images_Template.odt) Document can be copied, used, and saved/printed as a new PDF Document with Images and/or Video (apart from the Creative Commons Licensing Images).
+>>>>>>> r0.2
 
 ### Without Images
 
 Copy and paste this Boilerplate Statement at the *end* of a new PDF Document that does not contain Images and/or Video (apart from the Creative Commons Licensing Images).
 
+<<<<<<< HEAD
 **Note:** The [CC BY-SA 4.0](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/CC_BY_SA_4_88x31.png) Image will need to be inserted into the PDF Document right *before* the Boilerplate Statement.
+=======
+**Note:** The [CC BY-SA 4.0](CC_BY_SA_4_88x31.png) Image will need to be inserted into the PDF Document right *before* the Boilerplate Statement.
+>>>>>>> r0.2
 
 
 ~~~
@@ -81,9 +107,15 @@ This work is Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd and is licensed under 
 All Rights Reserved.
 ~~~
 
+<<<<<<< HEAD
 The [PDF\_Document\_Without\_Images\_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/PDF_Document_Without_Images_Template.pdf) Document can be copied and used for a new PDF Document without Images and/or Video (apart from the Creative Commons Licensing Images).
 
 Alternately, the [OO\_Word\_Document\_Without\_Images\_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/OO_Word_Document_Without_Images_Template.odt) Document can be copied, used, and saved/printed as a new PDF Document without Images and/or Video (apart from the Creative Commons Licensing Images).
+=======
+The [PDF\_Document\_Without\_Images\_Template](PDF_Document_Without_Images_Template.pdf) Document can be copied and used for a new PDF Document without Images and/or Video (apart from the Creative Commons Licensing Images).
+
+Alternately, the [OO\_Word\_Document\_Without\_Images\_Template](OO_Word_Document_Without_Images_Template.odt) Document can be copied, used, and saved/printed as a new PDF Document without Images and/or Video (apart from the Creative Commons Licensing Images).
+>>>>>>> r0.2
 
 ## LUA Files
 
@@ -103,7 +135,11 @@ Copy and paste this Boilerplate Statement at the *end* of a new Lua File.
 -- Called By: <Calling Function/Filename goes here eg button_library_sidebar in xCoreTemplates.xml> 
 ~~~
 
+<<<<<<< HEAD
 The [Lua\_File\_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/Lua_File_Template.lua) File can be copied and used for a new Lua File.
+=======
+The [Lua\_File\_Template](Lua_File_Template.lua) File can be copied and used for a new Lua File.
+>>>>>>> r0.2
 
 ## XML Files
 
@@ -124,7 +160,11 @@ Copy and paste this Boilerplate Statement at the *start* of a new XML File.
 <root>
 ~~~
 
+<<<<<<< HEAD
 The [XML\_File_Template](https://github.com/Dulux-Oz/FGI/tree/tree/master/Support_Files/XML_File_Template.xml) File can be copied and used for a new XML File.
+=======
+The [XML\_File_Template](XML_File_Template.xml) File can be copied and used for a new XML File.
+>>>>>>> r0.2
 
 ---
 

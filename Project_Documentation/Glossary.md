@@ -6,7 +6,11 @@ Version 1.0.0
 
 Sometimes working with Git and GitKraken (or any version control system) can seem like learning a new language. We&rsquo;ve tried to put the most commonly used terms together here in the glossary to help you out.
 
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> r0.2
 
 **Branch**
 
@@ -30,7 +34,11 @@ To make a change to the Project; more formally, to store a change in the version
 
 A bit of commentary attached to each commit, describing the nature and purpose of the commit (both terms are used about equally often). Commit messages are among the most important documents in any project: they are the bridge between the detailed, highly technical meaning of each individual code changes and the more user-visible world of bugfixes, features, and project progress.
 
+<<<<<<< HEAD
 Our Project uses a specific format for its Commit Messages, as described in the [Commit Message Template](https://github.com/Dulux-Oz/FGI/tree/master/Support_Files/Commit_Message_Template.md) Document.
+=======
+Our Project uses a specific format for its Commit Messages, as described in the [Commit Message Template](../Support_Files/Commit_Message_Template.md) Document.
+>>>>>>> r0.2
 
 **Conflict**
 

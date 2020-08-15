@@ -14,7 +14,11 @@ Markdown is a plain text format for writing structured documents, based on conve
 
 GitHub Flavoured Markdown, often shortened as GFM, is the dialect of Markdown that is currently supported for user content on GitHub.com and GitHub Enterprise. GFM is a strict superset of the CommonMark version of Markdown. The full formal specification, based on the CommonMark Specification, defining the syntax and semantics of this dialect can be found on the GitHub Website: [GitHub Flavoured Markdown Specification](https://github.github.com/gfm).
 
+<<<<<<< HEAD
 While a link to the GFM Spec is provided above, it is not necessary to read that document unless you desire too, because the relevant formatting &lsquo;commands&rsquo; most likely to be used by the Project are listed on the [GFM Quick Specs](https://github.com/FGI/tree/master/Project_Documentation/GFM_Quick_Specs.md) document.
+=======
+While a link to the GFM Spec is provided above, it is not necessary to read that document unless you desire too, because the relevant formatting &lsquo;commands&rsquo; most likely to be used by the Project are listed on the [GFM Quick Specs](GFM_Quick_Specs.md) document.
+>>>>>>> r0.2
 
 ## Why We Use GFM
 
@@ -29,16 +33,27 @@ The FGI Project has settled on the use of GFM for writing its documentation and 
 The following conventions and &lsquo;rules&rsquo; are used for all documents in the FGI Project:
 
 - English is the preferred language for all &lsquo;base&rsquo; documents.
+<<<<<<< HEAD
 - GFM is the formatting language used for all documents. The preferred GFM formatting &lsquo;commands&rsquo; are those listed on the [GFM Quick Specs](https://github.com/FGI/tree/master/Project_Documentation/GFM_Quick_Specs.md) document. Individual formatting notes are included in that document.
 - Each document file should be named descriptively using the Underscore / Low Line (`_`, `&#95;`) character in place of the Space (` `, `&#32;`) character and with a `.md` file extension.
 - Each document must have a &lsquo;Level 1&rsquo; heading, followed by a blank line, followed by a Hozizontal Line made up of three underscores (`_`), followed by another blank line, followed by a line containing the word `Version` with the [SemVer+](https://github.com/FGI/tree/master/Project_Documentation/Semantic_Versioning_Plus.md) version number, followed by another blank liner.
 - Each document must have an appropriate [Boilerplate Statement](https://github.com/FGI/tree/master/Project_Documentation/Boilerplate_Statements.md) Statement at the end of the document, separated from the rest of the document by a Horizontal Line.
+=======
+- GFM is the formatting language used for all documents. The preferred GFM formatting &lsquo;commands&rsquo; are those listed on the [GFM Quick Specs](GFM_Quick_Specs.md) document. Individual formatting notes are included in that document.
+- Each document file should be named descriptively using the Underscore / Low Line (`_`, `&#95;`) character in place of the Space (` `, `&#32;`) character and with a `.md` file extension.
+- Each document must have a &lsquo;Level 1&rsquo; heading, followed by a blank line, followed by a Hozizontal Line made up of three underscores (`_`), followed by another blank line, followed by a line containing the word `Version` with the [SemVer+](Semantic_Versioning_Plus.md) version number, followed by another blank liner.
+- Each document must have an appropriate [Boilerplate Statement](Boilerplate_Statements.md) Statement at the end of the document, separated from the rest of the document by a Horizontal Line.
+>>>>>>> r0.2
 - The `&` character should not be used. Use `and` instead.
 - Always use double quotes (`&ldquo;, &rdquo;`) except when you are quoting within a larger quote, then use single quotes (`&lsquo;, &rsquo;`).
 - Table and Figure Headings should always be Level 6 Headings.
 
 ---
+<<<<<<< HEAD
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](https://github.com/Dulux-Oz/FGI/tree/master/Project_Documentation/FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+=======
+If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
+>>>>>>> r0.2
 
 ---
 
