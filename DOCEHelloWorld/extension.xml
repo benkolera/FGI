@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright Â©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root version="3.3" logo="iHWLogo.png.png">
+	<properties>
+		<name>DOCE: Hello World Extension (DOCEHW) v1.0.0</name>
+		<version>1.0.0</version>
+		<author>Copyright ©2004-2020 Peregrine I.T. Pty Ltd.</author>
+		<description>An Extension that displays the text "Hello World!" is a window with a Close Button.</description>
+		<ruleset>
+			<name>DORCoreMin</name>
+			<minrelease>1.0.0</minrelease>
+		</ruleset>
+	</properties>
+	<announcement text="DOCE: Hello World Extension (DOCE: HW) v1.0.0\nAn Extension that displays the text 'Hello World!' in a window with a Close Button.\nFor Fantasy Grounds Classic v3.3.11+, the DORCoreMin Ruleset, and selected child Rulesets.\nBy Matthew J BLACK (Dulux-Oz).\nCopyright ©2004-2020 Peregrine I.T. Pty Ltd.\nAll Rights Reserved." font="emotefont" icon="iHWExtensionIcon" />
+	<base>
+		<includefile source="DOCEHW/XMLFiles/xDOCEHWFiles.xml" />
+	</base>
+</root>
