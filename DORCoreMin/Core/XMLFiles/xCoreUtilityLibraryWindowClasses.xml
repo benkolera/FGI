@@ -25,7 +25,7 @@
 	<windowclass name="library_recordtype" merge="join">
 		<sheetdata>
 			<genericcontrol name="icon" merge="join">
-				<script file="lsLibraryRecordtype.lua">
+				<script file="Core/Scripts/lsCoreLibraryRecordtype.lua">
 				</script>
 			</genericcontrol>
 		</sheetdata>

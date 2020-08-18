@@ -45,7 +45,7 @@ function onInit()
 end
 
 function fpSetSize(sValue)
-	if tonumber(sValue) &gt; 0 then
+	if tonumber(sValue) > 0 then
 		nSize = tonumber(sValue);
 		setAnchoredHeight(sValue);
 		setAnchoredWidth(sValue);

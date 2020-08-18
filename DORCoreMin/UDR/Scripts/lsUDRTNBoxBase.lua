@@ -8,12 +8,12 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: wcSuccessRaiseBox.gcBase in xUDRWindowClasses.xml
+-- Called By: wcTNBoxManager.gcBase in xUDRWindowClasses.xml
 --
 
 function onHover(bOnControl)
 	if not bOnControl then
-		TNBox.fpUpdateControl();
+		TNBoxManager.fpUpdateControl();
 	end
 end
 
@@ -21,7 +21,7 @@ function onDrop(nXPos,nYPos,oDragData)
 	local sDragType = oDragData.getType();
 	if sDragType == "number" or
 			sDragType == "targetnumber" then
-		TNBox.fpSetTN(oDragData.getNumberData(),oDragData.getDescription());
+		TNBoxManager.fpSetTN(oDragData.getNumberData(),oDragData.getDescription());
 		return true;
 	end
 	return false;

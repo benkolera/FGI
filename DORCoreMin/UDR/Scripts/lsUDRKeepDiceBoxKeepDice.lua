@@ -8,13 +8,13 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: wcKeepDiceBox.nKeepDice in xUDRWindowClasses.xml
+-- Called By: wcKeepDiceBoxManager.nKeepDice in xUDRWindowClasses.xml
 --
 
 function onWheel(nNotches)
 	if not hasFocus() then
-		KeepDiceBox.nValue = getValue()+nNotches;
-		KeepDiceBox.fpUpdateControl();
+		KeepDiceBoxManager.nValue = getValue()+nNotches;
+		KeepDiceBoxManager.fpUpdateControl();
 	end
 	return true;
 end

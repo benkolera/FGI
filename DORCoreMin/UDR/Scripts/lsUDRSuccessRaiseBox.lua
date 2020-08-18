@@ -8,59 +8,13 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: xCoreFiles.xml
+-- Called By: wcSuccessRaiseBox in xUDRWindowClasses.xml
 --
 
-nValue = 0;
-
-local oControl = nil;
-
 function onInit()
-	Interface.onHotkeyActivated = fpCheckHotKey;
+	SuccessRaiseBoxManager.fpRegisterControl(self);
 end
 
-function fpCheckHotKey(oDragData)
-	local sDragType = oDragData.getType();
-	if sDragType == "number" then
-		fpSetRaises(oDragData.getNumberData());
-		return true;
-	end
-end
-
-function fpGetRaises()
-	local nRaises = 0;
-	if fpIsActive() then
-		nRaises = nValue;
-	end
-	return nRaises;
-end
-
-function fpIsActive()
-	if oControl then
-		return (oControl.bcActivateButton.getValue() == 1);
-	end
-	return false;
-end
-
-function fpRegisterControl(oCtrl)
-	oControl = oCtrl;
-end
-
-function fpSetRaises(nNumber)
-	nValue = nNumber;
-	fpUpdateControl();
-end
-
-function fpUpdateControl()
-	if oControl then
-		if nValue < 0 then
-			nValue = 0;
-		end
-		oControl.nSN.setValue(nValue);
-		if math.abs(oControl.nSN.getValue()) > 999 then
-			oControl.nSN.setFont("modcollectorlabel");
-		else
-			oControl.nSN.setFont("modcollector");
-		end
-	end
+function onClose()
+	SuccessRaiseBoxManager.fpRegisterControl(nil);
 end

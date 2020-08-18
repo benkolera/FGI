@@ -29,7 +29,7 @@
 				<center />
 				<tooltip textres="sColourGizmoColourCodeTooltipStr" />
 				<delaykeyupdate />
-				<script file="lsOldColourCode.lua" />
+				<script file="DORBase/Scripts/lsDORBaseOldColourCode.lua" />
 			</stringcontrol>
 			<helper_color>
 				<anchored>
@@ -42,7 +42,7 @@
 	</windowclass>
 
 	<windowclass name="reference_colindexgroup">
-		<script file="lsReferenceColIndexGroup.lua" />
+		<script file="DORBase/Scripts/lsDORBaseReferenceColIndexGroup.lua" />
 		<sheetdata>
 			<anchor_column name="topanchor" />
 			<frame_groupdesc name="descframe" />
@@ -61,7 +61,7 @@
 	</windowclass>
 
 	<windowclass name="reference_manual" merge="join">
-		<script file="lsReferenceManual.lua" />
+		<script file="DORBase/Scripts/lsDORBaseReferenceManual.lua" />
 	</windowclass>
 
 <!-- Non-Overlay Windowclasses -->
@@ -166,7 +166,7 @@
 
 	<windowclass name="wcLibMasterCategory">
 		<margins control="0,0,0,2" />
-		<script file="lsLibMasterCategory.lua" />
+		<script file="DORBase/Scripts/lsDORBaseLibMasterCategory.lua" />
 		<sheetdata>
 			<hs name="hsCategory" />
 			<tAnchorLibMasterRight />
@@ -259,7 +259,7 @@
 
 	<windowclass name="wcMaps">
 		<margins control="0,0,0,2" />
-		<script file="lsMaps.lua" />
+		<script file="DORBase/Scripts/lsDORBaseMaps.lua" />
 		<sheetdata>
 			<tAnchorLeft />
 			<tAnchorRight />
@@ -267,7 +267,7 @@
 				<datasource>.maplist</datasource>
 				<class>wcMapsList</class>
 				<empty gmtextres="sMapLinkListEmptyStr" />
-				<script file="lsMapsOnDrop.lua" />
+				<script file="DORBase/Scripts/lsDORBaseMapsMapsList.lua" />
 			</tWindowlistLinksFull>
 			<tListScrollbar />
 			<tButIconEditLink />
@@ -368,7 +368,7 @@
 
 	<windowclass name="wcNotes">
 		<margins control="0,0,0,2" />
-		<script file="lsNotes.lua" />
+		<script file="DORBase/Scripts/lsDORBaseNotes.lua" />
 		<sheetdata>
 			<tAnchorLeft />
 			<ft_record name="ftNotes">
@@ -418,7 +418,7 @@
 	</windowclass>
 
 	<windowclass name="wcRefGroupTwoLayerLevel1">
-		<script file="lsRefGroupTwoLayerLevel1.lua" />
+		<script file="DORBase/Scripts/lsDORBaseRefGroupTwoLayerLevel1.lua" />
 		<sheetdata>
 			<anchor_column name="topanchor" />
 			<frame_groupdesc name="descframe">
@@ -446,7 +446,7 @@
 	</windowclass>
 
 	<windowclass name="wcRefGroupTwoLayerLevel2">
-		<script file="lsRefGroupTwoLayerLevel2.lua" />
+		<script file="DORBase/Scripts/lsDORBaseRefGroupTwoLayerLevel2.lua" />
 		<sheetdata>
 			<anchor_column name="topanchor" />
 			<frame_groupdesc name="descframe" />
@@ -466,7 +466,7 @@
 
 	<windowclass name="wcSounds">
 		<margins control="0,0,0,2" />
-		<script file="lsSounds.lua" />
+		<script file="DORBase/Scripts/lsDORBaseSounds.lua" />
 		<sheetdata>
 			<tAnchorLeft />
 			<tAnchorRight />

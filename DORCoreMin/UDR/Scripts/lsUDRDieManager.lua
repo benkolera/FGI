@@ -1069,7 +1069,7 @@ function fpSetKCode()
 	local oKeepDiceBoxWindow = Interface.findWindow("wcKeepDiceBox","");
 	local nK = 0;
 	if oKeepDiceBoxWindow then
-		nK,_ = KeepDiceBox.fpGetKeepDice();
+		nK,_ = KeepDiceBoxManager.fpGetKeepDice();
 		if oKeepDiceBoxWindow.bcKeepHighButton and
 				oKeepDiceBoxWindow.bcKeepHighButton.getValue() == 1 then
 			nK = 0-nK;
@@ -1125,9 +1125,9 @@ function fpSetSCode()
 	local nS = 0;
 	local nSN = 0;
 	if oSuccessRaiseBoxWindow and
-			SuccessRaiseBox.fpIsActive() then
+			SuccessRaiseBoxManager.fpIsActive() then
 		nS = 1;
-		nSN = SuccessRaiseBox.fpGetRaises();
+		nSN = SuccessRaiseBoxManager.fpGetRaises();
 	end
 	return nS,nSN;
 end
@@ -1137,13 +1137,13 @@ function fpSetTCode()
 	local nT = 0;
 	local nTN = 0;
 	if oTNBoxWindow and
-			TNBox.fpIsActive() then
+			TNBoxManager.fpIsActive() then
 		nT = 1;
 		if oTNBoxWindow.bcAboveBelowButton and
 				oTNBoxWindow.bcAboveBelowButton.getValue() == 1 then
 			nT = -1;
 		end
-		nTN,_ = TNBox.fpGetTN();
+		nTN,_ = TNBoxManager.fpGetTN();
 	end
 	return nT,nTN;
 end

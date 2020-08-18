@@ -8,13 +8,21 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: wcSuccessRaiseBox in xUDRWindowClasses.xml
+-- Called By: wcSuccessRaiseBoxManager.gcBase in xUDRWindowClasses.xml
 --
 
-function onInit()
-	SuccessRaiseBox.fpRegisterControl(self);
+function onHover(bOnControl)
+	if not bOnControl then
+		TNBoxManager.fpUpdateControl();
+	end
 end
 
-function onClose()
-	SuccessRaiseBox.fpRegisterControl(nil);
+function onDrop(nXPos,nYPos,oDragData)
+	local sDragType = oDragData.getType();
+	if sDragType == "number" or
+			sDragType == "targetnumber" then
+		TNBoxManager.fpSetTN(oDragData.getNumberData(),oDragData.getDescription());
+		return true;
+	end
+	return false;
 end

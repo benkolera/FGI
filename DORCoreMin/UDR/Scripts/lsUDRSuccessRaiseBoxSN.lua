@@ -8,13 +8,24 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: wcKeepDiceBox in xUDRWindowClasses.xml
+-- Called By: wcSuccessRaiseBoxManager.nSN in xUDRWindowClasses.xml
 --
 
-function onInit()
-	KeepDiceBox.fpRegisterControl(self);
+function onWheel(nNotches)
+	if not hasFocus() then
+		SuccessRaiseBoxManager.nValue = getValue()+nNotches;
+		SuccessRaiseBoxManager.fpUpdateControl();
+	end
+	return true;
 end
 
-function onClose()
-	KeepDiceBox.fpRegisterControl(nil);
+function onDrop(nXPos,nYPos,oDragData)
+	return window.gcBase.onDrop(nXPos,nYPos,oDragData);
+end
+
+function onDragStart(nButton,nXPos,nYPos,oDragData)
+	local nValue = getValue();
+	oDragData.setType("number");
+	oDragData.setNumberData(nValue);
+	return true;
 end
