@@ -297,7 +297,7 @@
 		<sizelimits>
 			<maximum width="300" />
 		</sizelimits>
-		<script file="lsPreGenCharSelectEntry.lua" />
+		<script file="lsCorePreGenCharSelectEntry.lua" />
 		<script file="campaign/scripts/charselect_host_entry.lua" />
 		<sheetdata>
 			<genericcontrol name="portraitbase">

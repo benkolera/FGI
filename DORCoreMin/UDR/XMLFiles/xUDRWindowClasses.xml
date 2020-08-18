@@ -14,7 +14,7 @@
 	<windowclass name="dicetower" merge="join">
 		<sheetdata>
 			<genericcontrol name="base" merge="join">
-				<script file="lsDiceTower.lua" />
+				<script file="UDR/Scripts/lsUDRDiceTowerManager.lua" />
 			</genericcontrol>
 		</sheetdata>
 	</windowclass>
@@ -36,7 +36,7 @@
 			<minimum width="64" height="57" />
 		</sizelimits>
 		<noclose />
-		<script file="lsKeepDiceBox.lua" />
+<script file="UDR/Scripts/lsUDRKeepDiceBoxManager.lua" />
 		<sheetdata>
 			<genericcontrol name="gcBase">
 				<bounds>5,5,64,52</bounds>
@@ -44,7 +44,7 @@
 				<acceptdrop>
 					<type>number</type>
 				</acceptdrop>
-				<script file="lsKeepDiceBoxBase.lua" />
+				<script file="UDR/Scripts/lsUDRKeepDiceBoxBase.lua" />
 			</genericcontrol>
 			<numbercontrol name="nKeepDice">
 				<bounds>15,15,42,22</bounds>
@@ -58,7 +58,7 @@
 					<type>number</type>
 				</droptypes>
 				<hideonvalue>0</hideonvalue>
-				<script file="lswcKeepDiceBoxKeepDice.lua" />
+				<script file="UDR/Scripts/lsUDRKeepDiceBoxKeepDice.lua" />
 			</numbercontrol>
 			<stringcontrol name="sLabel">
 				<bounds>9,37,54,12</bounds>
@@ -91,7 +91,7 @@
 			<minimum width="64" height="57" />
 		</sizelimits>
 		<noclose />
-		<script file="lsTNBox.lua" />
+		<script file="UDR/Scripts/lsUDRTNBoxManager.lua" />
 		<sheetdata>
 			<genericcontrol name="gcBase">
 				<bounds>5,5,64,52</bounds>
@@ -100,7 +100,7 @@
 					<type>number</type>
 					<type>targetnumber</type>
 				</acceptdrop>
-				<script file="lsTNBoxBase.lua" />
+				<script file="UDR/Scripts/lsUDRTNBoxBase.lua" />
 			</genericcontrol>
 			<numbercontrol name="nTN">
 				<bounds>15,15,42,22</bounds>
@@ -114,7 +114,7 @@
 					<type>number</type>
 					<type>targetnumber</type>
 				</droptypes>
-				<script file="lsTNBoxTN.lua" />
+				<script file="UDR/Scripts/lsUDRTNBoxTN.lua" />
 			</numbercontrol>
 			<stringcontrol name="sLabel">
 				<bounds>9,37,54,12</bounds>
@@ -147,7 +147,7 @@
 			<minimum width="64" height="57" />
 		</sizelimits>
 		<noclose />
-		<script file="lsSuccessRaiseBox.lua" />
+		<script file="UDR/Scripts/lsUDRSuccessRaiseBoxManager.lua" />
 		<sheetdata>
 			<genericcontrol name="gcBase">
 				<bounds>5,5,64,52</bounds>
@@ -155,7 +155,7 @@
 				<acceptdrop>
 					<type>number</type>
 				</acceptdrop>
-				<script file="lsSuccessRaiseBoxBase.lua" />
+				<script file="UDR/Scripts/lsUDRSuccessRaiseBoxBase.lua" />
 			</genericcontrol>
 			<numbercontrol name="nSN">
 				<bounds>15,15,42,22</bounds>
@@ -168,7 +168,7 @@
 				<droptypes>
 					<type>number</type>
 				</droptypes>
-				<script file="lsSuccessRaiseBoxSN.lua" />
+				<script file="UDR/Scripts/lsUDRSuccessRaiseBoxSN.lua" />
 			</numbercontrol>
 			<stringcontrol name="sLabel">
 				<bounds>9,37,54,12</bounds>
@@ -203,7 +203,7 @@
 		<tooltip field="name" />
 		<nodelete />
 		<sharable />
-		<script file="lsUDRF.lua" />
+		<script file="UDR/Scripts/lsUDRUDRF.lua" />
 		<sheetdata>
 			<tSubwindowHeader>
 				<class>wcUDRFHeader</class>
@@ -253,19 +253,19 @@
 			</tSmallLabel>
 			<tBaseCheckboxField name="bGroupKeepHi">
 				<anchored to="gGroupFrame" offset="65,5" />
-				<script file="lsGroupKeepHi.lua" />
+				<script file="UDR/Scripts/lsUDRGroupKeepHi.lua" />
 			</tBaseCheckboxField>
 			<tBaseCheckboxField name="bGroupKeepLo">
 				<anchored to="gGroupFrame" offset="65,25" />
-				<script file="lsGroupKeepLo.lua" />
+				<script file="UDR/Scripts/lsUDRGroupKeepLo.lua" />
 			</tBaseCheckboxField>
 			<tBaseCheckboxField name="bGroupKeepNum">
 				<anchored to="gGroupFrame" offset="175,5" />
-				<script file="lsGroupKeepNum.lua" />
+				<script file="UDR/Scripts/lsUDRGroupKeepNum.lua" />
 			</tBaseCheckboxField>
 			<tBaseCheckboxField name="bGroupKeepField">
 				<anchored to="gGroupFrame" offset="175,25" />
-				<script file="lsGroupKeepNum.lua" />
+				<script file="UDR/Scripts/lsUDRGroupKeepNum.lua" />
 			</tBaseCheckboxField>
 			<tNumField name="nGroupNumKeepDie">
 				<anchored to="gGroupFrame" position="insidetopleft" offset="270,15" width="30"/>
@@ -320,7 +320,7 @@
 				</anchored>
 				<datasource>.grouptargetnolist</datasource>
 				<class>wcUDRFGroupTargetNo</class>
-				<script file="UDR/Scripts/lsUDRFGroupTargetNoList.lua" />
+				<script file="UDR/Scripts/lsUDRGroupTargetNoList.lua" />
 			</windowlist>
 			<scrollbar>
 				<anchored to="wlGroupTargetNoList" />

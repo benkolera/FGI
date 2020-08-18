@@ -8,13 +8,27 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: wcTNBox in xUDRWindowClasses.xml
+-- Called By: wcTNBoxManager.nTN in xUDRWindowClasses.xml
 --
 
-function onInit()
-	TNBox.fpRegisterControl(self);
+function onWheel(nNotches)
+	if not hasFocus() then
+		TNBoxManager.nValue = getValue()+nNotches;
+		TNBoxManager.fpUpdateControl();
+	end
+	return true;
 end
 
-function onClose()
-	TNBox.fpRegisterControl(nil);
+function onDrop(nXPos,nYPos,oDragData)
+	return window.gcBase.onDrop(nXPos,nYPos,oDragData);
+end
+
+function onDragStart(nButton,nXPos,nYPos,oDragData)
+	local nValue = getValue();
+	oDragData.setType("targetnumber");
+	oDragData.setNumberData(nValue);
+	if nValue ~= 0 then
+		oDragData.setStringData(string.format("%+d",nValue))
+	end
+	return true;
 end

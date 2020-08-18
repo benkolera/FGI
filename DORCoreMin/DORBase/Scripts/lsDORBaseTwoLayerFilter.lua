@@ -27,7 +27,7 @@ function applyTo(oTarget,nIndex)
 	if not oTarget.isVisible() then
 		oTarget.setVisible(true);
 	end
-	if nIndex &gt; #aTargetPath then
+	if nIndex > #aTargetPath then
 		oTarget.applyFilter();
 		return;
 	end

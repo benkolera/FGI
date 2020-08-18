@@ -11,12 +11,12 @@
 -->
 <root>
 <!-- Overlay Buttons and Icons -->
-	<icon name="button_close" file="Core/Icons/btnClose.png" />
-	<icon name="button_close_down" file="Core/Icons/btnCloseDown.png" />
-	<icon name="button_close_hover" file="Core/Icons/btnCloseHover.png" />
-	<icon name="button_help" file="Core/Icons/btnHelp.png" />
-	<icon name="button_help_down" file="Core/Icons/btnHelpDown.png" />
-	<icon name="button_help_hover" file="Core/Icons/btnHelpHover.png" />
+	<icon name="button_close" file="Core/Icons/iBtnClose.png" />
+	<icon name="button_close_down" file="Core/Icons/iBtnCloseDown.png" />
+	<icon name="button_close_hover" file="Core/Icons/iBtnCloseHover.png" />
+	<icon name="button_help" file="Core/Icons/iBtnHelp.png" />
+	<icon name="button_help_down" file="Core/Icons/iBtnHelpDown.png" />
+	<icon name="button_help_hover" file="Core/Icons/iBtnHelpHover.png" />
 	<icon name="charlist_base" file="Core/Icons/iPortrait.png" />
 	<icon name="charlist_mask" file="Core/Icons/iPortraitMask.png" />
 	<icon name="lighting_day" file="Core/Icons/iLightingDay.png" />
@@ -34,12 +34,17 @@
 	<icon name="targetportrait_mask" file="Core/Icons/iPortraitTargetMask.png" />
 <!-- Non-Overlay Buttons and Icons -->
 	<icon name="iBang" file="Core/Icons/iBang.png" />
+	<icon name="iBaseRulesetDecal" file="Core/Icons/iDORCoreSymbolBig.png" />
+<!--
 	<icon name="iBarAlignment" file="Core/Icons/iBarAlignment.png" />
+-->
 	<icon name="iBarBattle" file="Core/Icons/iBarBattle.png" />
 	<icon name="iBarCalendar" file="Core/Icons/iBarCalendar.png" />
 	<icon name="iBarCharacters" file="Core/Icons/iBarCharacters.png" />
 	<icon name="iBarColour" file="Core/Icons/iBarColour.png" />
+<!--
 	<icon name="iBarCSG" file="Core/Icons/iBarCSG.png" />
+-->
 	<icon name="iBarCT" file="Core/Icons/iBarCT.png" />
 	<icon name="iBarEffects" file="Core/Icons/iBarEffects.png" />
 	<icon name="iBarGBattle" file="Core/Icons/iBarGBattle.png" />
@@ -52,7 +57,9 @@
 	<icon name="iBarItems" file="Core/Icons/iBarItems.png" />
 	<icon name="iBarLibrary" file="Core/Icons/iBarLibrary.png" />
 	<icon name="iBarLighting" file="Core/Icons/iBarLighting.png" />
+<!--
 	<icon name="iBarLocations" file="Core/Icons/iBarLocations.png" />
+-->
 	<icon name="iBarModifiers" file="Core/Icons/iBarModifiers.png" />
 	<icon name="iBarModules" file="Core/Icons/iBarModules.png" />
 	<icon name="iBarNotes" file="Core/Icons/iBarNotes.png" />
@@ -61,10 +68,14 @@
 	<icon name="iBarOCharacters" file="Core/Icons/iBarOCharacters.png" />
 	<icon name="iBarOCT" file="Core/Icons/iBarOCT.png" />
 	<icon name="iBarOItems" file="Core/Icons/iBarOItems.png" />
+<!--
 	<icon name="iBarOLE" file="Core/Icons/iBarOLE.png" />
+-->
 	<icon name="iBarONPCs" file="Core/Icons/iBarONPCs.png" />
 	<icon name="iBarOptions" file="Core/Icons/iBarOptions.png" />
+<!--
 	<icon name="iBarOrganisations" file="Core/Icons/iBarOrganisations.png" />
+-->
 	<icon name="iBarOStory" file="Core/Icons/iBarOStory.png" />
 	<icon name="iBarOVehicle" file="Core/Icons/iBarOVehicle.png" />
 	<icon name="iBarParcel" file="Core/Icons/iBarParcel.png" />
@@ -77,14 +88,18 @@
 	<icon name="iBarSFItems" file="Core/Icons/iBarSFItems.png" />
 	<icon name="iBarSFNPCs" file="Core/Icons/iBarSFNPCs.png" />
 	<icon name="iBarSFVehicle" file="Core/Icons/iBarSFVehicle.png" />
+<!--
 	<icon name="iBarSound" file="Core/Icons/iBarSound.png" />
+-->
 	<icon name="iBarStory" file="Core/Icons/iBarStory.png" />
 	<icon name="iBarTables" file="Core/Icons/iBarTables.png" />
 	<icon name="iBarToken" file="Core/Icons/iBarToken.png" />
 	<icon name="iBarUDRF" file="Core/Icons/iBarUDRF.png" />
 	<icon name="iBarVehicle" file="Core/Icons/iBarVehicle.png" />
 	<icon name="iBarWBattle" file="Core/Icons/iBarWBattle.png" />
+<!--
 	<icon name="iBarWeather" file="Core/Icons/iBarWeather.png" />
+-->
 	<icon name="iBarWCharacters" file="Core/Icons/iBarWCharacters.png" />
 	<icon name="iBarWCT" file="Core/Icons/iBarWCT.png" />
 	<icon name="iBarWItems" file="Core/Icons/iBarWItems.png" />
@@ -93,7 +108,6 @@
 	<icon name="iBtnBase" file="graphics/icons/colorgizmo_bigbtn_base.png" />
 	<icon name="iBtnColour" file="graphics/icons/colorgizmo_bigbtn_color.png" />
 	<icon name="iBtnEffects" file="graphics/icons/colorgizmo_bigbtn_effects.png" />
-	<icon name="iBaseRulesetDecal" file="Core/Icons/iDORCoreSymbol_Big.png" />
 	<icon name="iDORRulesetIcon" file="Core/Icons/iDORCoreSymbolSmall.png" />
 	<icon name="iRollDamage" file="Core/Icons/iRollDamage.png" />
 	<icon name="iRollHeal" file="Core/Icons/iRollHeal.png" />

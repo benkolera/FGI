@@ -8,20 +8,19 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: wcTNBox.gcBase in xUDRWindowClasses.xml
+-- Called By: wcKeepDiceBoxManager.gcBase in xUDRWindowClasses.xml
 --
 
 function onHover(bOnControl)
 	if not bOnControl then
-		TNBox.fpUpdateControl();
+		KeepDiceBoxManager.fpUpdateControl();
 	end
 end
 
 function onDrop(nXPos,nYPos,oDragData)
 	local sDragType = oDragData.getType();
-	if sDragType == "number" or
-			sDragType == "targetnumber" then
-		TNBox.fpSetTN(oDragData.getNumberData(),oDragData.getDescription());
+	if sDragType == "number" then
+		KeepDiceBoxManager.fpSetKeepDice(oDragData.getNumberData());
 		return true;
 	end
 	return false;

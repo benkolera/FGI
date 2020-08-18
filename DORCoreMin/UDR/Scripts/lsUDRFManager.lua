@@ -29,6 +29,7 @@ aSubRecords = {
 }
 
 function onInit() -- Need to change/fix
+--[[
 	local oNode = DB.findNode("MJB_Extensions");
 	if User.isHost() then
 		if oNode == nil or
@@ -42,6 +43,7 @@ function onInit() -- Need to change/fix
 			ExportManager.registerExportNode({name="MJB_UDR",class="wcUDRF",label=Interface.getString("sDiceRollFoundryStr")});
 		end
 	end
+--]]
 	fpSetRulesetGraphics();
 	for kKey,vValue in pairs(aSubRecords) do
 		LibManager.fpSetRecordTypeInfo(kKey,vValue);

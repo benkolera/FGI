@@ -60,7 +60,7 @@
 			</anchored>
 			<state textres="sButSelectSumSolDateStr" />
 			<tooltip textres="sTooltipSelectSumSolDateStr" />
-			<script file="lsButCalGetSumSolDate.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButCalGetSumSolDate.lua" />
 		</tButCal>
 	</template>
 
@@ -76,7 +76,7 @@
 
 	<template name="tButCalUseCampCalWithDaysInYear">
 		<tButCalUseCampCal>
-			<script file="lsButCalUseCampCalWithDaysInYear.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButCalUseCampCalWithDaysInYear.lua" />
 		</tButCalUseCampCal>
 	</template>
 
@@ -89,7 +89,7 @@
 			<state icon="combobox_button" />
 			<state icon="combobox_button_active" />
 			<invisible />
-			<script file="lsButCategoryCombo.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButCategoryCombo.lua" />
 		</buttoncontrol>
 	</template>
 
@@ -105,7 +105,7 @@
 	<template name="tButColourDome">
 		<genericcontrol>
 			<anchored position="insidetopleft" />
-			<script file="lsButColourDome.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButColourDome.lua" />
 		</genericcontrol>
 	</template>
 
@@ -131,7 +131,7 @@
 			<anchored>
 				<right parent="gAnchorRight" />
 			</anchored>
-			<script file="lsButIconAccess.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButIconAccess.lua" />
 		</icon_access>
 	</template>
 
@@ -155,7 +155,7 @@
 				<top />
 				<right anchor="left" relation="relative" offset="-5" />
 			</anchored>
-			<script file="lsButIconAddCamp.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButIconAddCamp.lua" />
 		</tButIconAdd>
 	</template>
 
@@ -181,7 +181,7 @@
 			<state icon="button_deleteconfirm" tooltipres="button_deleteconfirm" />
 			<tooltip textres="button_delete" />
 			<invisible />
-			<script file="lsButIconDel.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButIconDel.lua" />
 		</buttoncontrol>
 	</template>
 
@@ -220,7 +220,7 @@
 
 	<template name="tButIconEditBase">
 		<tButIconEdit>
-			<script file="lsButIconEditBase.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButIconEditBase.lua" />
 		</tButIconEdit>
 	</template>
 
@@ -377,7 +377,7 @@
 			</anchored>
 			<tooltip textres="sTooltipMsgboxButtonStr" />
 			<invisible />
-			<script file="lsButMsgbox.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButMsgbox.lua" />
 		</button_text>
 	</template>
 
@@ -386,7 +386,7 @@
 			<anchored to="gAnchorRight">
 				<right offset="-5" />
 			</anchored>
-			<script file="lsButRecordLocked.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButRecordLocked.lua" />
 		</button_record_locked>
 	</template>
 
@@ -394,7 +394,7 @@
 		<genericcontrol name="status">
 			<anchored to="description" position="left" offset="5" width="20" />
 			<icon>button_collapse_w</icon>
-			<script file="lsButStatus.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButStatus.lua" />
 		</genericcontrol>
 	</template>
 
@@ -407,7 +407,7 @@
 			<source>nGroupColour</source>
 			<icon>iBtnRainbow</icon>
 			<tooltip textres="sWLChangeColourStr" />
-			<script file="lsButWLChangeColour.lua" />
+			<script file="DORBase/Scripts/lsDORBaseButWLChangeColour.lua" />
 		</genericcontrol>
 	</template>
 
@@ -420,7 +420,7 @@
 
 	<template name="tCheckboxCtrlWindowlist">
 		<tBaseCheckboxCtrl name="CheckboxCtrlWindowlistSelected">
-			<script file="lsCheckboxCtrlWindowlist.lua" />
+			<script file="DORBase/Scripts/lsDORBaseCheckboxCtrlWindowlist.lua" />
 		</tBaseCheckboxCtrl>
 	</template>
 
@@ -444,7 +444,7 @@
 
 	<template name="tRadioButCtrl">
 		<tBaseCheckboxCtrl>
-			<script file="lsRadioButCtrl.lua" />
+			<script file="DORBase/Scripts/lsDORBaseRadioButCtrl.lua" />
 		</tBaseCheckboxCtrl>
 	</template>
 
@@ -466,7 +466,7 @@
 
 	<template name="tRadioButField">
 		<tBaseCheckboxField>
-			<script file="lsRadioButField.lua" />
+			<script file="DORBase/Scripts/lsDORBaseRadioButField.lua" />
 		</tBaseCheckboxField>
 	</template>
 
@@ -520,13 +520,13 @@
 				<left anchor="center" offset="48" />
 				<right parent="gAnchorRight" anchor="left" offset="-12" />
 			</anchored>
-			<script file="lsComboboxColHalfRight.lua" />
+			<script file="DORBase/Scripts/lsDORBaseComboboxColHalfRight.lua" />
 		</tComboboxCol>
 	</template>
 
 	<template name="tComboboxDayHourMin">
 		<tComboboxColHalfRight>
-			<script file="lsComboboxDayHourMin.lua" />
+			<script file="DORBase/Scripts/lsDORBaseComboboxDayHourMin.lua" />
 		</tComboboxColHalfRight>
 	</template>
 
@@ -557,7 +557,7 @@
 			</anchored>
 			<default textres="sLengthFeetStr" />
 			<target>snAltitude</target>
-			<script file="lsComboboxFeetMetreAltitude.lua" />
+			<script file="DORBase/Scripts/lsDORBaseComboboxFeetMetreAltitude.lua" />
 		</tComboboxColHalfRight>
 	</template>
 
@@ -612,7 +612,7 @@
 		<tTextFieldFullColNoBorder name="fsGMNotes">
 			<empty textres="sEmptyGMNotesStr" />
 			<gmvisibleonly />
-			<script file="lsTextFieldFullColNoBorderGMNotes.lua" />
+			<script file="DORBase/Scripts/lsDORBaseTextFieldFullColNoBorderGMNotes.lua" />
 		</tTextFieldFullColNoBorder>
 	</template>
 
@@ -711,7 +711,7 @@
 	<template name="tColourDome">
 		<genericcontrol>
 			<anchored position="insidetopleft" />
-			<script file="lsColourDome.lua" />
+			<script file="DORBase/Scripts/lsDORBaseColourDome.lua" />
 		</genericcontrol>
 	</template>
 
@@ -989,7 +989,7 @@
 			<font>reference-r</font>
 			<nodrag />
 			<static />
-			<script file="lsCampCategory.lua" />
+			<script file="DORBase/Scripts/lsDORBaseCampCategory.lua" />
 		</stringcontrol>
 	</template>
 
@@ -1136,7 +1136,7 @@
 			<droptypes>
 				<type>shortcut</type>
 			</droptypes>
-			<script file="lsLabelCampCategory.lua" />
+			<script file="DORBase/Scripts/lsDORBaseLabelCampCategory.lua" />
 		</stringcontrol>
 	</template>
 
@@ -1328,7 +1328,7 @@
 			<center />
 			<static />
 			<invisible />
-			<script file="lsLabelLibMasterCategoryFilter.lua" />
+			<script file="DORBase/Scripts/lsDORBaseLabelLibMasterCategoryFilter.lua" />
 		</stringcontrol>
 	</template>
 
@@ -1356,7 +1356,7 @@
 				<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
 			</stateframe>
 			<center />
-			<script file="lsSciNumCtrl.lua" />
+			<script file="DORBase/Scripts/lsDORBaseSciNumCtrl.lua" />
 		</stringcontrol>
 	</template>
 
@@ -1376,7 +1376,7 @@
 				<bottom offset="-25" />
 			</anchored>
 			<target>wlLevel1,wlLevel2</target>
-			<script file="lsTwoLayerFilter.lua" />
+			<script file="DORBase/Scripts/lsDORBaseTwoLayerFilter.lua" />
 		</filter>
 	</template>
 
@@ -1436,7 +1436,7 @@
 				<left offset="122" />
 				<right offset="-40" />
 			</anchored>
-			<script file="lsDispStrFieldLinkName.lua" />
+			<script file="DORBase/Scripts/lsDORBaseDispStrFieldLinkName.lua" />
 		</tDispStrFieldMidFrm>
 	</template>
 
@@ -1500,7 +1500,7 @@
 
 	<template name="tSciNumField">
 		<tSciNumCtrl>
-			<script file="lsSciNumField.lua" />
+			<script file="DORBase/Scripts/lsDORBaseSciNumField.lua" />
 		</tSciNumCtrl>
 	</template>
 
@@ -1699,7 +1699,7 @@
 				<backcolor>1A40301E</backcolor>
 			</child>
 			<child></child>
-			<script file="lsCampListBaseWindowlist.lua" />
+			<script file="DORBase/Scripts/lsDORBaseCampListBaseWindowlist.lua" />
 		</windowlist>
 	</template>
 
@@ -1747,7 +1747,7 @@
 				<control>sCategoryLabel</control>
 			</sortby>
 			<invisible />
-			<script file="lsWindowlistLibMasterCategory.lua" />
+			<script file="DORBase/Scripts/lsDORBaseWindowlistLibMasterCategory.lua" />
 		</windowlist>
 	</template>
 
@@ -1765,7 +1765,7 @@
 			<sortby mergerule="replace">
 				<control>name</control>
 			</sortby>
-			<script file="lsWindowlistLinks.lua" />
+			<script file="DORBase/Scripts/lsDORBaseWindowlistLinks.lua" />
 		</windowlist>
 	</template>
 
@@ -1790,7 +1790,7 @@
 			<datasource>.soundlist</datasource>
 			<class>wcSoundsList</class>
 			<empty gmtextres="sSoundLinkListEmptyStr" />
-			<script file="lsWindowlistSoundLinksFull.lua" />
+			<script file="DORBase/Scripts/lsDORBaseWindowlistSoundLinksFull.lua" />
 		</tWindowlistLinksFull>
 	</template>
 
@@ -1801,7 +1801,7 @@
 				<top />
 				<right anchor="left" offset="-7" />
 			</anchored>
-			<script file="lsRefFieldShortcutLink.lua" />
+			<script file="DORBase/Scripts/lsDORBaseRefFieldShortcutLink.lua" />
 		</linkfield>
 	</template>
 
@@ -1818,7 +1818,7 @@
 	<template name="tSoundFieldShortcutLink">
 		<tRefFieldShortcutLink name="lSoundLink">
 			<icon normal="iBtnSoundLink" pressed="iBtnSoundLinkDown" empty="button_link_empty" />
-			<script file="lsSoundFieldShortcutLink.lua" />
+			<script file="DORBase/Scripts/lsDORBaseSoundFieldShortcutLink.lua" />
 		</tRefFieldShortcutLink>
 	</template>
 </root>

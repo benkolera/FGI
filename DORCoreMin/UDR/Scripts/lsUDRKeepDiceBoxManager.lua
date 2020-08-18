@@ -8,20 +8,48 @@
 -- Please see the accompanying License for full details.
 -- All rights reserved.
 --
--- Called By: wcKeepDiceBox.gcBase in xUDRWindowClasses.xml
+-- Called By: xCoreFiles.xml
 --
 
-function onHover(bOnControl)
-	if not bOnControl then
-		KeepDiceBox.fpUpdateControl();
+nValue = 0;
+
+local oControl = nil;
+
+function onInit()
+	Interface.onHotkeyActivated = fpCheckHotKey;
+end
+
+function fpCheckHotKey(oDragData)
+	local sDragType = oDragData.getType();
+	if sDragType == "number" then
+		fpSetKeepDice(oDragData.getNumberData());
+		return true;
 	end
 end
 
-function onDrop(nXPos,nYPos,oDragData)
-	local sDragType = oDragData.getType();
-	if sDragType == "number" then
-		KeepDiceBox.fpSetKeepDice(oDragData.getNumberData());
-		return true;
+function fpGetKeepDice()
+	return nValue;
+end
+
+function fpRegisterControl(oCtrl)
+	oControl = oCtrl;
+end
+
+function fpSetKeepDice(nNumber)
+	nValue = nNumber;
+	fpUpdateControl();
+end
+
+function fpUpdateControl()
+	if oControl then
+		if nValue < 0 then
+			nValue = 0;
+		end
+		oControl.nKeepDice.setValue(nValue);
+		if math.abs(oControl.nKeepDice.getValue()) > 999 then
+			oControl.nKeepDice.setFont("modcollectorlabel");
+		else
+			oControl.nKeepDice.setFont("modcollector");
+		end
 	end
-	return false;
 end

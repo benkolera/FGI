@@ -51,7 +51,7 @@ function onInit()
 end
 
 function fpSetSize(sValue)
-	if tonumber(sValue) &gt; 0 then
+	if tonumber(sValue) > 0 then
 		setAnchoredHeight(sValue);
 		setAnchoredWidth(sValue);
 		oDomeBase.setSize(sValue,sValue);

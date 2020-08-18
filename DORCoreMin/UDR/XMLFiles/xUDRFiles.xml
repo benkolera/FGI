@@ -19,9 +19,9 @@
 	<includefile source="UDR/XMLFiles/xUDRWindowClasses.xml" />
 <!-- Lua Script Files -->
 	<script name="DieManager" file="UDR/Scripts/lsUDRDieManager.lua" />
-	<script name="DiceTowerManager2" file="UDR/Scripts/lsUDRDieTowerManager.lua" />
-	<script name="KeepDiceBox" file="UDR/Scripts/lsUDRKeepDiceBox.lua" />
-	<script name="SuccessRaiseBox" file="UDR/Scripts/lsUDRSuccessRaiseBox.lua" />
-	<script name="TNBox" file="UDR/Scripts/lsUDRTNBox.lua" />
+	<script name="DiceTowerManager2" file="UDR/Scripts/lsUDRDiceTowerManager.lua" />
+	<script name="KeepDiceBoxManager" file="UDR/Scripts/lsUDRKeepDiceBoxManager.lua" />
+	<script name="SuccessRaiseBoxManager" file="UDR/Scripts/lsUDRSuccessRaiseBoxManager.lua" />
+	<script name="TNBoxManager" file="UDR/Scripts/lsUDRTNBoxManager.lua" />
 	<script name="UDRFManager" file="UDR/Scripts/lsUDRFManager.lua" />
 </root>
