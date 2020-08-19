@@ -12,6 +12,7 @@
 <root>
 	<icon name="iHWExtensionIcon" file="iHWLogo.png" />
 <!-- XML Files -->
+	<includefile source="DOCEHW/XMLFiles/xDOCEHWIcons.xml" />
 	<includefile source="DOCEHW/XMLFiles/xDOCEHWStrings.xml" />
 	<includefile source="DOCEHW/XMLFiles/xDOCEHWWindowClasses.xml" />
 <!-- Lua Script Files -->

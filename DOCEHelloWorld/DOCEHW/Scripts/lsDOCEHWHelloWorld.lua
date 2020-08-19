@@ -13,5 +13,7 @@
 
 function onInit()
 	Interface.toggleWindow("wcHelloWorld","");
+	MenubarIcons.fpAddMenubarButton(Interface.getString("sMenubarStyleFantasyString"),Interface.getString("sSidebarTooltipHWStr"),"iBarHelloWorld");
+	DesktopManager.registerStackShortcut2("","","sSidebarTooltipHWStr","wcHelloWorld","");
 	return;
 end

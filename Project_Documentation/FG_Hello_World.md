@@ -14,7 +14,7 @@ A typical &ldquo;Hello World!&rdquo; program looks like this C-Language program:
 
 ~~~
 main( ) {
-    printf("hello, world\n");
+    printf("Hello World!\n");
 }
 ~~~
 
@@ -28,17 +28,17 @@ To display &ldquo;Hello World!&rdquo; (without the quotes) in FG we&rsquo;re goi
 
 ### A &ldquo;Hello World!&rdquo; Extension
 
-The very first thing we need to decide is if we want our &ldquo;Hello World!&rdquo; to be part of a Ruleset (or even a Ruleset it its own right), or if it&rsquo;s better off as an Extension. It&rsquo;s probably better off as an Extension, as we may want to use it to test out other Rulesets, etc.
+The very first thing we need to decide is if we want our &ldquo;Hello World!&rdquo; to be part of a Ruleset (or even a Ruleset it its own right), or if it&rsquo;s better off as an Extension. It&rsquo;s probably better off as an Extension, as we may want to use it to test out other *DORCore* child-Rulesets, etc.
 
 So let&rsquo;s create it as an Extension.
 
-### Set-Up Gitkraken For Our New &ldquo;Hello World!&rdquo; Extension
+### Set Up Gitkraken For Our New &ldquo;Hello World!&rdquo; Extension
 
 First, we start up GitKraken and make sure we have the FGI Repo loaded.
 
 Its always a good idea when starting a new feature, hotfix, or release branch to do a fresh pull from the Project&rsquo;s main repo&rsquo; development branch, so check out your local `develop` branch (double-click on it in the `GITFLOW` area of the left-hand menu-list), then click on the `Pull` Button located on the top Button-Bar.
 
-When the pull has finished (you&rsquo; see a notification box briefly in the bottom-left of GitKraken), click on the `Right Arrow` that will appear when you hover the mouse over the `GITFLOW` entry of the left menu-list, then click the `Feature` Button in the `Start` section of the window that appears.
+When the pull has finished (you&rsquo;ll see a notification box briefly in the bottom-left of GitKraken), click on the `Right Arrow` that will appear when you hover the mouse over the `GITFLOW` entry of the left menu-list, then click the `Feature` Button in the `Start` section of the window that appears.
 
 To name our new feature we&rsquo;ll enter into the now displayed Entrybox the text `HelloWorld` so that the entire Entrybox reads `feature/HelloWorld`.
 
@@ -108,7 +108,7 @@ On line 12 on the `extension.xml` file is the name of a logo: `hw_logo.png`, and
 
 First, the `xDOCEHWFiles.xml` file needs to be created, and, to hold this file a new folder/directory is also required: `FGI/DOCEHelloWorld/DOCEHW/XMLFiles/`.
 
-Normally we would also create a corresponding `xDOCEHWIcons.xml` file and `FGI/DOCEHelloWorld/DOCEHW/Icons/` folder/directory as well, but logos are special beasties, and don't follow the normal rules and standards. More on this later.
+Normally we would also create a corresponding `xDOCEHWIcons.xml` file and `FGI/DOCEHelloWorld/DOCEHW/Icons/` folder/directory as well, but logos are special beasties, and don&rsquo;t follow the normal rules and standards. More on this later.
 
 Create the folder/directory, then make a copy of the `FGI/Support_Files/xml_file_template.xml`, move it to the `FGI/DOCEHelloWorld/DOCEHW/XMLFiles/` folder/directory, and rename it `xDOCEHWFiles.xml`. Open up the new file in *Notepad++*, and add the relevant *includefile* tag to it, so that the `xDOCEHWFiles.xml` file looks like this:
 
@@ -137,7 +137,7 @@ For the actual image file we&rsquo;ll be using, you can use any `PNG` image you 
 
 So, after all that we are now ready to the rest our &ldquo;Hello World!&rdquo; Extension.
 
-### Create &ldquo;Hello World!&rdquo; Extension&rsquo;s XML Objects
+### Create The &ldquo;Hello World!&rdquo; Extension&rsquo;s XML Objects
 
 To display &ldquo;Hello World!&rdquo; we&rsquo;re going to need the string `Hello World!`. The best way to use strings such as this is to use a *String Reference*. String references go into a separate `xDOCEHWStrings.xml` file, so make a copy of the `FGI/Support_Files/xml_file_template.xml`, move it to the `FGI/DOCEHelloWorld/DOCEHW/XMLFiles/` folder/directory, and rename it `xDOCEHWStrings.xml`. Add the relevant *includefile* tag to the `xDOCEHWFiles.xml` file so that the `xDOCEHWFiles.xml` file looks like this:
 
@@ -223,7 +223,6 @@ Open up the new `xDOCEHWWindowClasses.xml` file in *Notepad++*, and add the rele
 	<windowclass name="wcHelloWorld">
 	</windowclass>
 </root>
-
 ~~~
 
 Remember to save you work in *Notepad++*.
@@ -247,7 +246,7 @@ A form/windowclass needs a whole bunch of sub-elements, which are listed with th
 
 Remember to save you work in *Notepad++*.
 
-A form/window needs a background image to actually put things on, so we&rsquo;ll use a pre-existing image (a frame) from the (grand)parent *CoreRPG* Ruleset called `utilitybox3`. The definition for `utilitybox3` can be found in the *CoreRPG* Ruleset in the `/graphics/graphics_frames.xml` file (You&rsquo;ll need to unzip the `CoreRPG.pak`) file to see this file, but you won't need to unzip it to use it).
+A form/window needs a background image to actually put things on, so we&rsquo;ll use a pre-existing image (a frame) from the (grand)parent *CoreRPG* Ruleset called `utilitybox3`. The definition for `utilitybox3` can be found in the *CoreRPG* Ruleset in the `/graphics/graphics_frames.xml` file (You&rsquo;ll need to unzip the `CoreRPG.pak`) file to see this file, but you won&rsquo;t need to unzip it to use it).
 
 
 
@@ -279,13 +278,13 @@ set of tags, the form/window will be centred both horizontally and vertically wi
 
 
 
-
+### Getting The &ldquo;Hello World!&rdquo; Form/WindowClass Displayed
 
 Now we have our form/window with all of its included the elements. But how do we actually get the form to display. Well, there are two ways: the first is to display the form automatically when FG starts via a script. The second is via a control (ie a Button) on the FG Menu-Bar (or elsewhere). Let&rsquo;s do it both ways, so that our form/window is displayed both when FG starts and when we click the control.
 
 First, the script.
 
-We&rsquo;ll need a `FGI/DOEHelloWorld/DOCEHW/Scripts` folder/directory, so create it now. Then, make a copy of the `FGI/Support_Files/lua_file_template.lua`, move it to the `FGI/DOCEHelloWorld/DOCEHW/Scripts/` folder/directory, and rename it `lsHelloWorld.lua`. Add the relevant *includefile* tag to the `xDOCEHWFiles.xml` file so that the `xDOCEHWFiles.xml` file looks like this:
+We&rsquo;ll need a `FGI/DOEHelloWorld/DOCEHW/Scripts` folder/directory, so create it now. Then, make a copy of the `FGI/Support_Files/lua_file_template.lua` file, move it to the `FGI/DOCEHelloWorld/DOCEHW/Scripts/` folder/directory, and rename it `lsHelloWorld.lua`. Add the relevant *includefile* tag to the `xDOCEHWFiles.xml` file so that the `xDOCEHWFiles.xml` file looks like this:
 
 ~~~
 <?xml version="1.0" encoding="iso-8859-1"?>
@@ -338,9 +337,167 @@ Now, when FG starts, the `lsHellowWorld.lua` file will be loaded (via the `xDOCE
 
 Now, the Button Method.
 
+We&rsquo;ll use a small menu-bar button which will appear with the other small menu-bar buttons in the top-right of the FG window. There already exists a function to create this button: `fpAddMenubarButton()`, found in the *DORCoreMin* Ruleset.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+`fpAddMenubarButton()` is called with the command `DesktopManager.registerStackShortcut2("<sUpButtonImage>","<sDownButtonImage>","<sSidebarTooltipStringReference>","<wcWindowClass>",["<sRootDataLocation>"])` with the following arguments:
+
+- sUpButtonImage &mdash; the image reference to use on the Button when in the up (non-pressed) state.
+- sDownButtonImage &mdash; the image reference to use on the Button when in the down (pressed) state.
+- sSidebarTooltip &mdash; the string reference to us for the Button&rsquo;s Tooltip.
+- wcWindowClass &mdash; the name of the WindowClass to open when the Button is clicked.
+- sRootDataLocation &mdash; the name of the Node in the XML Datafile (`db.xml`) that the WindowClass is linked to. This can be omitted if the WindowClass does not link to any data (as ours does).
+
+So, in the `lsHellowWorld.lua` file, add Line 16 so that the file looks like this:
+
+~~~
+--
+-- Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+-- Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+-- Copyright to other material within this file may be held by other Individuals and/or Entities.
+-- Nothing in or from this LUA file in printed,electronic and/or any other form may be used,copied,
+--	transmitted or otherwise manipulated in ANY way without the explicit written consent of
+--	PEREGRINE I.T. Pty Ltd or,where applicable,any and all other Copyright holders.
+-- Please see the accompanying License for full details.
+-- All rights reserved.
+--
+-- Called By: xDOCEHWFiles.xml
+--
+
+function onInit()
+	Interface.toggleWindow("wcHelloWorld","");
+	MenubarIcons.fpAddMenubarButton(Interface.getString("sMenubarStyleFantasyString"),"Hello World","iBarHelloWorld");
+	return;
+end
+~~~
+
+
+fpAddMenubarButton(sStyle,sButtonName,sIcon,sColour,sIconColour)
+
+
+
+
+Remember to save you work in *Notepad++*.
+
+So now we need to define `iBtnHW`, `iBtnHWDown`, and `sSidebarTooltipHWString`.
+
+So, in the `xDOCEHWStrings.xml` file, add Line 16 so that the file looks like this:
+
+~~~
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Non-Overlay Strings -->
+	<string name="sHelloWorldString">Hello World!</string>
+	<string name="sHelloWorldTitleString">HELLO WORLD!</string>
+	<string name="sSidebarTooltipHWStr">Open the Hello World! Form</string>
+</root>
+~~~
+
+Remember to save you work in *Notepad++*.
+
+We&rsquo;ll need a `FGI/DOEHelloWorld/DOCEHW/Icons` folder/directory, so create it now. Then, make a copy of the `FGI/Support_Files/xml_file_template.xml` file, move it to the `FGI/DOCEHelloWorld/DOCEHW/XMLFiles/` folder/directory, and rename it `xDOCEHWIcons.xml`. Add the relevant *includefile* tag to the `xDOCEHWFiles.xml` file so that the `xDOCEHWFiles.xml` file looks like this:
+
+~~~
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+	<icon name="iHWExtensionIcon" file="iHWLogo.png" />
+<!-- XML Files -->
+	<includefile source="DOCEHW/XMLFiles/xDOCEHWIcons.xml" />
+	<includefile source="DOCEHW/XMLFiles/xDOCEHWStrings.xml" />
+	<includefile source="DOCEHW/XMLFiles/xDOCEHWWindowClasses.xml" />
+<!-- Lua Script Files -->
+	<script name="HelloWorld" file="DOCEHW/Scripts/lsDOCEHWHelloWorld.lua" />
+</root>
+~~~
+
+Open up the new `xDOCEHWIcons.xml` file in *Notepad++*, and add the relevant *string* tag to it, so that it looks like this:
+
+~~~
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+<!-- Non-Overlay Buttons and Icons -->
+	<icon name="iBtnHW" file="DOCEHW/Icons/iBtnHW.png" />
+	<icon name="iBtnHWDown" file="DOCEHW/Icons/iBtnHWDown.png" />
+</root>
+~~~
+
+Remember to save you work in *Notepad++*.
+
+Now we just need two small `PNG` files to use as the Button Images. For small menu-bar buttons for use with the DORCoreMin Ruleset (and child-Rulesets) the image should be no bigger than 25 pixels by 25 pixels, white, and in the centre of a transparent background 50 pixels by 50 pixels. Large menu-bar button images should be no bigger than 50 pixels by 50 pixels, white, and in the centre of a transparent background 100 pixels by 100 pixels.
+
+### Testing Our &ldquo;Hello World!&rdquo; Extension
+
+To test our new Extension we need to:
+
+1. Copy the `DORCoreMin` Ruleset (ie the folder/directory) to the FG data folder&rsquo;s/directory&rsquo;s `rulesets` folder/directory. The easiest way to find the FG data folder/directory is to click on the `Open data folder` Button located towards the top-right of the FG-Launcher.
+2. Copy the `DOCEHelloWorld` Extension (ie the folder/directory) to the FG data folder&rsquo;s/directory&rsquo;s `extensions` folder/directory.
+3. Create a test campaign using the `DORCoreRPG` Ruleset and loading the `DOCEHelloWorld` Extension into the campaign. Note that if you are using the free version of FG you need to create the test campaign every time you re-start FG &mdash; the paid versions of FG do not have this limitation.
+4. See if the *Hello World* form is displayed when FG finally loads.
+5. Close the *Hello World* form, and then click on the *Hello World* small menu-bar button and see if the *Hello World* form re-opens.
+
+If everything works correctly then we&rsquo;re done! Otherwise, troubleshoot you&rsquo;re work (most likely a typo somewhere &mdash; use any error messages displayed in the `console.log` file located in the FG data folder/directory).
+
+### Getting Our &ldquo;Hello World!&rdquo; Extension Included Into The &ldquo;Offical&rdquo; Repo
+
+We don&rsquo;t actually want our *Hello World* Extension included in the Project&rsquo;s Offical Repository (we&rsquo;d have a whole bunch of copies of the same Extension, all competing with one another), but for a normal feature we need to follow the below procedure to get our work included.
+
+In GitKracken, we need to make sure we have our feature branch checked out, and then we need to make sure that we have the `WIP` (Work In Progress) line at the top of the graph highlighted. Then click on the `Right Arrow` that will appear when you hover the mouse over the `GITFLOW` entry of the left menu-list, then click the `Feature` Button in the `Finish` section of the window that appears.
+
+We need to *Stage* and then *Commit* our changes (see the relevant *How To* Documents in the `Project_Documentation`) folder/directory, and then we need to file a *Pull Request* with the Project&rsquo;s Official Repo (again, see the relevant *How To* Document).
+
+
+
+
+
+
+
+Eventually your feature will be approved and included in the Project&rsquo;official repo, and at that point you should pull from the official repo and then push to your on-line repo to bring your copy of the Project up to date (once again, see the relevant *How To* Documents).
+
+## A Sample &ldquo;Hello World!&rdquo; Extension
+
+A finialised, working copy of the &ldquo;Hello World!&rdquo; Extension is included in the Project. It is in the `MJB_DOCEHelloWorld` folder/directory (to keep it separate from your working copy). To use it, copy the `MJB_DOCEHelloWorld` folder to your FG data&rsquo;s `extensions` folder/directory, and rename the folder/directory `DOCEHelloWorld`.
 
 ---
 

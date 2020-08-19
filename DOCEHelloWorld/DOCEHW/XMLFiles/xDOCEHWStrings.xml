@@ -13,4 +13,5 @@
 <!-- Non-Overlay Strings -->
 	<string name="sHelloWorldString">Hello World!</string>
 	<string name="sHelloWorldTitleString">HELLO WORLD!</string>
+	<string name="sSidebarTooltipHWStr">Open the Hello World! Form</string>
 </root>

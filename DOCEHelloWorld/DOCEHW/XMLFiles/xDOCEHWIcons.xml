@@ -10,17 +10,6 @@
 	All rights reserved.
 -->
 <root>
-	<windowclass name="wcHelloWorld">
-		<frame>utilitybox3</frame>
-		<placement>
-			<size width="285" height="265" />
-		</placement>
-		<sheetdata>
-<!--
-			<stringcontrol name="sColourCode">
-			</stringcontrol>
--->
-			<tButCloseUtilBox />
-		</sheetdata>
-	</windowclass>
+<!-- Non-Overlay Buttons and Icons -->
+	<icon name="iBarHelloWorld" file="DOCEHW/Icons/iBarHW.png" />
 </root>
