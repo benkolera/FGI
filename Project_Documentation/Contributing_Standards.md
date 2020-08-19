@@ -2,7 +2,7 @@
 
 ---
 
-Version 0.1.
+Version 0.2
 
 These are the Project&rsquo;s *Contributing Standards*, organised alphabetically.
 
@@ -47,7 +47,7 @@ See also the Project&rsquo;s [`Lua` Coding Standards](Project_Documents/Lua_Codi
 
 See also the Project&rsquo;s [`MD` Document Standards](MD_Document_Standards.md) Document and the [`PDF` Document Standards](PDF_Document_Standards.md) Documentfor all Documentation-specific Standards.
 
-1. All Documents relating to the *Project* itself (ie the Project&rsquo; Governance, How To&rsquo;s, etc &mdash; Documents which could be consided &ldquo;Meta-Project&rdquo; Documents) SHALL be placed in the Project&rsquo;s `` Folder/Directory.
+1. All Documents relating to the *Project* itself (ie the Project&rsquo; Governance, How To&rsquo;s, etc &mdash; Documents which could be consided &ldquo;Meta-Project&rdquo; Documents) SHALL be placed in the Project&rsquo;s `Project_Documentation` Folder/Directory.
 2. All Documents relating to details of the Coding, etc, SHALL be placed in the Project&rsquo;s `Support_Files` Folder/Directory.
 
 ## General Contributing Standards

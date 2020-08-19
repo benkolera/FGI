@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 These are the Project&rsquo;s *Lua Coding Standards*.
 
@@ -37,11 +37,11 @@ If in doubt about anything to do with Lua Files and their contents, etc, please 
 	1. Use [Title Case](https://en.wikipedia.org/wiki/Title_Case) format.
 	2. Be a descriptive name of what the Script File&rsquo;s purpose is, using only alphanumeric characters [`0-9`, `A-Z`, `a-z`].
 
-See also the [XML Coding Standards](https://github.com/Dulux-Oz/FGI/tree/tree/master/XML_Coding_Standards.md).
+See also the [XML Coding Standards](/XML_Coding_Standards.md).
 
 #### Inline File Scripts
 
-See the [XML Coding Standards](https://github.com/Dulux-Oz/FGI/tree/tree/master/XML_Coding_Standards.md).
+See the [XML Coding Standards](/XML_Coding_Standards.md).
 
 ## `Lua` Coding Standards
 

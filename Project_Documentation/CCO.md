@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 This is the Project&rsquo;s CCO Document.
 
@@ -12,7 +12,7 @@ If you have any further questions or require any further help, please see the Pr
 
 By making a contribution to the FGI Project, I certify that:
 
-1. The contribution was created in whole or in part by me and I have the right to submit it under one or more of the Licenses indicated in the [FGI Project&rsquo;s LICENSE](https://github.com/Dulux-Oz/FGI/tree/tree/master/LICENSE.md) Document; or
+1. The contribution was created in whole or in part by me and I have the right to submit it under one or more of the Licenses indicated in the [FGI Project&rsquo;s LICENSE](../LICENSE.md) Document; or
 2. The contribution is based upon previous work that, to the best of my knowledge, is covered under one or more of the Licenses indicated in the FGI Project&rsquo;s LICENSE Document and I have the right under one or more of those licenses to submit that work with modifications, whether created in whole or in part by me, under the same license or licenses (unless I am permitted to submit under a different license), as indicated in the FGI Project&rsquo;s LICENSE Document; or
 3. The contribution was provided directly to me by some other person who certified (1), (2), or (3) and I have not modified it.
 4. I understand and agree that the FGI Project and the contributions are visible to the public and that a record of the contribution (including all personal information I submit with it, including my sign-off) is maintained indefinitely and may be redistributed consistent with the FGI Project or the open source licenses involved.

@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 These are the Project&rsquo;s *Naming Standards*, organised in alphabetic order.
 
@@ -24,7 +24,7 @@ If in doubt about anything to do with naming Files please see the existing Files
 2. If a Hotfix is in response to an Issue, in addition to (1), SHOULD be named after that Issue in a legible and easily understandable manner. 
 3. **Release Branches**,in addition to the above, SHALL be named as follows:
 	1. SHALL NOT use [Title Case](https://en.wikipedia.org/wiki/Title_Case) format, but instead MUST use [Dromedary (Camel) Case](https://en.wikipedia.org/wiki/Camel_case) for their names.
-	2. MUST start with the lower-case letter `r``.
+	2. MUST start with the lower-case letter `r`.
 	3. SHALL be followed by a [SemVer](http://semver.org) or a [SemVer+](Semantic_Versioning_Plus.md) version number, as appropriate.
 
 

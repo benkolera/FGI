@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 ## Signing Your Work
 
@@ -10,7 +10,7 @@ Before we can include your contribution in the FGI Project, you need to give us 
 
 As the author of any creative work (including source code or documentation), you control the copyright for that work. The FGI Project can&rsquo;t legally use your contribution unless you allow us to.
 
-To manage this process, the FGI Project uses a mechanism called a *Contributor Certificate Of Origin (CCO)*, amodifed version of the *Developer Certificate Of Origin (DCO)* popularised by The Linux Foundation. The CCO is a legally binding statement that asserts that you are the creator of your contribution, and that you license the work under the Licenses used by the FGI Project as outlined in the Project&rsquo;s [**LICENSE**](https://github.com/Dulux-Oz/FGI/LICENSE.md) Document.
+To manage this process, the FGI Project uses a mechanism called a *Contributor Certificate Of Origin (CCO)*, amodifed version of the *Developer Certificate Of Origin (DCO)* popularised by The Linux Foundation. The CCO is a legally binding statement that asserts that you are the creator of your contribution, and that you license the work under the Licenses used by the FGI Project as outlined in the Project&rsquo;s [**LICENSE**](../LICENSE.md) Document.
 
 To indicate that you agree to the terms of the CCO, you &lsquo;sign off&rsquo; your contribution by adding as the last line of every GitKracken (Git) commit message your name and email address.
 
@@ -18,7 +18,7 @@ To indicate that you agree to the terms of the CCO, you &lsquo;sign off&rsquo; y
 
 You must use your real name (no pseudonyms or anonymous contributions are allowed).
 
-This &lsquo;sign off&rsquo; is included in the [*Commit Message Template*](https://github.com/Dulux-Oz/FGI/Support_Files/Commit_Template.md).
+This &lsquo;sign off&rsquo; is included in the [*Commit Message Template*](../Support_Files/Commit_Template.md).
 
 Your signature certifies that you are either the author of the contribution or have the right to submit it under the open-source licenses used by the FGI Project.
 

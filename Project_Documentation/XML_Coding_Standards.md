@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 These are the Project&rsquo;s *XML Coding Standards*.
 
@@ -304,7 +304,7 @@ See *Scripts->File Scripts* below.
 
 #### File Scripts
 
-See the [Lua Coding Standards](https://github.com/Dulux-Oz/FGI/tree/tree/master/Lua_Coding_Standards.md).
+See the [Lua Coding Standards](/Lua_Coding_Standards.md).
 
 #### Inline Scripts
 
@@ -313,7 +313,7 @@ See the [Lua Coding Standards](https://github.com/Dulux-Oz/FGI/tree/tree/master/
 	1. Start on a new line immediately following the opening `<script>` tag.
 	2. End on a line immediately followed by the closing `<script>` tag on its own line.
 
-See also the [Lua Coding Standards](https://github.com/Dulux-Oz/FGI/tree/tree/master/Lua_Coding_Standards.md).
+See also the [Lua Coding Standards](/Lua_Coding_Standards.md).
 
 ### Radiobuttons
 

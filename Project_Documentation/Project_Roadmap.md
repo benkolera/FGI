@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 These are the Task that Project has completed and still needs to do. This information MUST be duplicated on the GK Boards (either as one Task per Card or as a Task List on a series of Cards). Who is working on each Task should be recorded on each GK Board/Card.
 
@@ -66,7 +66,7 @@ None so far.
 		1. Select and link each Character.
 		2. Display the relevant data on each Character Sheet.
 	2. Develop the Routines to:
-		1. Read and write to the **GlobalRegistry.lua* File.
+		1. Read and write to the *GlobalRegistry.lua* File.
 		2. Perform the required calculation on the Character Sheet *and* in the Global Registry.
 		3. Link the resulting data to the GUI elements.
 5. Fix the DORDLC *Missing Chips* Bug.

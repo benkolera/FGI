@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 These are the Project&rsquo;s *Documentation Standards* for PDF Documents.
 
@@ -14,7 +14,7 @@ The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;
 
 ## Examples
 
-If in doubt about anything to do with PDF Files and their contents, etc, please see the existing PDF Files in the `` Folder/Directory for examples.
+If in doubt about anything to do with PDF Files and their contents, etc, please see the existing PDF Files in the `Project_Documentation` Folder/Directory for examples.
 
 ## General Standards
 

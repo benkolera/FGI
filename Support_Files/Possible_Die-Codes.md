@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 A Dice-Roll is made up on one or more Die-Codes. These are the possible Die-Codes identified so far. More may need to be identified.
 
@@ -80,7 +80,7 @@ Dice-Rolls are basically mathematical formula, and as such the individual Die-Co
     - A way to group parts of a Die-Code so as to change the precedence &mdash; just like parenthesis in mathematical equations.
 3. Functions:
 	- `abs(A)` &mdash; The *absolute value* of the number entered (`abs(-0.5)` == `0.5`).
-	- `ceil(A)` &mdash; The *lowest* Integer **greater than* the number entered (`ceil(0.5)` == `1`).
+	- `ceil(A)` &mdash; The *lowest* Integer *greater than* the number entered (`ceil(0.5)` == `1`).
 	- `floor(A)` &mdash; The *highest* Integer *lower than* the number entered (`floor(0.5)` == `0`).
 	- `round(A)` &mdash; The Integer *closest* to the number entered (`round(0.5)` == `1`, `round(0.4)` == `0`).
 4. Exponentials (&ldquo;pwers of&rdquo;) (`^`, `**`).
@@ -98,7 +98,7 @@ Die-Code Modifiers are applied in the following order:
 2. Exploding (`!`) / Hackmaster Exploding (`h!`)
 	1. These two codes are mutually exclusive within a Dice-Roll, but permisable as separate sub-Rolls or a Dice-Group.
 3. Re-rolls (`rr`)
-4. Drop/Keep Dice (`k`,`kh`,`kl``dd`,`ddh`,`ddl`)
+4. Drop/Keep Dice (`k`,`kh`,`kl`, `dd`,`ddh`,`ddl`)
 5. Target Number (`<N`, `>N` ,`N`)
 6. Raises (`r`)
 7. Crit (`c`)
@@ -245,7 +245,7 @@ These are the individual Die-Codes identified so far, along with some example fo
 
 Roll a ToHit roll: `p[Fightin' Aptitude]d[Nimbleness Trait Die's Number Of Sides]!k>5+[Opponent's Fightin' Aptitude]r5`
 
-- Roll a number of *Pool Nimbleness Trait Die* equal to the character&rsquo;s *Fightin&rsquo; Aptitude*, explode any die that comes up the maximum, keep the highest die rolled, compare the kept die against a Target Number equal to the *Opponent's Fightin&rsquo; Aptitude*+5, and report the *Success* / Number of *Raises Of 5*.
+- Roll a number of *Pool Nimbleness Trait Die* equal to the character&rsquo;s *Fightin&rsquo; Aptitude*, explode any die that comes up the maximum, keep the highest die rolled, compare the kept die against a Target Number equal to the *Opponent&rsquo;s Fightin&rsquo; Aptitude*+5, and report the *Success* / Number of *Raises Of 5*.
 - With a Nimbleness of `4d12` and a Fightin&rsquo; Aptitude of `6`, and with the opponent having a Fightin&rsquo; Aptitude of `3`, the above Dice-Roll becomes `p6d12!k>8r5`
 
 Roll a Melee damage roll (using a club which has a damage code of `2d6`): `{p[Strength Trait]d[Strength Trait Die's Number Of Sides]!k}+2d6!`
@@ -258,7 +258,7 @@ Roll a Melee damage roll (using a club which has a damage code of `2d6`): `{p[St
 
 Roll a ToHit roll: `d%<({[STR],[DEX]}k)/2)`
 
-- Roll `d%` and if the roll is less than or equal to the maximum of the charater&rsquo;s *Strength* and *Dexterity* report a *Success* &mdash; `{[STR],[DEX]}k` == Keep (ie return) the highest of the character's Strength and Dexterity`.
+- Roll `d%` and if the roll is less than or equal to the maximum of the charater&rsquo;s *Strength* and *Dexterity* report a *Success* &mdash; `{[STR],[DEX]}k` == Keep (ie return) the highest of the character&rsquo;s Strength and Dexterity`.
 
 Roll a Melee damage roll: `d5+<Punch Score>`
 

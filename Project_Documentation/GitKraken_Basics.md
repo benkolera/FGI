@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 ---
 
@@ -69,7 +69,7 @@ The three parts in order of operations on the staging panel are:
 
 1. Unstaged Files — Watched files in your working directory that have changed since the last commit. Files can be new, renamed, deleted, or modified in some way to appear here.
 2. Staged Files — Files manually added to the index that are ready to commit. Individual lines or hunks of code/documentation or all of the changes can be added.
-3. Commit Message — recording staged changes to the repository. Follow the [Commit Message Template]() to ensure that your Commit Messages are clear and easier to understand.
+3. Commit Message — recording staged changes to the repository. Follow the [Commit Message Template](../Support_Files/Commit_Message_Template.md) to ensure that your Commit Messages are clear and easier to understand.
 	- Summary: The brief but meaningful message supporting your commit. This text will appear in the graph. Be specific for users including yourself to know what happened!
 	- Description: The extended message to provide more details behind the changes. The more detail the better.
 	- Don&rsquo;t forget to &ldquo;Signed-off-by&rdquo; your commit (as the last line of the Description):
