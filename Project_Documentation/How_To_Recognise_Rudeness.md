@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 One of the defining characteristics of open source culture is its distinctive notions of what does and does not constitute rudeness. While the conventions described below are not unique to free software and free document development, nor even to software in general — they would be familiar to anyone working in mathematics, the hard sciences, or engineering disciplines — free software and free documents, with their porous boundaries and constant influx of newcomers, are environments where these conventions are especially likely to be encountered by people unfamiliar with them.
 
@@ -19,7 +19,7 @@ By the same principle under which detailed technical criticism is a form of flat
 
 There are many other forms of rudeness, of course, but most of them are not specific to free software and document development, and common sense is a good enough guide to avoid them.
 
-If, after reading this Document, you feel that someone involved with the Project has been rude to you &mdash; or in any other way been abusive, harassing, or otherwise showing unacceptable behaviour as per the Project&rsquo;s [Code Of Conduct](), then please contact the Project&rsquo;s Maintainers at <fgi-maintainers@freelists.org>, which is a shared in-box. If the incident involves one of the Project&rsquo;s Maintainers, you can contact either the Project Founder at <matthew@peregrineit.net> or [an as yet to be determined individual] at [someone@somewhere.com]. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The Project Maintainers are obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+If, after reading this Document, you feel that someone involved with the Project has been rude to you &mdash; or in any other way been abusive, harassing, or otherwise showing unacceptable behaviour as per the Project&rsquo;s [Code Of Conduct](../CODE_OF_CONDUCT.md), then please contact the Project&rsquo;s Maintainers at <fgi-maintainers@freelists.org>, which is a shared in-box. If the incident involves one of the Project&rsquo;s Maintainers, you can contact either the Project Founder at <matthew@peregrineit.net> or [an as yet to be determined individual] at [someone@somewhere.com]. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The Project Maintainers are obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
 
 ---
 

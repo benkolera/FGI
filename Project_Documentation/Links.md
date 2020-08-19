@@ -1,10 +1,10 @@
 # Links &amp; Resources
 
-Version 1.0.0
+Version 1.1.0
 
 ---
 
-This page lists all of the external links to information referenced throughout the Project&rsquo;s Documentaion. Links to the Tutorial Videos are listed on the [Video Tutorials](https://github.com/Dulux-Oz/FGI//Video_Tutorials.md) Page.
+This page lists all of the external links to information referenced throughout the Project&rsquo;s Documentaion. Links to the Tutorial Videos are listed on the [Video Tutorials](Video_Tutorials.md) Page.
 
 If you have any further questions or require any further help, please see the Project&rsquo;s [FAQs](FAQs.md) Document, or don&rsquo;t hesitate to email the Project on <fgi@freelists.org>.
 

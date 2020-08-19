@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 For those of you new to coding for FG (or new to coding &mdash; period) we have put together this primer on how FG &ldquo;works in the background&rdquo;.
 
@@ -78,7 +78,7 @@ Because each Extension modifies the existing computer code or resources, etc, of
 
 So should a Developer use a child-Ruleset or an Extension for their changes?
 
-Well, it depends upon the extent and the scope of the modifications. If the modifications are designed to be used by more than one RPG (such as the DOECTW Extension) then an Extension is the way to go. If the change is relatively minor and doesn&rsquo;t really involve changing the mechanics (eg changing the graphics or other resources used by the Ruleset) then again, an Extension is probably best. If the modification is significant and might really be considered a new RPG, then a child-Ruleset is probably best. But in the end it's really a matter of taste for the Developer.
+Well, it depends upon the extent and the scope of the modifications. If the modifications are designed to be used by more than one RPG (such as the DOECTW Extension) then an Extension is the way to go. If the change is relatively minor and doesn&rsquo;t really involve changing the mechanics (eg changing the graphics or other resources used by the Ruleset) then again, an Extension is probably best. If the modification is significant and might really be considered a new RPG, then a child-Ruleset is probably best. But in the end it&rsquo;s really a matter of taste for the Developer.
 
 ## Modules
 

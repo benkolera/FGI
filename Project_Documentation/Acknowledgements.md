@@ -1,7 +1,7 @@
 # Acknowledgements
 
 ---
-Version 1.0.0
+Version 1.1.0
 
 The following people and organisations have contributed to this Project. All are gratefully acknowledged and thanked.
 
@@ -9,17 +9,19 @@ If you have any further questions or require any further help, please see the Pr
 
 ## Project Founder
 
-- Matthew J BLACK (aka Dulux-Oz, DO)
+- Matthew J BLACK (aka Dulux-Oz, MJB)
 
 ## Release Manager
 
-- Matthew J BLACK (aka Dulux-Oz, DO)
+- Matthew J BLACK (aka Dulux-Oz, MJB)
 
 ## Project Maintainers
 
-- Matthew J BLACK (aka Dulux-Oz, DO)
+- Matthew J BLACK (aka Dulux-Oz, MJB)
 
 ## Contributors
+
+- Ben Kolera (BK)
 
 ## Special Thanks
 
