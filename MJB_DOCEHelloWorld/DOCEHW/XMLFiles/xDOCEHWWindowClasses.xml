@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	Copyright ©2004-2020 PEREGRINE I.T. Pty Ltd except where explicitly stated otherwise.
+	Fantasy Grounds is Copyright ©2004-2020 SmiteWorks USA LLC.
+	Copyright to other material within this Manuscript may be held by other Individuals and/or Entities.
+	Nothing in or from this XML File in printed, electronic and/or any other form may be used, copied,
+		transmitted or otherwise manipulated in ANY way without the explicit written consent of
+		PEREGRINE I.T. Pty Ltd or, where applicable, any and all other Copyright holders.
+	Please see the accompanying License for full details.
+	All rights reserved.
+-->
+<root>
+	<windowclass name="wcHelloWorld">
+		<frame>utilitybox3</frame>
+		<placement>
+			<size width="300" height="100" />
+		</placement>
+		<sheetdata>
+			<windowtitlebar>
+				<resource>sHelloWorldTitleString</resource>
+			</windowtitlebar>
+			<tWindowFrame name="gcYellowFrame">
+				<anchored position="insidetop" offset="-100,50" height="25" />
+				<frame name="frmWLYellow" />
+			</tWindowFrame>
+			<tDispStrCtrlMid name="sHelloWorld">
+				<anchored to="gcYellowFrame" position="insidetop" offset="5,5" height="15" />
+				<static textres="sHelloWorldString" />
+			</tDispStrCtrlMid>
+			<tButCloseUtilBox />
+		</sheetdata>
+	</windowclass>
+</root>

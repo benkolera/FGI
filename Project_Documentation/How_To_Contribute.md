@@ -2,7 +2,7 @@
 
 ---
 
-Version 1.0.0
+Version 1.1.0
 
 ## WELCOME! And THANK YOU!
 
@@ -41,10 +41,12 @@ The Documents should be should be read in order presented so that you can get a 
 7. [How To Fork The Project](How_To_Fork_The_Project.md)
 8. [How To Clone A Repository](https://github.com/tree/master//How_To_Clone_A_Repository.md)
 9. [Useful Software Tools](Tools.md)
+10. The Project&rsquo;s [&ldquo;Hello World!&rdquo;](FG_Hello_World.xml) Program &mdash; to see how to get the string &ldquo;Hello World!&rdquo; to display in FG.
 
 ## Project Standards
 
 The Documents in this section cover the *Coding* and *Writing Standards*  of the Project. These Standards need to be followed for your work to be included in the Project.
+
 
 We use these Standards to ensure that *everyone* is working, coding, and writing in the same way so that *everyone* can understand and work with *everyone else*.
 
