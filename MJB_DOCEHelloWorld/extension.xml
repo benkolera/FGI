@@ -9,7 +9,7 @@
 	Please see the accompanying License for full details.
 	All rights reserved.
 -->
-<root version="3.3" logo="iHWLogo.png.png">
+<root version="3.3" logo="iHWLogo.png">
 	<properties>
 		<name>DOCE: Hello World Extension (DOCEHW) v1.0.0</name>
 		<version>1.0.0</version>

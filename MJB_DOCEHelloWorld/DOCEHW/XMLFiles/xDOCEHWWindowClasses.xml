@@ -13,13 +13,20 @@
 	<windowclass name="wcHelloWorld">
 		<frame>utilitybox3</frame>
 		<placement>
-			<size width="285" height="265" />
+			<size width="300" height="100" />
 		</placement>
 		<sheetdata>
-<!--
-			<stringcontrol name="sColourCode">
-			</stringcontrol>
--->
+			<windowtitlebar>
+				<resource>sHelloWorldTitleString</resource>
+			</windowtitlebar>
+			<tWindowFrame name="gcYellowFrame">
+				<anchored position="insidetop" offset="-100,50" height="25" />
+				<frame name="frmWLYellow" />
+			</tWindowFrame>
+			<tDispStrCtrlMid name="sHelloWorld">
+				<anchored to="gcYellowFrame" position="insidetop" offset="5,5" height="15" />
+				<static textres="sHelloWorldString" />
+			</tDispStrCtrlMid>
 			<tButCloseUtilBox />
 		</sheetdata>
 	</windowclass>
