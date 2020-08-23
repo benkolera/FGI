@@ -13,6 +13,19 @@
 				"reveal": "always"
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Run UDR tests",
+			"type": "shell",
+			"command": "cd DORCoreMin/UDR && busted",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always"
+			},
+			"problemMatcher": []
 		}
 	]
 }

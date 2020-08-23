@@ -1,0 +1,10 @@
+return {
+  _all = {
+		ROOT = {"Tests/specs"}
+	},
+	default = {
+		verbose = true,
+		coverage = false,
+		lpath = "./Tests/?.lua;./Scripts/?.lua"
+	}
+}

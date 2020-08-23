@@ -12,7 +12,6 @@
 
 local aKeepCodes = {"k","l","h"};
 local aMultOps = {"*","x","/"};
-local aTokens = {};
 
 function onInit()
 	Comm.registerSlashHandler("die",fpProcessDie);
@@ -32,7 +31,7 @@ end
 function onClose()
 	ActionsManager.unregisterModHandler("dice");
 	ActionsManager.unregisterPostRollHandler("dice");
-	ActionsManager.unregisterResultHandler("dice")
+	ActionsManager.unregisterResultHandler("dice");
 end
 
 function fpApplyModifiersToDragSlot(oDragData,i,aSource,bResolveIfNoDice)
@@ -239,7 +238,7 @@ function fpDieCodeLex(sDiceString)
 	local sTokenType = "";
 	local bPrevDie = false;
 	local bPool = false;
-	aTokens = {};
+	local aTokens = {};
 	local aRollCodes = {nK = 0,nP = 0,nR = 0,nS = 0,nSN = 0,nT = 0,nTN = 0,nX1 = 0,nX2 = 0,nZ = 0};
 	i=1;
 	while i < #sDiceString+1 do
@@ -261,16 +260,16 @@ function fpDieCodeLex(sDiceString)
 		elseif sChar == "!" then
 			local sSides = aTokens[#aTokens].sValue:sub(2);
 			local nSides = tonumber(sSides) or 0;
-			aRollCodes.nX1,aRollCodes.nX2,i = fpLexExplode(sDiceString,sNextChar,i,nSides);
+			aRollCodes.nX1,aRollCodes.nX2,i = fpLexExplode(aTokens,sDiceString,sNextChar,i,nSides);
 		else
 			if fpIsNDigit(sChar) then
-				sTokenValue,sTokenType,i = fpLexDigit(sDiceString,sChar,sNextChar,i);
+				sTokenValue,sTokenType,i = fpLexDigit(aTokens,sDiceString,sChar,sNextChar,i);
 			elseif sChar == "d" then
 				if bPool and bPrevDie then
 					i = 9998;
 					bSkip = true;
 				else
-					sTokenValue,sTokenType,i = fpLexDCode(sDiceString,sNextChar,i);
+					sTokenValue,sTokenType,i = fpLexDCode(aTokens,sDiceString,sNextChar,i);
 					bPrevDie = true;
 				end
 			elseif sChar == "+" then
@@ -279,7 +278,7 @@ function fpDieCodeLex(sDiceString)
 					i=i+1;
 					bSkip = true;
 				else
-					sTokenValue,sTokenType,i,bPrevDie = fpLexAddOp(sDiceString,sChar,sNextChar,i,bPool,bPrevDie);
+					sTokenValue,sTokenType,i,bPrevDie = fpLexAddOp(aTokens,sDiceString,sChar,sNextChar,i,bPool,bPrevDie);
 					bSkip = (sTokenValue == "0");
 				end
 			elseif sChar == "-" then
@@ -288,21 +287,21 @@ function fpDieCodeLex(sDiceString)
 					i=i+1;
 					bSkip = true;
 				else
-					sTokenValue,sTokenType,i,bPrevDie = fpLexAddOp(sDiceString,sChar,sNextChar,i,bPool,bPrevDie);
+					sTokenValue,sTokenType,i,bPrevDie = fpLexAddOp(aTokens,sDiceString,sChar,sNextChar,i,bPool,bPrevDie);
 					bSkip = (sTokenValue == "0");
 				end
 			elseif StringManager.contains(aMultOps,sChar) then
-				sTokenValue,sTokenType,i = fpLexMultOp(sChar,sNextChar,i);
+				sTokenValue,sTokenType,i = fpLexMultOp(aTokens,sChar,sNextChar,i);
 			elseif StringManager.contains(aKeepCodes,sChar) then
-				sTokenValue,sTokenType,i = fpLexKeepCode(sChar,sNextChar,"+",i)
+				sTokenValue,sTokenType,i = fpLexKeepCode(aTokens,sChar,sNextChar,"+",i)
 			elseif sChar == "t" then
-				sTokenValue,sTokenType,i = fpLexTNCode(sChar,sNextChar,"+",i);
+				sTokenValue,sTokenType,i = fpLexTNCode(aTokens,sChar,sNextChar,"+",i);
 			elseif sChar == "s" then
-				sTokenValue,sTokenType,i = fpLexSuccessCode(sNextChar,i);
+				sTokenValue,sTokenType,i = fpLexSuccessCode(aTokens,sNextChar,i);
 			elseif sChar == "(" then
-				sTokenValue,sTokenType,i = fpLexLParan(sNextChar,i);
+				sTokenValue,sTokenType,i = fpLexLParan(aTokens,sNextChar,i);
 			elseif sChar == ")" then
-				sTokenValue,sTokenType,i = fpLexRParan(sNextChar,i);
+				sTokenValue,sTokenType,i = fpLexRParan(aTokens,sNextChar,i);
 			elseif sChar == "p" then
 				if fpIsNDigit(sNextChar) then
 					aRollCodes.nP = 1;
@@ -329,10 +328,10 @@ function fpDieCodeLex(sDiceString)
 	if i == 9999 then
 		return false;
 	end
-	return aRollCodes;
+	return aRollCodes, aTokens;
 end
 
-function fpDieCodeParse(aRollCodes)
+function fpDieCodeParse(aRollCodes, aTokens)
 	if not aRollCodes then
 		return false,false;
 	end
@@ -770,7 +769,7 @@ function fpIsNDigit(sChar)
 	return false;
 end
 
-function fpLexAddOp(sTmp,sChar,sNextChar,i,bPool,bPrevDie)
+function fpLexAddOp(aTokens, sTmp,sChar,sNextChar,i,bPool,bPrevDie)
 	if sNextChar == "0" then
 		return "0",nil,i+1,bPrevDie;
 	elseif fpIsNDigit(sNextChar) then
@@ -780,7 +779,7 @@ function fpLexAddOp(sTmp,sChar,sNextChar,i,bPool,bPrevDie)
 		if i < #sTmp-1 then
 			sNextNextChar = sTmp:sub(i+2,i+2):lower();
 		end
-		local sTokenValue,sTokenType,k = fpLexKeepCode(sNextChar,sNextNextChar,sChar,i+1)
+		local sTokenValue,sTokenType,k = fpLexKeepCode(aTokens,sNextChar,sNextNextChar,sChar,i+1)
 		return sTokenValue,sTokenType,k,bPrevDie;
 	elseif sNextChar == "d" then
 		local sNextNextChar = nil;
@@ -792,7 +791,7 @@ function fpLexAddOp(sTmp,sChar,sNextChar,i,bPool,bPrevDie)
 		if bPool and bPrevDie then
 			return "0",nil,9998,true;
 		end
-		return fpLexDCode(sTmp,sNextNextChar,i+1),true;
+		return fpLexDCode(aTokens,sTmp,sNextNextChar,i+1),true;
 	elseif sNextChar == "p" or
 			sNextChar == "(" then
 		return sChar,"a",i,bPrevDie;
@@ -801,7 +800,7 @@ function fpLexAddOp(sTmp,sChar,sNextChar,i,bPool,bPrevDie)
 		if i < #sTmp-1 then
 			sNextNextChar = sTmp:sub(i+2,i+2):lower();
 		end
-		local sTokenValue,sTokenType,k = fpLexTNCode(sNextChar,sNextNextChar,sChar,i+1);
+		local sTokenValue,sTokenType,k = fpLexTNCode(aTokens,sNextChar,sNextNextChar,sChar,i+1);
 		return sTokenValue,sTokenType,k,bPrevDie;
 	elseif sNextChar == "-" then
 		if sChar == "-" then
@@ -812,7 +811,7 @@ function fpLexAddOp(sTmp,sChar,sNextChar,i,bPool,bPrevDie)
 	return nil,nil,i,bPrevDie;
 end
 
-function fpLexDCode(sTmp,sNextChar,i)
+function fpLexDCode(aTokens,sTmp,sNextChar,i)
 	local sTokenValue;
 	if i == 1 then
 		table.insert(aTokens,{sValue = "1",sType = "n"});
@@ -829,19 +828,19 @@ function fpLexDCode(sTmp,sNextChar,i)
 		i=i+1;
 	else
 		local sTmpValue;
-		sTmpValue,i = fpLexNextDigit(sTmp,sNextChar,i+1);
+		sTmpValue,i = fpLexNextDigit(aTokens,sTmp,sNextChar,i+1);
 		sTokenValue = "d" .. sTmpValue;
 	end
 	return sTokenValue,"d",i;
 end
 
-function fpLexDigit(sTmp,sChar,sNextChar,i)
+function fpLexDigit(aTokens,sTmp,sChar,sNextChar,i)
 	local sTokenValue;
-	sTokenValue,i = fpLexNextDigit(sTmp,sNextChar,i+1)
+	sTokenValue,i = fpLexNextDigit(aTokens,sTmp,sNextChar,i+1)
 	return sChar .. sTokenValue,"n",i;
 end
 
-function fpLexExplode(sDiceString,sNextChar,i,nSides)
+function fpLexExplode(aTokens,sDiceString,sNextChar,i,nSides)
 	if sNextChar == "=" then
 		return -1,0,i+1;
 	elseif sNextChar == "!" then
@@ -856,10 +855,10 @@ function fpLexExplode(sDiceString,sNextChar,i,nSides)
 	elseif fpIsDigit(sNextChar) then
 		local sTmpValue1;
 		local sTmpValue2 = "0";
-		sTmpValue1,i = fpLexNextDigit(sDiceString,sNextChar,i+1);
+		sTmpValue1,i = fpLexNextDigit(aTokens,sDiceString,sNextChar,i+1);
 		if i < #sDiceString-1 and
 				sDiceString:sub(i+1,i+1) == "!" then
-			sTmpValue2,i = fpLexNextDigit(sDiceString,sDiceString:sub(i+2,i+2),i+2);
+			sTmpValue2,i = fpLexNextDigit(aTokens,sDiceString,sDiceString:sub(i+2,i+2),i+2);
 		end
 		if sTmpValue2 == "0" then
 			sTmpValue2 = sTmpValue1;
@@ -875,7 +874,7 @@ function fpLexExplode(sDiceString,sNextChar,i,nSides)
 	return nSides,nSides,i;
 end
 
-function fpLexKeepCode(sChar,sNextChar,sPrevChar,i)
+function fpLexKeepCode(aTokens,sChar,sNextChar,sPrevChar,i)
 	local aKeepCodeLookupTable = {
 		r = true,
 		t = true,
@@ -893,7 +892,7 @@ function fpLexKeepCode(sChar,sNextChar,sPrevChar,i)
 	return nil,nil,i;
 end
 
-function fpLexLParan(sNextChar,i)
+function fpLexLParan(aTokens,sNextChar,i)
 	if StringManager.contains(aMultOps,sNextChar) then
 		return nil,nil,i;
 	elseif sNextChar == "d" then
@@ -903,7 +902,7 @@ function fpLexLParan(sNextChar,i)
 	return "(","(",i;
 end
 
-function fpLexMultOp(sChar,sNextChar,i)
+function fpLexMultOp(aTokens,sChar,sNextChar,i)
 	local sTokenValue = sChar;
 	if sTokenValue == "x" then
 		sTokenValue = "*";
@@ -922,11 +921,11 @@ function fpLexMultOp(sChar,sNextChar,i)
 	return nil,nil,i;
 end
 
-function fpLexNextDigit(sTmp,sNextChar,i)
+function fpLexNextDigit(aTokens,sTmp,sNextChar,i)
 	local sTmpValue;
 	if fpIsDigit(sNextChar) then
 		if i ~= #sTmp then
-			sTmpValue,_,i = fpLexDigit(sTmp,sNextChar,sTmp:sub(i+1,i+1):lower(),i);
+			sTmpValue,_,i = fpLexDigit(aTokens,sTmp,sNextChar,sTmp:sub(i+1,i+1):lower(),i);
 			return sTmpValue,i;
 		else
 			return sNextChar,i;
@@ -935,7 +934,7 @@ function fpLexNextDigit(sTmp,sNextChar,i)
 	return "",i-1;
 end
 
-function fpLexRParan(sNextChar,i)
+function fpLexRParan(aTokens,sNextChar,i)
 	local aRParanLookupTable = {
 		h = true,
 		k = true,
@@ -957,7 +956,7 @@ function fpLexRParan(sNextChar,i)
 	return nil,nil,i;
 end
 
-function fpLexSuccessCode(sNextChar,i)
+function fpLexSuccessCode(aTokens,sNextChar,i)
 	if sNextChar == nil then
 		table.insert(aTokens,{sValue = "s",sType = "s"});
 		return "0","n",i;
@@ -965,7 +964,7 @@ function fpLexSuccessCode(sNextChar,i)
 	return "s","s",i;
 end
 
-function fpLexTNCode(sChar,sNextChar,sPrevChar,i)
+function fpLexTNCode(aTokens,sChar,sNextChar,sPrevChar,i)
 	if fpIsNDigit(sNextChar) then
 		return sPrevChar .. sChar,"t",i;
 	end
@@ -1011,13 +1010,13 @@ function fpProcessDie(sCommand,sDieCode)
 			return;
 		end
 	end
-	local sDice,_ = string.match(sDieCode,"%s*(%S+)%s*(.*)");
-	local aRollCodes,_ = fpDieCodeParse(fpDieCodeLex(sDice));
+	local sDice,sDesc = string.match(sDieCode,"%s*(%S+)%s*(.*)");
+	local aRollCodes,aRPN = fpDieCodeParse(fpDieCodeLex(sDice));
 	if not aRollCodes then
 		ChatManager.SystemMessage("Usage: /die [DieCode] [description]");
 		return;
 	end
-	ActionsManager.actionDirect(nil,"dice",{fpDieAndTowerHelper(sDieCode,0,true,false,"")});
+	ActionsManager.actionDirect(nil,"dice",{fpDieAndTowerHelper(aRollCodes,aRPN,sDesc,0,true,false,"")});
 end
 
 function fpPostRoll(aSource,aRoll)
@@ -1315,9 +1314,7 @@ end
 
 
 
-function fpDieAndTowerHelper(sDieCode,nMod,bDiceCodeString,bTower,sTowerDesc)
-	local sDice,sDesc = string.match(sDieCode,"%s*(%S+)%s*(.*)");
-	local aRollCodes,aRPN = fpDieCodeParse(fpDieCodeLex(sDice));
+function fpDieAndTowerHelper(aRollCodes, aRPN, sDesc,nMod,bDiceCodeString,bTower,sTowerDesc)
 	local aRulesetDice = Interface.getDice();
 	local aFinalDice = {};
 	local aNonStandardResults = {};
