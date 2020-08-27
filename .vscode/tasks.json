@@ -26,6 +26,19 @@
 				"reveal": "always"
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Deploy to FG",
+			"type": "shell",
+			"command": "./deploy.sh",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always"
+			},
+			"problemMatcher": []
 		}
 	]
 }

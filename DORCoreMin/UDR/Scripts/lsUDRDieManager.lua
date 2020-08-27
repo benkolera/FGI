@@ -10,8 +10,9 @@
 --
 -- Called By: xCoreFiles.xml
 
-local aKeepCodes = {"k","l","h"};
-local aMultOps = {"*","x","/"};
+-------------------------------------------------------------------------------
+-- Initialisation and TearDown ------------------------------------------------
+-------------------------------------------------------------------------------
 
 function onInit()
 	Comm.registerSlashHandler("die",fpProcessDie);
@@ -32,6 +33,82 @@ function onClose()
 	ActionsManager.unregisterModHandler("dice");
 	ActionsManager.unregisterPostRollHandler("dice");
 	ActionsManager.unregisterResultHandler("dice");
+end
+
+-------------------------------------------------------------------------------
+-- Implementation of FG Hooks  ------------------------------------------------
+-------------------------------------------------------------------------------
+
+function fpProcessDie(sCommand,sDieCode)
+	Debug.chat("fpProcessDie")
+	Debug.chat("aCommand",aCommand)
+	Debug.chat("sDieCode",sDieCode)
+	if User.isHost() then
+		if sDieCode == "reveal" then
+			OptionsManager.setOption("REVL","on");
+			ChatManager.SystemMessage(Interface.getString("message_slashREVLon"));
+			return;
+		end
+		if sDieCode == "hide" then
+			OptionsManager.setOption("REVL","off");
+			ChatManager.SystemMessage(Interface.getString("message_slashREVLoff"));
+			return;
+		end
+	end
+
+	local res = DiceRollParser.expression().parse(sDieCode)
+	if res.isOk then
+		local evalRes = DicePoolEvaluator.eval(res.res)
+
+		if not evalRes.done then
+			ActionsManager.actionDirect(nil,"dice",{{
+				sType = "dice",
+				sDesc = "",
+				aDice = evalRes.newRolls,
+				nMod = 0,
+				evaluator = res.res
+			}});
+			return
+		end
+	end
+
+	ChatManager.SystemMessage("Usage: /die [DieCode] [description]");
+end
+
+function fpBuildThrow(aSource,vTargets,aRoll,bMultiTarget)
+	Debug.chat("fpBuildThrow")
+	Debug.chat("aSource",aSource)
+	Debug.chat("vTargets",vTargets)
+	Debug.chat("aRoll",aRoll)
+	Debug.chat("bMultiTarget",bMultiTarget)
+	local aThrow = {};
+	aThrow.type = aRoll.sType;
+	aThrow.description = aRoll.sDesc;
+	aThrow.secret = aRoll.bSecret;
+	aThrow.shortcuts = {};
+  local aSlot = {};
+	aSlot.number = 0;
+	aSlot.dice = aRoll.aDice;
+	aSlot.metadata = aRoll;
+	aSlot.custom = { evaluator = aRoll.evaluator }
+	aThrow.slots = {aSlot};
+	return aThrow;
+end
+
+function fpOnDiceLanded(oDragData)
+	Debug.chat("fpOnDiceLanded",oDragData)
+	local sDragType = oDragData.getType();
+	local aCustom = oDragData.getCustomData();
+	if GameSystem.actions[sDragType] then
+		local aSource,aRolls,aTargets = ActionsManager.decodeActionFromDrag(oDragData,true);
+		for nIteration,vValue in ipairs(aRolls) do
+			if #(vValue.aDice) > 0 then
+				vValue.evaluator = aCustom.evaluator
+				ActionsManager.handleResolution(vValue,aSource,aTargets);
+			end
+		end
+		return true;
+	end
 end
 
 function fpApplyModifiersToDragSlot(oDragData,i,aSource,bResolveIfNoDice)
@@ -66,930 +143,26 @@ function fpApplyModifiersToDragSlot(oDragData,i,aSource,bResolveIfNoDice)
 	return bModStackUsed;
 end
 
-function fpBuildThrow(aSource,vTargets,aRoll,bMultiTarget)
-	local aThrow = {};
-	aThrow.type = aRoll.sType;
-	aThrow.description = aRoll.sDesc;
-	aThrow.secret = aRoll.bSecret;
-	aThrow.shortcuts = {};
-	if aSource then
-		local sActorType,sActorNode = ActorManager.getTypeAndNodeName(aSource);
-		table.insert(aThrow.shortcuts,{class = sActorType,recordname = sActorNode});
-	else
-		table.insert(aThrow.shortcuts,{});
-	end
-	if vTargets then
-		if bMultiTarget then
-			for nIteration,vValue in ipairs(vTargets) do
-				local sActorType,sActorNode = ActorManager.getTypeAndNodeName(vValue);
-				table.insert(aThrow.shortcuts,{class = sActorType,recordname = sActorNode});
-			end
-		else
-			local sActorType,sActorNode = ActorManager.getTypeAndNodeName(vTargets);
-			table.insert(aThrow.shortcuts,{class = sActorType,recordname = sActorNode});
-		end
-	end
-	local aSlot = {};
-	aSlot.number = aRoll.nMod;
-	aSlot.dice = aRoll.aDice;
-	aSlot.metadata = aRoll;
-	if not aRoll.bDiceCodeString then
-		aRoll.aRPN = {};
-		table.insert(aRoll.aRPN,{sType = "d",sValue = tostring(#aRoll.aDice) .. aRoll.aDice[1]});
-		if aRoll.aRollCodes.nX1 == 1 then
-			aRoll.aRollCodes.nX1 = tonumber(aRoll.aDice[1]:sub(2));
-			aRoll.aRollCodes.nX2 = aRoll.aRollCodes.nX1;
-		end
-	end
-	aSlot.custom = {aRollCodes = aRoll.aRollCodes,aRPN = aRoll.aRPN,aNSD = aRoll.aNSD,aOldResults = aRoll.aOldResults};
-	aThrow.slots = {aSlot};
-	return aThrow;
-end
-
-function fpConvertDiceToString(aDice,nMod,bSign)
-	local sTmp = "";
-	if aDice then
-		local aDieCount = {};
-		for kKey,vValue in pairs(aDice) do
-			if type(vValue) == "table" then
-				aDieCount[vValue.type] = (aDieCount[vValue.type] or 0)+1;
-			else
-				aDieCount[vValue] = (aDieCount[vValue] or 0)+1;
-			end
-		end
-		if (aDieCount["d100"] and
-				aDieCount["d10"]) then
-			aDieCount["d10"] = aDieCount["d10"]-aDieCount["d100"];
-			if aDieCount["d10"] <= 0 then
-				aDieCount["d10"] = nil;
-			end
-		end
-		if (aDieCount["-d100"] and
-				aDieCount["d10"]) then
-			aDieCount["d10"] = aDieCount["d10"]-aDieCount["-d100"];
-			if aDieCount["d10"] <= 0 then
-				aDieCount["d10"] = nil;
-			end
-		end
-		for kKey,vValue in pairs(aDieCount) do
-			if kKey:sub(1,1) == "-" then
-				sTmp = sTmp .. "-" .. vValue .. kKey:sub(2);
-			else
-				if sTmp ~= "" then
-					sTmp = sTmp .. "+";
-				end
-				sTmp = sTmp .. vValue .. kKey;
-			end
-		end
-	end
-	if nMod then
-		if nMod > 0 then
-			if sTmp == "" and
-					not bSign then
-				sTmp = sTmp .. nMod
-			else
-				sTmp = sTmp .. "+" .. nMod;
-			end
-		elseif nMod < 0 then
-			sTmp = sTmp .. nMod;
-		end
-	end
-	return sTmp;
-end
-
-function fpConvertStringToDice(sString)
-	local aDice = {};
-	local nMod = 0;
-	if sString then
-		local aRulesetDice = Interface.getDice();
-		for sSign,vValue in sString:gmatch("([+-]?)([%da-zA-Z]+)") do
-			local nSignMult = 1;
-			if sSign == "-" then
-				nSignMult = -1;
-			end
-			if StringManager.isNumberString(vValue) then
-				local n = tonumber(vValue) or 0;
-				nMod = nMod+(nSignMult*n);
-			else
-				local sDieCount,sDieNotation,sDieType = vValue:match("^(%d*)([a-zA-Z])([%dFG]+)");
-				if sDieType then
-					sDieNotation = sDieNotation:lower();
-					sDieType = sDieNotation .. sDieType;
-					if StringManager.contains(aRulesetDice,sDieType) or (sDieNotation == "d") then
-						local nDieCount = tonumber(sDieCount) or 1;
-						local sDie = sDieType;
-						if sSign == "-" then
-							sDie = sSign .. sDieType;
-						end
-						for i = 1,nDieCount do
-							table.insert(aDice,sDie);
-							if sDieType == "d100" then
-								table.insert(aDice,"d10");
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-	return aDice,nMod;
-end
-
-function fpCreateActionMessage(aSource,aRoll)
-	local aMessage = ChatManager.createBaseMessage(aSource,aRoll.sUser);
-	aMessage.text = aMessage.text .. aRoll.sDesc;
-	aMessage.dice = aRoll.aDice;
-	aMessage.diemodifier = aRoll.nMod;
-	if aRoll.nTotal then
-		aMessage.type = "normal|" .. aRoll.nTotal;
-	else
-		aMessage.type = aRoll.type;
-	end
-	if aRoll.bSecret then
-		aMessage.secret = true;
-		if aRoll.bTower then
-			aMessage.icon = "dicetower_icon";
-		end
-	elseif User.isHost() and
-			OptionsManager.isOption("REVL","off") then
-		aMessage.secret = true;
-	end
-	if OptionsManager.isOption("TOTL","on") and
-			aRoll.aDice and
-			#(aRoll.aDice) > 0 then
-		aMessage.dicedisplay = 1;
-	end
-	if aRoll.aRollCodes and
-			aRoll.aRollCodes.nP == 1 and
-			aRoll.aRollCodes.nT == 0 then
-		aMessage.dicedisplay = 0;
-	end
-	return aMessage;
-end
-
-function fpDieCodeLex(sDiceString)
-	if not sDiceString then
-		return false;
-	end
-	local bSkip = false;
-	local sChar = "";
-	local sNextChar = "";
-	local sTokenValue = "";
-	local sTokenType = "";
-	local bPrevDie = false;
-	local bPool = false;
-	local aTokens = {};
-	local aRollCodes = {nK = 0,nP = 0,nR = 0,nS = 0,nSN = 0,nT = 0,nTN = 0,nX1 = 0,nX2 = 0,nZ = 0};
-	i=1;
-	while i < #sDiceString+1 do
-		sChar = sDiceString:sub(i,i):lower();
-		sNextChar = nil;
-		if i ~= #sDiceString then
-			sNextChar = sDiceString:sub(i+1,i+1):lower();
-		end
-		if sChar == "r" then
-			aRollCodes.nR = 1;
-			i=i+1;
-		elseif sChar == "=" then
-			if sNextChar == "r" then
-				i=i+1;
-			else
-				i = 9998;
-				bSkip = true;
-			end
-		elseif sChar == "!" then
-			local sSides = aTokens[#aTokens].sValue:sub(2);
-			local nSides = tonumber(sSides) or 0;
-			aRollCodes.nX1,aRollCodes.nX2,i = fpLexExplode(aTokens,sDiceString,sNextChar,i,nSides);
-		else
-			if fpIsNDigit(sChar) then
-				sTokenValue,sTokenType,i = fpLexDigit(aTokens,sDiceString,sChar,sNextChar,i);
-			elseif sChar == "d" then
-				if bPool and bPrevDie then
-					i = 9998;
-					bSkip = true;
-				else
-					sTokenValue,sTokenType,i = fpLexDCode(aTokens,sDiceString,sNextChar,i);
-					bPrevDie = true;
-				end
-			elseif sChar == "+" then
-				if sNextChar == "r" then
-					aRollCodes.nR = 1;
-					i=i+1;
-					bSkip = true;
-				else
-					sTokenValue,sTokenType,i,bPrevDie = fpLexAddOp(aTokens,sDiceString,sChar,sNextChar,i,bPool,bPrevDie);
-					bSkip = (sTokenValue == "0");
-				end
-			elseif sChar == "-" then
-				if sNextChar == "r" then
-					aRollCodes.nR = -1;
-					i=i+1;
-					bSkip = true;
-				else
-					sTokenValue,sTokenType,i,bPrevDie = fpLexAddOp(aTokens,sDiceString,sChar,sNextChar,i,bPool,bPrevDie);
-					bSkip = (sTokenValue == "0");
-				end
-			elseif StringManager.contains(aMultOps,sChar) then
-				sTokenValue,sTokenType,i = fpLexMultOp(aTokens,sChar,sNextChar,i);
-			elseif StringManager.contains(aKeepCodes,sChar) then
-				sTokenValue,sTokenType,i = fpLexKeepCode(aTokens,sChar,sNextChar,"+",i)
-			elseif sChar == "t" then
-				sTokenValue,sTokenType,i = fpLexTNCode(aTokens,sChar,sNextChar,"+",i);
-			elseif sChar == "s" then
-				sTokenValue,sTokenType,i = fpLexSuccessCode(aTokens,sNextChar,i);
-			elseif sChar == "(" then
-				sTokenValue,sTokenType,i = fpLexLParan(aTokens,sNextChar,i);
-			elseif sChar == ")" then
-				sTokenValue,sTokenType,i = fpLexRParan(aTokens,sNextChar,i);
-			elseif sChar == "p" then
-				if fpIsNDigit(sNextChar) then
-					aRollCodes.nP = 1;
-				elseif sNextChar == "d" then
-					aRollCodes.nP = 1;
-					sTokenValue = "1";
-					sTokenType = "n";
-				else
-					i = 9998;
-					bSkip = true;
-				end
-			end
-			if sTokenValue == nil then
-				i = 9998;
-				bSkip = true;
-			end
-			if not bSkip then
-				table.insert(aTokens,{sValue = sTokenValue,sType = sTokenType});
-			end
-			bSkip = false;
-		end
-		i=i+1;
-	end
-	if i == 9999 then
-		return false;
-	end
-	return aRollCodes, aTokens;
-end
-
-function fpDieCodeParse(aRollCodes, aTokens)
-	if not aRollCodes then
-		return false,false;
-	end
-	local aRPN = {};
-	local aStack = {};
-	local bDiv = false;
-	local nDice = 0;
-	i=1;
-	while i < #aTokens+1 do
-		if aTokens[i].sType == "n" then
-			if i ~= #aTokens and
-					aTokens[i+1].sType == "d" then
-				aTokens[i+1].sValue = aTokens[i].sValue .. aTokens[i+1].sValue;
-				nDice = nDice+tonumber(aTokens[i].sValue);
-			else
-				table.insert(aRPN,{sValue = tonumber(aTokens[i].sValue),sType = "n"});
-			end
-		elseif aTokens[i].sType == "d" then
-			table.insert(aRPN,{sValue = aTokens[i].sValue,sType = "d"});
-		elseif aTokens[i].sType == "m" then
-			bDiv = (bDiv or aTokens[i].sValue == "/");
-			if aStack[#aStack] then
-				local sType = aStack[#aStack].sType;
-				local sValue = aStack[#aStack].sValue;
-				while sType == "m" do
-					table.insert(aRPN,{sValue = sValue,sType = "m"});
-					table.remove(aStack,#aStack);
-					if aStack[#aStack] then
-						sType = aStack[#aStack].sType;
-						sValue = aStack[#aStack].sValue;
-					else
-						sType = "";
-					end
-				end
-			end
-			table.insert(aStack,{sValue = aTokens[i].sValue,sType = "m"});
-		elseif aTokens[i].sType == "a" then
-			if aStack[#aStack] then
-				local sType = aStack[#aStack].sType;
-				local sValue = aStack[#aStack].sValue;
-				while sType =="m" or sType == "a" do
-					table.insert(aRPN,{sValue = sValue,sType = sType});
-					table.remove(aStack,#aStack);
-					if aStack[#aStack] then
-						sType = aStack[#aStack].sType;
-						sValue = aStack[#aStack].sValue;
-					else
-						sType = "";
-					end
-				end
-			end
-			table.insert(aStack,{sValue = aTokens[i].sValue,sType = "a"});
-		elseif aTokens[i].sType == "(" then
-			table.insert(aStack,{sValue = "(",sType = "("});
-		elseif aTokens[i].sType == ")" then
-			if aStack[#aStack] then
-				local sType = aStack[#aStack].sType;
-				local sValue = aStack[#aStack].sValue;
-				while sType ~= "(" do
-					table.insert(aRPN,{sValue = sValue,sType = sType});
-					table.remove(aStack,#aStack);
-					if #aStack == 0 then
-						return false,false;
-					end
-					if aStack[#aStack] then
-						sType = aStack[#aStack].sType;
-						sValue = aStack[#aStack].sValue;
-					else
-						sType = "";
-					end
-				end
-				table.remove(aStack,#aStack);
-			else
-				return false,false;
-			end
-		elseif aTokens[i].sType == "k" then
-			if i ~= #aTokens and
-					aTokens[i+1].sType == "n" then
-				local nKDice = tonumber(aTokens[i+1].sValue);
-				if nKDice < nDice then
-					if aTokens[i].sValue == "+k" or
-							aTokens[i].sValue == "+h" then
-						aRollCodes.nK = nKDice;
-					elseif aTokens[i].sValue == "-k" or
-							aTokens[i].sValue == "+l" then
-						aRollCodes.nK = 0-nKDice;
-					elseif aTokens[i].sValue == "-h" then
-						aRollCodes.nK = nKDice-nDice;
-					elseif aTokens[i].sValue == "-l" then
-						aRollCodes.nK = nDice-nKDice;
-					end
-				end
-				i=i+1;
-			else
-				return false,false;
-			end
-		elseif aTokens[i].sType == "t" then
-			if i ~= #aTokens and
-					aTokens[i+1].sType == "n" then
-				aRollCodes.nTN = tonumber(aTokens[i+1].sValue);
-				aRollCodes.nT = 1;
-				if aTokens[i].sValue == "-t" then
-					aRollCodes.nT = -1;
-				end
-				i=i+1;
-			end
-		elseif aTokens[i].sType == "s" then
-			if aRollCodes.nT ~= 0 and
-					i ~= #aTokens and
-					aTokens[i+1].sType == "n" then
-				aRollCodes.nS = 1;
-				aRollCodes.nSN = tonumber(aTokens[i+1].sValue);
-			end
-			i=i+1;
-		end
-		i=i+1;
-	end
-	i=#aStack;
-	while i > 0 do
-		local sType = aStack[#aStack].sType;
-		if sType == "(" then
-			return false,false;
-		end
-		table.insert(aRPN,{sValue = aStack[#aStack].sValue,sType = aStack[#aStack].sType});
-		table.remove(aStack,#aStack);
-		i=i-1;
-	end
-	if not bDiv then
-		aRollCodes.nR = 0;
-	end
-	return aRollCodes,aRPN;
+function fpSetRollCodesFromDesktop(aSource,aTarget,aRoll)
+	Debug.chat("fpSetRollCodesFromDesktop",aSource,aTarget,aRoll)
+	return;
 end
 
 function fpDieRollResult(aSource,aTarget,aRoll)
-	if not aRoll.aRollCodes or
-			aRoll.aRollCodes.nX1 == 0 then
+	Debug.chat("fpDieRollResult")
+	Debug.chat("aSource",aSource)
+	Debug.chat("aTarget",aTarget)
+	Debug.chat("aRoll",aRoll)
+
+	Debug.chat("done", aRoll.evalRes.done )
+	if aRoll.evalRes.done then
 		Comm.deliverChatMessage(fpCreateActionMessage(aSource,aRoll));
 	end
 	return;
 end
 
-function fpHandleExplodingDice(aSource,aRoll)
-	local aNewRollDice = {};
-	local aRollCodes = aRoll.aRollCodes;
-	local bX1 = false;
-	local bZ = false;
-	local aDice = aRoll.aDice;
-	if aRoll.aRollCodes.nZ == 1 then
-		bZ = true;
-		aDice = aRoll.aNSD;
-	end
-	if aRollCodes.nX and
-			aRollCodes.nX1 == -1 then
-		if aRoll.aOldResults then
-			local i=1;
-			for nIteration,vValue in ipairs(aRoll.aOldResults) do
-				vValue.result = vValue.result+aDice[i].result;
-				if not bZ then
-					vValue.type = "p" .. vValue.type:sub(2);
-				end
-				i=i+1;
-			end
-		else
-			aRoll.aOldResults = aDice;
-		end
-		if fpTotalDice(aDice) == fpTotalDiceMax(aDice) then
-			for nIteration,vValue in ipairs(aDice) do
-				table.insert(aNewRollDice,vValue.type);
-			end
-			bX1 = true;
-		end
-	elseif aRollCodes.nX1 < -1 then
-		local aOldResults = aRoll.aOldResults;
-		if aOldResults then
-			local i=1;
-			for nIteration,vValue in ipairs(aOldResults) do
-				if vValue.check == 1 then
-					vValue.result = vValue.result+aDice[i].result;
-					if not bZ then
-						vValue.type = "p" .. vValue.type:sub(2);
-					end
-					aDice[i].position = vValue.position;
-					vValue.check = 0;
-					i=i+1;
-				end
-			end
-		else
-			table.sort(aDice,function(a,b) return a.result > b.result end);
-			for nIteration,vValue in ipairs(aDice) do
-				vValue.check = 0;
-				vValue.position = nIteration;
-			end
-			aOldResults = aDice;
-		end
-		for kKey,vValue in pairs(aDice) do
-			if not vValue.position then
-				vValue.position = 0;
-			end
-		end
-		table.sort(aDice,function(a,b) return a.result > b.result end);
-		local i=1;
-		while i < #aDice+aRollCodes.nX1+2 do
-			local j=i;
-			while aDice[j].result == aDice[j+1].result do
-				j=j+1;
-				if i-j-1 == aRollCodes.nX1 then
-					for k=i,j do
-						table.insert(aNewRollDice,aDice[k].type);
-						for kKey,vValue in pairs(aOldResults) do
-							if vValue.position == aDice[k].position then
-								vValue.check = 1;
-								break;
-							end
-						end
-					end
-					bX1 = true;
-					break;
-				end
-			end
-			i=j+1;
-		end
-		aRoll.aOldResults = aOldResults;
-	else
-		if aRoll.aOldResults then
-			local i=1;
-			for nIteration,vValue in ipairs(aRoll.aOldResults) do
-				if vValue.check == 1 then
-					if aDice[i].result < aRollCodes.nX1 or
-							aDice[i].result > aRollCodes.nX2 then
-						vValue.check = 0;
-					end
-					vValue.result = vValue.result+aDice[i].result;
-					if not bZ then
-						vValue.type = "p" .. vValue.type:sub(2);
-					end
-					i=i+1;
-				end
-			end
-		else
-			aRoll.aOldResults = aDice;
-			for kKey,vValue in pairs(aRoll.aOldResults) do
-				vValue.check = 0;
-				if vValue.result >= aRollCodes.nX1 and
-						vValue.result <= aRollCodes.nX2 then
-					vValue.check = 1;
-				end
-			end
-		end
-		for nIteration,vValue in ipairs(aDice) do
-			if vValue.result >= aRollCodes.nX1 and
-					vValue.result <= aRollCodes.nX2 then
-				table.insert(aNewRollDice,vValue.type);
-				bX1 = true;
-			end
-		end
-	end
-	if bX1 then
-		local aNewRoll = aRoll;
-		aNewRoll.aDice = aNewRollDice;
--- NEED TO CHECK THIS NEXT LINE (& FUNCTION)
-		Comm.throwDice(fpBuildThrow(aSource,nil,aNewRoll,false));
-		return;
-	end
-	if bZ then
-		aRoll.aNSD = aRoll.aOldResults;
-	else
-		aRoll.aDice = aRoll.aOldResults;
-	end
-	aRoll.aOldResults = nil;
-	aRoll.aRollCodes.nX1 = 0;
-	return aRoll.aSource,aRoll;
-end
-
-function fpHandleKeepDice(aRoll)
-	local nKeep = math.abs(aRoll.aRollCodes.nK);
-	if aRoll.aRollCodes.nK < 0 then
-		table.sort(aRoll.aDice,function(a,b) return a.result < b.result end);
-	elseif aRoll.aRollCodes.nK > 0 then
-		table.sort(aRoll.aDice,function(a,b) return a.result > b.result end);
-	end
-	for nIteration,vValue in ipairs(aRoll.aDice) do
-		if nIteration > nKeep then
-			vValue.type = "r" .. vValue.type:sub(2);
-		elseif vValue.type:sub(1,1) ~= "p" then
-			vValue.type = "g" .. vValue.type:sub(2);
-		end
-	end
-	return aRoll;
-end
-
-function fpHandleModStack(aRoll)
-	table.insert(aRoll.aRPN,{sValue = tostring(math.abs(aRoll.nMod)),sType = "n"});
-	if aRoll.nMod > 0 then
-		table.insert(aRoll.aRPN,{sValue = "+",sType = "a"});
-	else
-		table.insert(aRoll.aRPN,{sValue = "-",sType = "a"});
-	end
-	return aRoll;
-end
-
-function fpHandleSuccessCount(sDesc,nT,nTN,nSN,nTotal)
-	if nSN == 0 then
-		if nT == -1 then
-			if nTotal > nTN then
-				return sDesc .. " - Failed By " .. nTotal-nTN;
-			else
-				return sDesc .. " - Succeeded By " .. nTN-nTotal;
-			end
-		elseif nTotal < nTN then
-			return sDesc .. " - Failed By " .. nTN-nTotal;
-		else
-			return sDesc .. " - Succeeded By " .. nTotal-nTN;
-		end
-	elseif nT == -1 then
-		if nTotal > nTN then
-			if math.floor((nTotal-nTN)/nSN) == 1 then
-				return sDesc .. " - Failed By 1 Lower";
-			else
-				return sDesc .. " - Failed By " .. math.floor((nTotal-nTN)/nSN) .." Lowers";
-			end
-		elseif math.floor((nTN-nTotal)/nSN) == 1 then
-			return sDesc .. " - Succeeded By 1 Raise";
-		else
-			return sDesc .. " - Succeeded By " .. math.floor((nTN-nTotal)/nSN) .." Raises";
-		end
-	elseif nTotal < nTN then
-		if math.floor((nTN-nTotal)/nSN) == 1 then
-			return sDesc .. " - Failed By 1 Lower";
-		else
-			return sDesc .. " - Failed By " .. math.floor((nTN-nTotal)/nSN) .." Lowers";
-		end
-	elseif math.floor((nTotal-nTN)/nSN) == 1 then
-		return sDesc .. " - Succeeded By 1 Raise";
-	else
-		return sDesc .. " - Succeeded By " .. math.floor((nTotal-nTN)/nSN) .." Raises";
-	end
-	return sDesc;
-end
-
-function fpHandleTargetNumber(aRoll)
-	local aRollCodes = aRoll.aRollCodes;
-	local nK = math.abs(aRollCodes.nK);
-	if aRollCodes.nP == 1 then
-		aRoll.nTotal = 0;
-		if nK == 0 then
-			nK = #aRoll.aDice;
-		end
-		for nIteration,vValue in ipairs(aRoll.aDice) do
-			if nIteration <= nK then
-				if aRollCodes.nT == -1 then
-					if vValue.result > aRollCodes.nTN then
-						vValue.type = "r" .. vValue.type:sub(2);
-					else
-						aRoll.nTotal = aRoll.nTotal+1;
-						if vValue.type:sub(1,1) ~= "p" then
-							vValue.type = "g" .. vValue.type:sub(2);
-						end
-					end
-				elseif vValue.result < aRollCodes.nTN then
-					vValue.type = "r" .. vValue.type:sub(2);
-				else
-					aRoll.nTotal = aRoll.nTotal+1;
-					if vValue.type:sub(1,1) ~= "p" then
-						vValue.type = "g" .. vValue.type:sub(2);
-					end
-				end
-			end
-		end
-	else
-		if aRollCodes.nS and
-				aRollCodes.nS == 1 then
-			local nSN = 0;
-			if aRollCodes.nSN and
-					aRollCodes.nSN ~= 0 then
-				nSN = aRollCodes.nSN;
-			end
-			aRoll.sDesc = fpHandleSuccessCount(aRoll.sDesc,aRollCodes.nT,aRollCodes.nTN,nSN,aRoll.nTotal);
-		end
-		if aRollCodes.nT == -1 then
-			if aRoll.nTotal > aRollCodes.nTN then
-				aRoll.sDesc = aRoll.sDesc .. " - Fail!";
-				for nIteration,vValue in ipairs(aRoll.aDice) do
-					vValue.type = "r" .. vValue.type:sub(2);
-				end
-			else
-				aRoll.sDesc = aRoll.sDesc .. " - Success!";
-				for nIteration,vValue in ipairs(aRoll.aDice) do
-					if vValue.type:sub(1,1) ~= "p" and
-							vValue.type:sub(1,1) ~= "r" then
-						vValue.type = "g" .. vValue.type:sub(2);
-					end
-				end
-			end
-		elseif aRoll.nTotal < aRollCodes.nTN then
-			aRoll.sDesc = aRoll.sDesc .. " - Fail!";
-			for nIteration,vValue in ipairs(aRoll.aDice) do
-				vValue.type = "r" .. vValue.type:sub(2);
-			end
-		else
-			aRoll.sDesc = aRoll.sDesc .. " - Success!";
-			for nIteration,vValue in ipairs(aRoll.aDice) do
-				if vValue.type:sub(1,1) ~= "p" and
-						vValue.type:sub(1,1) ~= "r" then
-					vValue.type = "g" .. vValue.type:sub(2);
-				end
-			end
-		end
-	end
-	return aRoll;
-end
-
-function fpIsDigit(sChar)
-	if fpIsNDigit(sChar) or
-			sChar == "0" then
-		return true;
-	end
-	return false;
-end
-
-function fpIsNDigit(sChar)
-	local aDigits = {
-		["1"] = true,
-		["2"] = true,
-		["3"] = true,
-		["4"] = true,
-		["5"] = true,
-		["6"] = true,
-		["7"] = true,
-		["8"] = true,
-		["9"] = true,
-		};
-	if aDigits[sChar] then
-		return true;
-	end
-	return false;
-end
-
-function fpLexAddOp(aTokens, sTmp,sChar,sNextChar,i,bPool,bPrevDie)
-	if sNextChar == "0" then
-		return "0",nil,i+1,bPrevDie;
-	elseif fpIsNDigit(sNextChar) then
-		return sChar,"a",i,bPrevDie;
-	elseif StringManager.contains(aKeepCodes,sNextChar) then
-		local sNextNextChar = nil;
-		if i < #sTmp-1 then
-			sNextNextChar = sTmp:sub(i+2,i+2):lower();
-		end
-		local sTokenValue,sTokenType,k = fpLexKeepCode(aTokens,sNextChar,sNextNextChar,sChar,i+1)
-		return sTokenValue,sTokenType,k,bPrevDie;
-	elseif sNextChar == "d" then
-		local sNextNextChar = nil;
-		if i < #sTmp-1 then
-			sNextNextChar = sTmp:sub(i+2,i+2):lower();
-		end
-		table.insert(aTokens,{sValue = sChar,sType = "a"});
-		table.insert(aTokens,{sValue = "1",sType = "n"});
-		if bPool and bPrevDie then
-			return "0",nil,9998,true;
-		end
-		return fpLexDCode(aTokens,sTmp,sNextNextChar,i+1),true;
-	elseif sNextChar == "p" or
-			sNextChar == "(" then
-		return sChar,"a",i,bPrevDie;
-	elseif sNextChar == "t" then
-		local sNextNextChar = nil;
-		if i < #sTmp-1 then
-			sNextNextChar = sTmp:sub(i+2,i+2):lower();
-		end
-		local sTokenValue,sTokenType,k = fpLexTNCode(aTokens,sNextChar,sNextNextChar,sChar,i+1);
-		return sTokenValue,sTokenType,k,bPrevDie;
-	elseif sNextChar == "-" then
-		if sChar == "-" then
-			return "+","a",i+1,bPrevDie;
-		end
-		return "-","a",i+1,bPrevDie;
-	end
-	return nil,nil,i,bPrevDie;
-end
-
-function fpLexDCode(aTokens,sTmp,sNextChar,i)
-	local sTokenValue;
-	if i == 1 then
-		table.insert(aTokens,{sValue = "1",sType = "n"});
-	end
-	if sNextChar == nil then
-		return nil,nil,i;
-	end
-	if sNextChar == "%" then
-		sTokenValue = "d100";
-		i=i+1;
-	elseif sNextChar == "f" or
-			sNextChar == "g" then
-		sTokenValue = "d" .. sNextChar:upper();
-		i=i+1;
-	else
-		local sTmpValue;
-		sTmpValue,i = fpLexNextDigit(aTokens,sTmp,sNextChar,i+1);
-		sTokenValue = "d" .. sTmpValue;
-	end
-	return sTokenValue,"d",i;
-end
-
-function fpLexDigit(aTokens,sTmp,sChar,sNextChar,i)
-	local sTokenValue;
-	sTokenValue,i = fpLexNextDigit(aTokens,sTmp,sNextChar,i+1)
-	return sChar .. sTokenValue,"n",i;
-end
-
-function fpLexExplode(aTokens,sDiceString,sNextChar,i,nSides)
-	if sNextChar == "=" then
-		return -1,0,i+1;
-	elseif sNextChar == "!" then
-		local nCount = -2;
-		local j=i+1;
-		while j < #sDiceString+1 and
-				sDiceString:sub(j+1,j+1) == "!" do
-			j=j+1;
-			nCount = nCount-1;
-		end
-		return nCount,0,j;
-	elseif fpIsDigit(sNextChar) then
-		local sTmpValue1;
-		local sTmpValue2 = "0";
-		sTmpValue1,i = fpLexNextDigit(aTokens,sDiceString,sNextChar,i+1);
-		if i < #sDiceString-1 and
-				sDiceString:sub(i+1,i+1) == "!" then
-			sTmpValue2,i = fpLexNextDigit(aTokens,sDiceString,sDiceString:sub(i+2,i+2),i+2);
-		end
-		if sTmpValue2 == "0" then
-			sTmpValue2 = sTmpValue1;
-		end
-		local nTmpValue1 = tonumber(sTmpValue1);
-		local nTmpValue2 = tonumber(sTmpValue2);
-		if nTmpValue1 == 1 and
-				nTmpValue2 == nSides then
-			return 0,0,9998
-		end
-		return tonumber(sTmpValue1),tonumber(sTmpValue2),i;
-	end
-	return nSides,nSides,i;
-end
-
-function fpLexKeepCode(aTokens,sChar,sNextChar,sPrevChar,i)
-	local aKeepCodeLookupTable = {
-		r = true,
-		t = true,
-		["+"] = true,
-		["-"] = true,
-		["="] = true
-		};
-	if sNextChar == nil or
-			aKeepCodeLookupTable[sNextChar] then
-		table.insert(aTokens,{sValue = sPrevChar .. sChar,sType = "k"});
-		return "1","n",i;
-	elseif fpIsNDigit(sNextChar) then
-		return sPrevChar .. sChar,"k",i;
-	end
-	return nil,nil,i;
-end
-
-function fpLexLParan(aTokens,sNextChar,i)
-	if StringManager.contains(aMultOps,sNextChar) then
-		return nil,nil,i;
-	elseif sNextChar == "d" then
-		table.insert(aTokens,{sValue = "(",sType = "("});
-		return "1","n",i;
-	end
-	return "(","(",i;
-end
-
-function fpLexMultOp(aTokens,sChar,sNextChar,i)
-	local sTokenValue = sChar;
-	if sTokenValue == "x" then
-		sTokenValue = "*";
-	end
-	if i > 1 then
-		if fpIsNDigit(sNextChar) or
-				sNextChar == "p" or
-				sNextChar == "-" or
-				sNextChar == "(" then
-			return sTokenValue,"m",i;
-		elseif sNextChar == "d" then
-			table.insert(aTokens,{sValue = sTokenValue,sType = "m"});
-			return "1","n",i;
-		end
-	end
-	return nil,nil,i;
-end
-
-function fpLexNextDigit(aTokens,sTmp,sNextChar,i)
-	local sTmpValue;
-	if fpIsDigit(sNextChar) then
-		if i ~= #sTmp then
-			sTmpValue,_,i = fpLexDigit(aTokens,sTmp,sNextChar,sTmp:sub(i+1,i+1):lower(),i);
-			return sTmpValue,i;
-		else
-			return sNextChar,i;
-		end
-	end
-	return "",i-1;
-end
-
-function fpLexRParan(aTokens,sNextChar,i)
-	local aRParanLookupTable = {
-		h = true,
-		k = true,
-		l = true,
-		r = true,
-		t = true,
-		x = true,
-		["+"] = true,
-		["-"] = true,
-		["*"] = true,
-		["/"] = true,
-		["="] = true
-		};
-	if sNextChar == nil then
-		return ")",")",i;
-	elseif aRParanLookupTable[sNextChar] then
-		return ")",")",i;
-	end
-	return nil,nil,i;
-end
-
-function fpLexSuccessCode(aTokens,sNextChar,i)
-	if sNextChar == nil then
-		table.insert(aTokens,{sValue = "s",sType = "s"});
-		return "0","n",i;
-	end
-	return "s","s",i;
-end
-
-function fpLexTNCode(aTokens,sChar,sNextChar,sPrevChar,i)
-	if fpIsNDigit(sNextChar) then
-		return sPrevChar .. sChar,"t",i;
-	end
-	return nil,nil,i;
-end
-
-function fpOnDiceLanded(oDragData)
-	local sDragType = oDragData.getType();
-	local aCustom = oDragData.getCustomData();
-	if GameSystem.actions[sDragType] then
-		local aSource,aRolls,aTargets = ActionsManager.decodeActionFromDrag(oDragData,true);
-		for nIteration,vValue in ipairs(aRolls) do
-			if #(vValue.aDice) > 0 then
-				vValue.aRollCodes = aCustom.aRollCodes;
-				vValue.aRPN = aCustom.aRPN;
-				vValue.aNSD = aCustom.aNSD;
-				vValue.aOldResults = aCustom.aOldResults;
-				ActionsManager.handleResolution(vValue,aSource,aTargets);
-			end
-		end
-		return true;
-	end
-end
-
 function fpOnDiceTotal(aMessage)
+	Debug.chat("fpOnDiceTotal",aMessage)
 	local aStrings,_ = StringManager.split(aMessage.type,"|");
 	if aStrings[1] == "normal" then
 		return true,tonumber(aStrings[2]);
@@ -997,374 +170,774 @@ function fpOnDiceTotal(aMessage)
 	return false,0;
 end
 
-function fpProcessDie(sCommand,sDieCode)
-	if User.isHost() then
-		if sDieCode == "reveal" then
-			OptionsManager.setOption("REVL","on");
-			ChatManager.SystemMessage(Interface.getString("message_slashREVLon"));
-			return;
-		end
-		if sDieCode == "hide" then
-			OptionsManager.setOption("REVL","off");
-			ChatManager.SystemMessage(Interface.getString("message_slashREVLoff"));
-			return;
-		end
-	end
-	local sDice,sDesc = string.match(sDieCode,"%s*(%S+)%s*(.*)");
-	local aRollCodes,aRPN = fpDieCodeParse(fpDieCodeLex(sDice));
-	if not aRollCodes then
-		ChatManager.SystemMessage("Usage: /die [DieCode] [description]");
-		return;
-	end
-	ActionsManager.actionDirect(nil,"dice",{fpDieAndTowerHelper(aRollCodes,aRPN,sDesc,0,true,false,"")});
-end
 
 function fpPostRoll(aSource,aRoll)
-	if aRoll.aRollCodes then
-		local aRollCodes = aRoll.aRollCodes;
-		if aRollCodes.nZ and
-				aRollCodes.nZ == 2 then
-			aRoll.aDice[1].result = aRoll.aDice[1].result*10;
-		end
-		if aRollCodes.nX1 and
-				aRollCodes.nX1 ~= 0 then
-			aSource,aRoll = fpHandleExplodingDice(aSource,aRoll);
-		end
-		if aRollCodes.nZ and
-				aRollCodes.nZ == 1 then
-			aRoll.aDice = aRoll.aNSD;
-		end
-		if aRoll then
-			local nK = 0;
-			local nR = 0;
-			if aRollCodes.nK and
-					aRollCodes.nK ~= 0 then
-				nK = math.abs(aRollCodes.nK);
-				aRoll = fpHandleKeepDice(aRoll);
-			end
-			if aRollCodes.nR then
-				if aRollCodes.nR < 0 then
-					nR = -1;
-				elseif aRollCodes.nR > 0 then
-					nR = 1;
-				end
-			end
-			aRoll = fpTotalRPNStack(fpHandleModStack(aRoll),nK,nR);
-			if aRollCodes.nT and
-					aRollCodes.nTN and
-					aRollCodes.nT ~= 0 then
-				aRoll = fpHandleTargetNumber(aRoll);
-			end
-		end
-		if aRollCodes.nZ and
-				aRollCodes.nZ == 1 then
-			aRoll.aDice = {};
-		end
+	Debug.chat("fpPostRoll")
+	Debug.chat("aSource",aSource)
+	Debug.chat("aRoll",aRoll)
+	local evalRes = DicePoolEvaluator.eval(aRoll.evaluator, aRoll.aDice)
+	if not evalRes.done then
+		-- This is overwriting the old obj which we return. Should clone it
+		local newRoll = aRoll
+		newRoll.aDice = evalRes.newRolls
+		Comm.throwDice(fpBuildThrow(aSource,nil,newRoll,false))
 	end
+	aRoll.evalRes = evalRes
 	return aRoll;
 end
 
-function fpSetKCode()
-	local oKeepDiceBoxWindow = Interface.findWindow("wcKeepDiceBox","");
-	local nK = 0;
-	if oKeepDiceBoxWindow then
-		nK,_ = KeepDiceBoxManager.fpGetKeepDice();
-		if oKeepDiceBoxWindow.bcKeepHighButton and
-				oKeepDiceBoxWindow.bcKeepHighButton.getValue() == 1 then
-			nK = 0-nK;
+function fpCreateActionMessage(aSource,aRoll)
+	Debug.chat("fpCreateActionMessage")
+	Debug.chat("aSource",aSource)
+	Debug.chat("aRoll",aRoll)
+	local aMessage = ChatManager.createBaseMessage(aSource,aRoll.sUser);
+	aMessage.text = aMessage.text .. aRoll.sDesc;
+	aMessage.dice = {}
+	for i,d in ipairs(aRoll.evalRes.diceHistory) do
+		local sides = d.type:sub(2)
+		local x = { result = d.result, type = d.type }
+
+		if (d.flags.exploded) then
+			x.type = "p" .. sides
 		end
+
+		table.insert(aMessage.dice, x)
 	end
-	return nK;
+	aMessage.diemodifier = aRoll.nMod;
+	aMessage.dicedisplay = 0
+	return aMessage;
 end
 
-function fpSetPCode()
-	local oKeepDiceBoxWindow = Interface.findWindow("wcKeepDiceBox","");
-	local nP = 0;
-	if oKeepDiceBoxWindow then
-		if oKeepDiceBoxWindow.bcPoolButton then
-			nP = oKeepDiceBoxWindow.bcPoolButton.getValue();
+-- DiceRollParser -------------------------------------------------------------
+-- This models the actual AST and the parser that parses that AST. Generic 
+-- parser combinators to be kept out of this section.
+-------------------------------------------------------------------------------
+
+function repeatN(n,x)
+	local out = {}
+	for i=1, n do
+		out[i] = x
+	end
+	return out
+end
+
+DicePoolEvaluator = {}
+-- TODO: The exploding in the O.G UDR is more featured than this, but it will
+-- be easy enough to tweak later
+-- TODO: We need to limit the possible dice to the ruleset dice instead of the YOLO approach here
+-- TODO: We will also need to split this concept up once we support {4d4!,6d6!}kt7s5
+function DicePoolEvaluator.new(num,sides,isExploding,kN,tN,sN)
+	local dieType = "d" .. string.format("%.0f",sides)
+	local queued = repeatN(num,dieType)
+	local o = {
+		num = num,
+		sides = sides,
+		isExploding = isExploding,
+		keepNum = kN,
+		targetNum = tN,
+		successNum = sN,
+		queued = queued,
+		pending = {},
+		results = {}
+	}
+	return o
+end
+
+function DicePoolEvaluator.eval(self,newResults)
+	-- If this the first evaluation, then we better send off the queued dice for rolling
+	if #self.queued > 0 then
+		local toQueue = self.queued
+		for i=1, #self.queued do
+			self.pending[i] = DieResult.new(self.queued[i])
 		end
-	end
-	return nP;
-end
-
-function fpSetRollCodesFromDesktop(aSource,aTarget,aRoll)
-	if aRoll.aRollCodes == nil then
-		aRoll.aRollCodes = {};
-	end
-	if aRoll.aRollCodes.nK == nil then
-		aRoll.aRollCodes.nK = fpSetKCode();
-	end
-	if aRoll.aRollCodes.nP == nil then
-		aRoll.aRollCodes.nP = fpSetPCode();
-	end
-	if aRoll.aRollCodes.nR == nil then
-		aRoll.aRollCodes.nR = 0;
-	end
-	if aRoll.aRollCodes.nS == nil then
-		aRoll.aRollCodes.nS,aRoll.aRollCodes.nSN = fpSetSCode();
-	end
-	if aRoll.aRollCodes.nT == nil then
-		aRoll.aRollCodes.nT,aRoll.aRollCodes.nTN = fpSetTCode();
-	end
-	if aRoll.aRollCodes.nX1 == nil then
-		aRoll.aRollCodes.nX1 = fpSetX1Code();
-	end
-	if aRoll.aRollCodes.nX2 == nil then
-		aRoll.aRollCodes.nX2 = 0;
-	end
-	if aRoll.aRollCodes.nZ == nil then
-		aRoll.aRollCodes.nZ = 0;
-	end
-	return;
-end
-
-function fpSetSCode()
-	local oSuccessRaiseBoxWindow = Interface.findWindow("wcSuccessRaiseBox","");
-	local nS = 0;
-	local nSN = 0;
-	if oSuccessRaiseBoxWindow and
-			SuccessRaiseBoxManager.fpIsActive() then
-		nS = 1;
-		nSN = SuccessRaiseBoxManager.fpGetRaises();
-	end
-	return nS,nSN;
-end
-
-function fpSetTCode()
-	local oTNBoxWindow = Interface.findWindow("wcTNBox","");
-	local nT = 0;
-	local nTN = 0;
-	if oTNBoxWindow and
-			TNBoxManager.fpIsActive() then
-		nT = 1;
-		if oTNBoxWindow.bcAboveBelowButton and
-				oTNBoxWindow.bcAboveBelowButton.getValue() == 1 then
-			nT = -1;
-		end
-		nTN,_ = TNBoxManager.fpGetTN();
-	end
-	return nT,nTN;
-end
-
-function fpSetX1Code()
-	local oModWindow = Interface.findWindow("modifierstack","");
-	local nX1 = 0;
-	if oModWindow then
-		if oModWindow.bcExplodeButton then
-			nX1 = oModWindow.bcExplodeButton.getValue();
-		end
-	end
-	return nX1;
-end
-
-function fpTotalDice(aDice)
-	local nTotal = 0;
-	for nIteration,vValue in ipairs(aDice) do
-		nTotal = nTotal+vValue.result;
-	end
-	return nTotal;
-end
-
-function fpTotalDiceMax(aDice)
-	local nTotal = 0;
-	for nIteration,vValue in ipairs(aDice) do
-		nTotal = nTotal+tonumber(vValue.type:sub(2));
-	end
-	return nTotal;
-end
-
-function fpTotalRPNStack(aRoll,nK,nR)
-	local aStack = {};
-	local bPool = false;
-	local nMod = 0;
-	local nPrevDice = 0;
-	if aRoll.aRollCodes and
-			aRoll.aRollCodes.nP and
-			aRoll.aRollCodes.nP == 1 then
-		bPool = true;
-	end
-	for i=1,#aRoll.aRPN do
-		if aRoll.aRPN[i].sType == "a" or
-					aRoll.aRPN[i].sType == "m" then
-			local sOperator = aRoll.aRPN[i].sValue;
-			local nOp2Value = aStack[#aStack].nValue;
-			local sOp2Type = aStack[#aStack].sType;
-			table.remove(aStack,#aStack);
-			local nOp1Value = aStack[#aStack].nValue;
-			local sOp1Type = aStack[#aStack].sType;
-			table.remove(aStack,#aStack);
-			local nTotal = 0;
-			if sOp1Type ~= "p" then
-				if sOp2Type ~= "p" then
-					if sOperator == "+" then
-						nTotal = nOp1Value + nOp2Value;
-					elseif sOperator == "-" then
-						nTotal = nOp1Value - nOp2Value;
-					elseif sOperator == "*" then
-						nTotal = nOp1Value * nOp2Value;
-					elseif nR == 0 then
-						nTotal = math.floor((nOp1Value / nOp2Value)+0.5);
-					elseif nR == -1 then
-						nTotal = math.floor(nOp1Value / nOp2Value);
-					else
-						nTotal = math.ceil(nOp1Value / nOp2Value);
-					end
-					table.insert(aStack,{nValue = nTotal,sType = "n"});
-				else
-					if sOperator == "+" then
-						for j=1,#aRoll.aDice do
-							aRoll.aDice[j].result = nOp1Value + aRoll.aDice[j].result;
-						end
-					elseif sOperator == "-" then
-						for j=1,#aRoll.aDice do
-							aRoll.aDice[j].result = nOp1Value - aRoll.aDice[j].result;
-						end
-					elseif sOperator == "*" then
-						for j=1,#aRoll.aDice do
-							aRoll.aDice[j].result = nOp1Value * aRoll.aDice[j].result;
-						end
-					elseif nR == 0 then
-						for j=1,#aRoll.aDice do
-							aRoll.aDice[j].result = math.floor((nOp1Value / aRoll.aDice[j].result)+0.5);
-						end
-					elseif nR == -1 then
-						for j=1,#aRoll.aDice do
-							aRoll.aDice[j].result = math.floor(nOp1Value / aRoll.aDice[j].result);
-						end
-					else
-						for j=1,#aRoll.aDice do
-							aRoll.aDice[j].result = math.ceil(nOp1Value / aRoll.aDice[j].result);
-						end
-					end
-					table.insert(aStack,{nValue = 0,sType = "p"});
-				end
-			else
-				if sOperator == "+" then
-					for j=1,#aRoll.aDice do
-						aRoll.aDice[j].result = aRoll.aDice[j].result + nOp2Value;
-					end
-				elseif sOperator == "-" then
-					for j=1,#aRoll.aDice do
-						aRoll.aDice[j].result = aRoll.aDice[j].result - nOp2Value;
-					end
-				elseif sOperator == "*" then
-					for j=1,#aRoll.aDice do
-						aRoll.aDice[j].result = aRoll.aDice[j].result * nOp2Value;
-					end
-				elseif nR == 0 then
-					for j=1,#aRoll.aDice do
-						aRoll.aDice[j].result = math.floor((aRoll.aDice.result / nOp2Value)+0.5);
-					end
-				elseif nR == -1 then
-					for j=1,#aRoll.aDice do
-						aRoll.aDice[j].result = math.floor(aRoll.aDice[j].result / nOp2Value);
-					end
-				else
-					for j=1,#aRoll.aDice do
-						aRoll.aDice[j].result = math.ceil(aRoll.aDice[j].result / nOp2Value);
-					end
-				end
-				table.insert(aStack,{nValue = 0,sType = "p"});
-			end
-		elseif aRoll.aRPN[i].sType == "n" then
-			local nValue = tonumber(aRoll.aRPN[i].sValue)
-			if aRoll.aRPN[i+1].sType == "a" then
-				if aRoll.aRPN[i+1].sValue == "+" then
-					nMod = nMod + nValue;
-				else
-					nMod = nMod - nValue;
-				end
-			elseif aRoll.aRPN[i+1].sType == "n" or
-					aRoll.aRPN[i+1].sType == "d" then
-				if aRoll.aRPN[i+2].sType == "a" then
-					nMod = nMod + nValue;
-				end
-			end
-			table.insert(aStack,{nValue = nValue,sType = "n"});
-		elseif aRoll.aRPN[i].sType == "d" then
-			if bPool then
-				table.insert(aStack,{nValue = 0,sType = "p"});
-			else
-				local nTotal = 0;
-				local nTheseDice = aRoll.aRPN[i].sValue:match("^(%d*)");
-				if nK == 0 then
-					nK = nTheseDice;
-				end
-				for j=nPrevDice+1,nPrevDice+nK do
-					if aRoll.aDice[j] then
-						nTotal = nTotal + aRoll.aDice[j].result;
-					end
-				end
-				table.insert(aStack,{nValue = nTotal,sType = "d"});
-				nPrevDice = nPrevDice + nTheseDice;
-			end
-		end
-	end
-	if not bPool then
-		aRoll.nMod = nMod;
-		aRoll.nTotal = aStack[1].nValue;
-	end
-	return aRoll;
-end
-
-
-
-
-
-
-
-function fpDieAndTowerHelper(aRollCodes, aRPN, sDesc,nMod,bDiceCodeString,bTower,sTowerDesc)
-	local aRulesetDice = Interface.getDice();
-	local aFinalDice = {};
-	local aNonStandardResults = {};
-	for i=1,#aRPN do
-		if aRPN[i].sType == "d" then
-			local aDice,_ = fpConvertStringToDice(aRPN[i].sValue);
-			for kKey,vValue in ipairs(aDice) do
-				if StringManager.contains(aRulesetDice,vValue) then
-					table.insert(aFinalDice,vValue);
-				elseif vValue:sub(1,1) == "-" and
-						StringManager.contains(aRulesetDice,vValue:sub(2)) then
-					table.insert(aFinalDice,vValue);
-				else
-					local sSign,sDieSides = vValue:match("^([%-%+]?)d([%dG]+)");
-					if sDieSides then
-						local nResult = 0;
-						if sDieSides == "G" then
-							table.insert(aFinalDice,"d6");
-							table.insert(aFinalDice,"d6");
-							aRollCodes.nK = 0;
-							aRollCodes.nP = 0;
-							aRollCodes.nX1 = 0;
-							aRollCodes.nZ = 2;
-						else
-							local nDieSides = tonumber(sDieSides) or 0;
-							nResult = math.random(nDieSides);
-							if sSign == "-" then
-								nResult = 0-nResult;
-							end
-							table.insert(aNonStandardResults,{type = vValue, result = nResult});
---							table.insert(aNonStandardResults,string.format(" [%s=%d]",vValue,nResult));
---							table.insert aFinalDice()
-							aRollCodes.nZ = 1;
-						end
-					end
-				end
-			end
-		end
-	end
-	if bTower then
-		sDesc = "[" .. Interface.getString("dicetower_tag") .. "] " .. sTowerDesc;
-	elseif sDesc ~= "" then
-		sDesc = string.format("%s (%s)",sDesc,sDice);
+		self.queued = {}
+		return { done = false, newRolls = toQueue }
 	else
-		sDesc = sDice;
+		if #self.pending > #newResults then
+			error(
+				"Likely evaluator bug. Expected " .. 
+				#self.pending .. 
+				" die results but only got " .. 
+				#newResults 
+			)
+		end
+		local newQueue = {}
+
+		local newResultsI=1
+		local pendingI=1
+		while pendingI <= #self.pending do
+			local result = newResults[newResultsI]
+			local thisPending = self.pending[pendingI]
+
+			if result.type ~= thisPending.type then
+				error(
+					"Evaluator bug: got die type " ..
+					result.type .. 
+					" but was expecting " ..
+					thisPending.type
+				)
+			end
+
+			newResultsI = newResultsI + 1
+			thisPending.result = thisPending.result + result.result
+
+			if self.isExploding and result.result == self.sides then
+				table.insert(newQueue,thisPending.type)
+				thisPending.flags.exploded = true
+				pendingI = pendingI + 1
+			else
+				table.insert(self.results,thisPending)
+        table.remove(self.pending,pendingI)
+			end
+		end
+
+		if #self.pending > 0 then
+			return { done = false, newRolls = newQueue }
+		else
+			-- TODO: Keep and Target stuff goes here
+			local sum = 0
+			for i,v in ipairs(self.results) do
+				sum = sum + v.result
+			end
+			return { done = true, result = sum, diceHistory = self.results }
+		end
 	end
---[[
-	if #aNonStandardResults > 0 then
-		sDesc = sDesc .. table.concat(aNonStandardResults,"");
+end
+
+DieResult = {}
+function DieResult.new(type)
+	local o = { type = type, result = 0, flags = { exploded = false }}
+	return o
+end
+
+DiceRollParser = {}
+
+-- TODO: Where should modifiers go?
+-- TODO: What about our other arithmetic?
+
+function DiceRollParser.die()
+	return Parser.lift3(
+		Parser.litChar('d'),
+		Parser.number(), -- TODO: Allow expressions?
+		Parser.map(Parser.optional(Parser.litChar("!")), function (e) return e ~= nil end ),
+		function (_,side,exploding) 
+			return { type = "die", side = side, exploding = exploding }
+		end
+	) 
+end
+
+function DiceRollParser.keep()
+	-- TODO: Allow keep lowest and keep highest
+	return Parser.andThen(Parser.litChar("k"), function (_)
+		-- TODO: Allow expressions for the kn val?
+		return Parser.map(Parser.optional(Parser.number()), function (n)
+			if n == nil then
+				return 1
+			else
+				return n
+			end
+		end)
+	end)
+end
+
+function DiceRollParser.target()
+	return Parser.andThen(Parser.litChar("t"), function (_)
+		return Parser.number() -- TODO: Allow expressions for the kn val?
+	end)
+end
+
+function DiceRollParser.success()
+	return Parser.andThen(Parser.litChar("s"), function (_)
+		return Parser.number() -- TODO: Allow expressions for the kn val?
+	end)
+end
+
+function DiceRollParser.dicePool()
+	return Parser.lift5(
+		Parser.number(),
+		DiceRollParser.die(),
+		Parser.optional(DiceRollParser.keep()),
+		Parser.optional(DiceRollParser.target()),
+		Parser.optional(DiceRollParser.success()),
+		function (n,d,k,t,s)
+			return DicePoolEvaluator.new(n,d.side,d.exploding,k,t,s)
+		end
+	)
+end
+
+function DiceRollParser.poolFn()
+	return Parser.lift4(
+		Parser.oneOf({Parser.lit("add"),Parser.lit("sub")}),
+		Parser.litChar("("),
+		Parser.oneOrMany(DiceRollParser.dicePool(),Parser.litChar(",")),
+		Parser.litChar(")"),
+		function (fnName,_,exprs,_)
+			return { type = "poolFn", name = fnName, expressions = exprs }
+		end
+	)
+end
+
+function DiceRollParser.expression()
+	return Parser.oneOf(
+		-- We use the lazy combinator to tie the knot of our recursive parser
+		-- Without the laziness we'd stack overflow just constructing the parser
+
+		-- We go out of our way here to make this right-recursive by making sure 
+		-- none of these top level constructs start with the same character. 
+		-- This means that we wont match roll20, but it'll be much easier on us
+		-- and should still meet our needs
+		{ 
+			{ desc = "dicePool", parser = Parser.lazy(DiceRollParser.dicePool) }
+		--	{ desc = "poolFn", parser = Parser:lazy(DiceRollParser.poolFn) },
+		}
+	)
+end
+
+-------------------------------------------------------------------------------
+-- Parser ---------------------------------------------------------------------
+-- Generic parser things to not clog up the domain related parser bits.
+-- TODO: Figure out whether this can be a separate FG module to declutter?
+-------------------------------------------------------------------------------
+
+ParserResult = {}
+
+--- Make a result that is failed and cannot continue
+-- @param e:S The error string for explaining what went wrong
+function ParserResult.err(e) 
+	return {err = e}
+end
+--- Make a result that has a result and the leftover input
+-- @param res: Any type. The result of parsing
+-- @param rest: The remaining input that other parsers can continue parsing
+function ParserResult.ok(res,rest) 
+	return {isOk = true, res = res, rest=rest}
+end
+
+--- Transform the result inside the Parser result with a function
+-- @param fn: The function to apply to the result that returns a new value
+-- @usage 
+--   local res = ParserResult.ok(1,"")
+--   ParserResult.map(res, function (x) return x + 1 end)
+--   -- Returns { isOk = true, res = 2, rest = "" }
+function ParserResult.map(pr,fn)
+	if pr.isOk then
+		return ParserResult.ok(fn(pr.res),pr.rest)
+	else
+		return pr
 	end
---]]
-	return {sType = "dice",sDesc = sDesc,aDice = aFinalDice,nMod = nMod,bSecret = bTower,aRollCodes = aRollCodes,aRPN = aRPN,aNSD = aNonStandardResults,bDiceCodeString = bDiceCodeString};
+end
+
+--- This function is for taking a parser result and then doing some further
+-- computation with the result and rest of the string or not bothering because
+-- things have already failed. We use this to sequence parsers into a chain.
+-- You probably wont call this yourself and it's really just for enabling 
+-- andThen on parsers.
+--
+-- @param fn: A function(res,rest) return <ParserResult> end
+-- @see Parser.andThen
+-- @usage It's best to look at Parser.andThen insead.
+-- > function isEndOfInput(res, rest)
+--     if rest == ""
+--     then res
+--     else ParserResult.err("Input still remaining: " .. rest)
+--   end
+-- > ParserResult.andThen(ParserResult.ok("Woot",""),isEndOfInput)
+-- { isOk = true, res = "Woot", rest = "" }
+-- > ParserResult.andThen(ParserResult.ok("Woot"," Oh no!"),isEndOfInput)
+-- { isOk = false, err = "Input still remaining:  Oh no!" }
+-- > ParseResult.andThen(ParserResult.err("AlreadyBroken"),isEndOfInput)
+-- { isOk = false, err = "AlreadyBroken" }
+function ParserResult.andThen(pr, fn)
+	if pr.isOk then
+		return fn(pr.res,pr.rest)
+	else
+		return pr
+	end
+end
+
+Parser = {} 
+--- A parser is actually pretty simple! All it is is a function!
+-- A function from an input string to a ParserResult whose responsibility it is to take a string and
+-- either:
+-- - Return an error because the conditions it needed weren't met OR
+-- - Return a result and the remainder of the string that it did not eat.
+--
+-- This feels pretty silly at first, but the power comes from how giving these functions a name 
+-- allows us to start composing them into bigger parsers. This allows us to build small parsing
+-- routines and reuse them a lot easier than if we were coding the parsers imperatively iterating
+-- over the characters in place. 
+--
+-- @param fn: The actual parser function from string -> ParserResult
+function Parser.new(fn)
+	local o = { parse = fn }
+	return o
+end
+
+--- If we want to define recursive grammars, at some point we'll want to make a circular reference
+-- between parsers. Because lua is a strict language, there is no way we can have parsers that are
+-- infinitely recursive without breaking the cycle. Take these parsers:
+--
+--   function addParser() = Parser.lift5(
+--     Parser.lit("add("),
+--     expressionParser(),
+--     Parser.lit(","),
+--     expressionParser(),
+--     Parser.lit(")"),
+--     function(_,exp1,_,exp2,_) return { expr1, expr2 } end
+--	 )
+--   function expressionParser() = Parser.oneOf( addParser(), Parser.number() )
+--
+-- Defined this way, this would stack overflow because to make expressionParser you need to call
+-- addParser and to make expressionParser you need addParser.
+--
+-- So instead you need:
+--   function expressionParser() = Parser.oneOf( Parser.lazy(addParser), Parser.number )
+--
+-- TODO: We could have parsers *always* be lazy if we wanted to and maybe that's less confusing, but
+-- we also don't have that much recursion in the grammar so it probably doesn't matter.
+function Parser.lazy(fn)
+	return Parser.new(function (input)
+		return fn().parse(input)
+	end)
+end
+
+--- A parser that always fails regardless of the output
+-- @param err: The error string to fail with
+function Parser.fail(err)
+	Parser.new(function () return ParserResult.err(err) end)
+end
+
+--- Transform a parser to return somethind different when it is run.
+-- @param fn: The function to apply to the result that returns a new value
+-- @usage 
+-- > local doubleNumber = Parser.map(Parser.number(),function (x) return x * 2 end)
+-- > doubleNumber.parse("1") 
+-- { isOk = true, res = 2, rest = "" }
+function Parser.map(p, fn)
+	return Parser.new(function (input)
+		return ParserResult.map(p.parse(input),fn)
+	end)	
+end
+
+--- Use this when you need to parse contextually. Say if you are parsing one character then need 
+-- to parse the next bit of the string differently depending on what that result was.
+-- @param fn: A function from old result to a parser
+-- @usage
+-- > p = Parser.andThen(Parser.oneChar(), function (c)
+--     if c == "k" then return keepParser()
+--     else if c == "t" then return targetParser()
+--     else if c == "s" then return successParser()
+--     else Parser.fail("Unknown pool modifier charcode found: " .. c)
+--   end)
+-- > p.parse("a")
+-- { isOk = false, err = "Unknown pool modifier charcode found: a"}
+function Parser.andThen(p, fn)
+	return Parser.new(function (input)
+		return ParserResult.andThen(p.parse(input), function (res, rest)
+			return fn(res).parse(rest)
+		end)
+	end)
+end
+
+--- A parser that matches a char based on a predicate that looks at the char and returns an error
+-- or not. If there is no error, this parser returns that character.
+-- @param fn: A function from string -> (string or nil)
+-- @usage
+-- > p = Parser.matchChar(function (c) if c ~= "a" then return "we wanted a, fool" end)
+-- > p.parse("a")
+-- { isOk = true, res = "a", rest = "" }
+-- > p.parse("b")
+-- { isOk = false, err = "we wanted a, fool" }
+function Parser.matchChar(fn)
+	return Parser.new(function (input)
+		local c = string.sub(input,1,1)
+		local rest = string.sub(input,2)
+		if c == "" then c = nil end
+		local err = fn(c)
+		if err == nil then
+			return ParserResult.ok(c, rest)
+		else
+			return ParserResult.err(err)
+		end
+	end)
+end
+
+--- A parser that returns a character. only errors if we are at the end of input
+function Parser.oneChar()
+	return Parser.matchChar(function (x) return c ~= nil end)
+end
+
+--- A parser that takes a list of parsers and tries them in order
+-- @param choices: A list of parsers or a list of { desc = <string>, parser = <Parser> }
+-- @usage
+-- > p = Parser.oneOf({
+--     {desc = "a", parser = Parser.litChar("a") },
+--     {desc = "num", parser = Parser.number() }
+--   })
+-- > p.parse(21)
+-- { isOk = true, res = 21, rest = "" }
+function Parser.oneOf(choices)
+	if #choices == 0 then
+		error("Parser.oneOf must have at least one choice")
+	end
+	return Parser.new(function (input)
+		local strChars = ""
+		local isFirst = true
+		for i=1, #choices do
+			local choice = choices[i]
+			local desc = choice.desc
+			local parser = choice.parser or choice
+			local res = parser.parse(input)
+			if res.isOk then return res end
+
+			local sep
+			if isFirst then
+				sep = ""
+				isFirst = false
+			else 
+				sep = "," 
+			end
+			strChars = strChars .. sep
+			if desc ~= nil then	
+				strChars = strChars .. choice.desc .. ":"
+			end
+			strChars = strChars  .. res.err
+		end
+		return ParserResult.err(
+			"Could not parse " .. input .. ". Expecting on of {" .. strChars .. "}."
+		)
+	end)
+end
+
+--- Parses the head of the input and makes sure it is one of the characters given.
+-- Note: This is not written in terms of Parser.oneOf and Parser.litChar to get a more concise 
+-- error message when this fails.
+-- @param chars: A list of chars
+-- @usage
+-- > Parser.oneOfChars({"a","b","c"}).parse("a dice")
+-- { isOk = true, res = "a", rest = " dice" }
+function Parser.oneOfChars(chars)
+	if #chars == 0 then
+		error("Parser.oneOfChars must have at least one character")
+	end
+	return Parser.matchChar(function (thisChar)
+		local strChars = ""
+		local isFirst = true
+		for _, value in pairs(chars) do
+			if string.match(thisChar, value) then return nil end
+			local sep
+			if isFirst then 
+				sep = "" 
+				isFirst = false
+			else 
+				sep = "," 
+			end
+			strChars = strChars .. sep .. value
+		end
+	return "Got char '" .. thisChar .. "'. Expected one of {" .. strChars .. "}."
+	end)
+end
+
+--- A parser that matches a literal string and nothing else
+-- @param str: The string to look for at the head of the input
+-- @usage
+-- > Parser.lit("foo").parse("foobar")
+-- { isOk = true, res = "foo", rest = "bar" }
+function Parser.lit(str)
+	return Parser.new(function (input)
+		if string.sub(input,1,#str) == str then
+			return ParserResult.ok(str,string.sub(input,#str+1))
+		else
+			return ParserResult.err("Got '" .. input .. "'. Expected '" .. str .. "'.")
+		end
+	end)
+end
+
+--- A parser that matches a the head char only. This overlaps a lot with Parser.lit 
+-- but gives a nicer error message. 
+-- @param c: The character to match
+function Parser.litChar(c)
+	return Parser.matchChar(function (thisChar)
+		if thisChar ~= c then
+			if thisChar == nil then thisChar = "EOF" end
+			return "Got char '" .. thisChar .. "'. Expected '" .. c .. "'."
+		end
+	end)
+end
+
+--- A parser that matches a single digit. Returns a number not a string.
+function Parser.digit()
+	return Parser.map(
+		Parser.oneOfChars({"0","1","2","3","4","5","6","7","8","9"}),
+		function (d)
+			return tonumber(d)
+		end
+	)
+end
+
+--- This tries a parser and then consumes nothing and returns nil if the parser did not succeed.
+-- This is dangerous, because now our parser isn't guaranteed to terminate anymore because there are
+-- some parsers now that consume no input and we could be parsing nothing forever if we are not 
+-- careful. You have to use this as optional stuff in the middle or end of a parser. Never at the
+-- start. In a more complicated grammar with lots more branching you also have to worry about how 
+-- big the optional parsers are, because with this kind of backtracking we could end up doing a lot
+-- of wasted parsing and backtracking when things fail even if things do terminate.
+--
+-- Alas, this combinator is necessary for our grammar; just be careful with it.
+-- @param parser
+-- @usage 
+-- > Parser.optional(Parser.lit("foo")).parse("bar")
+-- { isOk = true, res = nil, rest = "bar" }
+function Parser.optional(parser)
+	return Parser.new(function (input)
+		local out = parser.parse(input)
+		if (out.isOk) then
+			return out
+		else
+			return ParserResult.ok(nil, input)
+		end
+	end)
+end
+
+--- Parses with the parser or returns a default value (parsing no input)
+-- This carries all the dangers of Parser.optional!
+-- > Parser.orDefault(Parser.lit("foo"),"saved").parse("bar")
+-- { isOk = true, res = "saved", rest = "bar" }
+function Parser.orDefault(parser,default)
+	Parser.map(
+		Parser.optional(parser),
+		function (r) 
+			if r == nil then
+				return default
+			else
+				return r
+			end
+		end
+	)
+end
+
+--- parses oneOrMany instances of a parser, with an optional parser to parse separators between the 
+-- things. Will error if there are no successful parses at the head (there must be at least 1)
+-- @param parser: The Parser to parse each element
+-- @param sep: An optional (can be nil) parser to parse a separator between each element. This 
+-- separator does not appear in the result
+-- @usage
+-- > Parser.oneOrMany(Parser.digit()).parse("12345aaa")
+-- { isOk = true, res = {1,2,3,4,5}, rest = "aaa" }
+-- > Parser.oneOrMany(Parser.number(),Parser.litChar(",")).parse("12,3,4,5,aaa")
+-- { isOk = true, res = {12,3,4,5}, rest = ",aaa"}
+function Parser.oneOrMany(parser, sep)
+	return Parser.new(function (input)
+		-- This explicitly uses an iteration rather than recursion because we can
+		-- and we want to be friendly to the stack. So it's not as nice looking as 
+		-- it usually is.
+
+		local done = false
+		local first = true
+		local out = {}
+		local rest = input
+		local err = nil
+		local pWithSep
+		if sep ~= nil then
+			pWithSep = Parser.lift2(sep,parser,function (_,r) return r end)
+		end
+
+		repeat
+			local newRes
+			if first or sep == nil then
+				newRes = parser.parse(rest)
+				first = false
+			else
+				newRes = pWithSep.parse(rest)
+			end
+			if newRes.isOk then
+				rest = newRes.rest
+				out[#out+1] = newRes.res
+				done = rest == ""
+			else
+				err = newRes.err
+				done = true
+			end
+
+		until done
+
+		-- We want to error if there was no results, but if we error after one or more
+		-- good results we're OK to return the good stuff.
+		if next(out) ~= nil then
+			return ParserResult.ok( out, rest )
+		else
+      return ParserResult.err(err)
+		end
+	end)
+end
+
+--- Parses a number
+-- @usage
+-- > Parser.number().parse("1337aaa")
+-- { isOk = true, res = 1337, rest = "aaa" }
+function Parser.number()
+	return Parser.map(
+		Parser.oneOrMany(Parser.digit()),
+		function (digits)
+			local out = 0
+			for i=#digits, 1, -1 do
+				out = out + (digits[i]*10^(#digits-i))
+			end
+			return out
+		end
+	)
+end
+
+--- There are an entire family of lift functions for smooshing together many parser into one.
+-- This can often be nicer looking than chaining andThens, which is why we've gone to the effort
+-- of making all of these ugly functions here. There are lift2 through to lift8
+-- @param parser1: The first parser to parse with
+-- @param parser2: The second parser to parse with
+-- @param fn: function (parser1Result, parser2Result) return <combined result> end
+-- @usage
+-- > p = Parser.lift2( Parser.litChar("d"), Parser.number(), function(_,n) return { 'd', n } end)
+-- > p.parse("d6")
+-- { "d", 6 }
+function Parser.lift2(p1, p2, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.map(p2, function (r2)
+			return fn(r1,r2)
+		end)
+	end)
+end
+
+function Parser.lift3(p1, p2, p3, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.map(p3, function (r3)
+				return fn(r1,r2,r3)
+			end)
+		end)
+	end)
+end
+
+function Parser.lift4(p1, p2, p3, p4, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.andThen(p3, function (r3)
+				return Parser.map(p4, function (r4)
+					return fn(r1,r2,r3,r4)
+				end)
+			end)
+		end)
+	end)
+end
+
+function Parser.lift5(p1, p2, p3, p4, p5, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.andThen(p3, function (r3)
+				return Parser.andThen(p4, function (r4)
+					return Parser.map(p5, function (r5)
+						return fn(r1,r2,r3,r4,r5)
+					end)
+				end)
+			end)
+		end)
+	end)
+end
+
+function Parser.lift6(p1, p2, p3, p4, p5, p6, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.andThen(p3, function (r3)
+				return Parser.andThen(p4, function (r4)
+					return Parser.andThen(p5, function (r5)
+						return Parser.map(p6, function (r6)
+							return fn(r1,r2,r3,r4,r5,r6)
+						end)
+					end)
+				end)
+			end)
+		end)
+	end)
+end
+
+function Parser.lift7(p1, p2, p3, p4, p5, p6, p7, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.andThen(p3, function (r3)
+				return Parser.andThen(p4, function (r4)
+					return Parser.andThen(p5, function (r5)
+						return Parser.andThen(p6, function (r6)
+							return Parser.map(p7, function (r7)
+								return fn(r1,r2,r3,r4,r5,r6,r7)
+							end)
+						end)
+					end)
+				end)
+			end)
+		end)
+	end)
+end
+
+function Parser.lift8(p1, p2, p3, p4, p5, p6, p7, p8, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.andThen(p3, function (r3)
+				return Parser.andThen(p4, function (r4)
+					return Parser.andThen(p5, function (r5)
+						return Parser.andThen(p6, function (r6)
+							return Parser.andThen(p7, function (r7)
+								return Parser.map(p8, function (r8)
+									return fn(r1,r2,r3,r4,r5,r6,r7,r8)
+								end)
+							end)
+						end)
+					end)
+				end)
+			end)
+		end)
+	end)
+end
+
+function Parser.lift9(p1, p2, p3, p4, p5, p6, p7, p8, p9, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.andThen(p3, function (r3)
+				return Parser.andThen(p4, function (r4)
+					return Parser.andThen(p5, function (r5)
+						return Parser.andThen(p6, function (r6)
+							return Parser.andThen(p7, function (r7)
+								return Parser.andThen(p8, function (r8)
+									return Parser.map(p9, function (r9)
+										return fn(r1,r2,r3,r4,r5,r6,r7,r8,r9)
+									end)
+								end)
+							end)
+						end)
+					end)
+				end)
+			end)
+		end)
+	end)
+end
+
+function Parser.lift10(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, fn)
+	return Parser.andThen(p1, function (r1)
+		return Parser.andThen(p2, function (r2)
+			return Parser.andThen(p3, function (r3)
+				return Parser.andThen(p4, function (r4)
+					return Parser.andThen(p5, function (r5)
+						return Parser.andThen(p6, function (r6)
+							return Parser.andThen(p7, function (r7)
+								return Parser.andThen(p8, function (r8)
+									return Parser.andThen(p9, function (r9)
+										return Parser.map(p10, function (r10)
+											return fn(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10)
+										end)
+									end)
+								end)
+							end)
+						end)
+					end)
+				end)
+			end)
+		end)
+	end)
 end
