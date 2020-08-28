@@ -21,6 +21,7 @@ describe("lsUDRDieManager", function()
 					aDice = repeatN(6,"d6"),
 					nMod = 0,
 					evaluator = {
+						type = "dicePool",
 						num = 6.0,
 						sides = 6.0,
 						isExploding = true,

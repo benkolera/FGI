@@ -40,9 +40,6 @@ end
 -------------------------------------------------------------------------------
 
 function fpProcessDie(sCommand,sDieCode)
-	Debug.chat("fpProcessDie")
-	Debug.chat("aCommand",aCommand)
-	Debug.chat("sDieCode",sDieCode)
 	if User.isHost() then
 		if sDieCode == "reveal" then
 			OptionsManager.setOption("REVL","on");
@@ -58,7 +55,7 @@ function fpProcessDie(sCommand,sDieCode)
 
 	local res = DiceRollParser.expression().parse(sDieCode)
 	if res.isOk then
-		local evalRes = DicePoolEvaluator.eval(res.res)
+		local evalRes = DiceRollEvaluator.eval(res.res)
 
 		if not evalRes.done then
 			ActionsManager.actionDirect(nil,"dice",{{
@@ -76,11 +73,6 @@ function fpProcessDie(sCommand,sDieCode)
 end
 
 function fpBuildThrow(aSource,vTargets,aRoll,bMultiTarget)
-	Debug.chat("fpBuildThrow")
-	Debug.chat("aSource",aSource)
-	Debug.chat("vTargets",vTargets)
-	Debug.chat("aRoll",aRoll)
-	Debug.chat("bMultiTarget",bMultiTarget)
 	local aThrow = {};
 	aThrow.type = aRoll.sType;
 	aThrow.description = aRoll.sDesc;
@@ -96,7 +88,6 @@ function fpBuildThrow(aSource,vTargets,aRoll,bMultiTarget)
 end
 
 function fpOnDiceLanded(oDragData)
-	Debug.chat("fpOnDiceLanded",oDragData)
 	local sDragType = oDragData.getType();
 	local aCustom = oDragData.getCustomData();
 	if GameSystem.actions[sDragType] then
@@ -144,17 +135,10 @@ function fpApplyModifiersToDragSlot(oDragData,i,aSource,bResolveIfNoDice)
 end
 
 function fpSetRollCodesFromDesktop(aSource,aTarget,aRoll)
-	Debug.chat("fpSetRollCodesFromDesktop",aSource,aTarget,aRoll)
 	return;
 end
 
 function fpDieRollResult(aSource,aTarget,aRoll)
-	Debug.chat("fpDieRollResult")
-	Debug.chat("aSource",aSource)
-	Debug.chat("aTarget",aTarget)
-	Debug.chat("aRoll",aRoll)
-
-	Debug.chat("done", aRoll.evalRes.done )
 	if aRoll.evalRes.done then
 		Comm.deliverChatMessage(fpCreateActionMessage(aSource,aRoll));
 	end
@@ -162,7 +146,6 @@ function fpDieRollResult(aSource,aTarget,aRoll)
 end
 
 function fpOnDiceTotal(aMessage)
-	Debug.chat("fpOnDiceTotal",aMessage)
 	local aStrings,_ = StringManager.split(aMessage.type,"|");
 	if aStrings[1] == "normal" then
 		return true,tonumber(aStrings[2]);
@@ -172,10 +155,7 @@ end
 
 
 function fpPostRoll(aSource,aRoll)
-	Debug.chat("fpPostRoll")
-	Debug.chat("aSource",aSource)
-	Debug.chat("aRoll",aRoll)
-	local evalRes = DicePoolEvaluator.eval(aRoll.evaluator, aRoll.aDice)
+	local evalRes = DiceRollEvaluator.eval(aRoll.evaluator, aRoll.aDice)
 	if not evalRes.done then
 		-- This is overwriting the old obj which we return. Should clone it
 		local newRoll = aRoll
@@ -187,24 +167,24 @@ function fpPostRoll(aSource,aRoll)
 end
 
 function fpCreateActionMessage(aSource,aRoll)
-	Debug.chat("fpCreateActionMessage")
-	Debug.chat("aSource",aSource)
-	Debug.chat("aRoll",aRoll)
 	local aMessage = ChatManager.createBaseMessage(aSource,aRoll.sUser);
 	aMessage.text = aMessage.text .. aRoll.sDesc;
 	aMessage.dice = {}
+	aMessage.type = "normal|" .. aRoll.evalRes.result
 	for i,d in ipairs(aRoll.evalRes.diceHistory) do
 		local sides = d.type:sub(2)
 		local x = { result = d.result, type = d.type }
 
-		if (d.flags.exploded) then
+		if (d.flags.discarded) then
+			x.type = "r" .. sides
+		elseif (d.flags.exploded) then
 			x.type = "p" .. sides
 		end
 
 		table.insert(aMessage.dice, x)
 	end
 	aMessage.diemodifier = aRoll.nMod;
-	aMessage.dicedisplay = 0
+	aMessage.dicedisplay = 1
 	return aMessage;
 end
 
@@ -221,15 +201,74 @@ function repeatN(n,x)
 	return out
 end
 
-DicePoolEvaluator = {}
+DiceRollEvaluator = {}
+function DiceRollEvaluator.eval(self,newResults)
+	-- because we can't call setmetatable and use inheritance in FG, lets just do 
+	-- a dumb dispatch to the sub evaluator based on the type.
+	-- We don't want to just stash the function in our table at construction, because
+	-- that messes up our tests because those functions are now part of the equality
+	-- checks that we want to do. This is a necessary ugliness to make the tests nice.
+	local t = string.upper(self.type:sub(1,1)) .. self.type:sub(2)
+	local evaluator = DiceRollEvaluator["_eval" .. t]
+	assert(
+		type(evaluator) == "function",
+		"Invalid Evaluator type. DiceRollEvaluator." .. t .. " is not a function."
+	)
+	return evaluator(self,newResults)
+end
+
+function DiceRollEvaluator.add(evaluators)
+	return {
+		type = "add",
+		pendingEvaluators = evaluators,
+		doneEvaluators = {}
+	}
+end
+
+function DiceRollEvaluator._evalAdd(self, newResults)
+	local newRolls = {}
+	local remainingDice = newResults
+	local pendingI = 1
+	while pendingI <= #self.pendingEvaluators do
+		local e = self.pendingEvaluators[pendingI]
+		local thisRes = DiceRollEvaluator.eval(e, remainingDice)
+		remainingDice = thisRes.diceResultsRemaining
+
+		if (thisRes.done) then
+			table.insert(self.doneEvaluators, { evaluator = e, result = thisRes })
+			table.remove(self.pendingEvaluators,pendingI)
+		else
+			pendingI = pendingI + 1
+			for _,v in ipairs(thisRes.newRolls) do
+				table.insert(newRolls, v)
+			end
+		end
+	end
+
+	if #self.pendingEvaluators > 0 then
+		return { done = false, newRolls = newRolls, diceResultsRemaining = remainingDice }
+	else
+		local result = 0
+		local diceHistory = {}
+		for _,ev in ipairs(self.doneEvaluators) do
+			result = result + ev.result.result
+			for _,dh in ipairs(ev.result.diceHistory) do
+				table.insert(diceHistory, dh)
+			end
+		end
+		return { done = true, result = result, diceHistory = diceHistory, diceResultsRemaining = remainingDice }
+	end
+end
+
 -- TODO: The exploding in the O.G UDR is more featured than this, but it will
 -- be easy enough to tweak later
 -- TODO: We need to limit the possible dice to the ruleset dice instead of the YOLO approach here
 -- TODO: We will also need to split this concept up once we support {4d4!,6d6!}kt7s5
-function DicePoolEvaluator.new(num,sides,isExploding,kN,tN,sN)
+function DiceRollEvaluator.dicePool(num,sides,isExploding,kN,tN,sN)
 	local dieType = "d" .. string.format("%.0f",sides)
 	local queued = repeatN(num,dieType)
 	local o = {
+		type = "dicePool",
 		num = num,
 		sides = sides,
 		isExploding = isExploding,
@@ -243,7 +282,7 @@ function DicePoolEvaluator.new(num,sides,isExploding,kN,tN,sN)
 	return o
 end
 
-function DicePoolEvaluator.eval(self,newResults)
+function DiceRollEvaluator._evalDicePool(self,newResults)
 	-- If this the first evaluation, then we better send off the queued dice for rolling
 	if #self.queued > 0 then
 		local toQueue = self.queued
@@ -251,7 +290,7 @@ function DicePoolEvaluator.eval(self,newResults)
 			self.pending[i] = DieResult.new(self.queued[i])
 		end
 		self.queued = {}
-		return { done = false, newRolls = toQueue }
+		return { done = false, newRolls = toQueue, diceResultsRemaining = {} }
 	else
 		if #self.pending > #newResults then
 			error(
@@ -291,15 +330,33 @@ function DicePoolEvaluator.eval(self,newResults)
 			end
 		end
 
+		local remainingDice = {}
+		for i=newResultsI, #newResults do
+			table.insert(remainingDice,newResults[i])
+		end
+
 		if #self.pending > 0 then
-			return { done = false, newRolls = newQueue }
+			return { done = false, newRolls = newQueue, diceResultsRemaining = remainingDice }
 		else
-			-- TODO: Keep and Target stuff goes here
+			table.sort(self.results, function (r1,r2) return r1.result > r2.result  end)
+			local keep = self.keepNum or #self.results
 			local sum = 0
-			for i,v in ipairs(self.results) do
-				sum = sum + v.result
+			for i=1,keep do
+				sum = sum + self.results[i].result
+				if self.keepNum ~= nil then
+					self.results[i].flags.kept = true
+				end
 			end
-			return { done = true, result = sum, diceHistory = self.results }
+			for i=keep+1, #self.results do
+				self.results[i].flags.discarded = true
+			end
+			-- TODO: Targets and Successes
+			return { 
+				done = true,
+				result = sum,
+				diceHistory = self.results,
+				diceResultsRemaining = remainingDice
+			}
 		end
 	end
 end
@@ -360,19 +417,22 @@ function DiceRollParser.dicePool()
 		Parser.optional(DiceRollParser.target()),
 		Parser.optional(DiceRollParser.success()),
 		function (n,d,k,t,s)
-			return DicePoolEvaluator.new(n,d.side,d.exploding,k,t,s)
+			return DiceRollEvaluator.dicePool(n,d.side,d.exploding,k,t,s)
 		end
 	)
 end
 
-function DiceRollParser.poolFn()
+-- This is just a very simplistic add function that doesn't match our arithmetic
+-- grammar but lets us test some degree of nesting of evaluators with a syntax
+-- that doesn't force us to add a negative lookahead combinator like a + b does.
+function DiceRollParser.add()
 	return Parser.lift4(
 		Parser.oneOf({Parser.lit("add"),Parser.lit("sub")}),
 		Parser.litChar("("),
 		Parser.oneOrMany(DiceRollParser.dicePool(),Parser.litChar(",")),
 		Parser.litChar(")"),
-		function (fnName,_,exprs,_)
-			return { type = "poolFn", name = fnName, expressions = exprs }
+		function (_,_,exprs,_)
+			return DiceRollEvaluator.add(exprs)
 		end
 	)
 end
@@ -387,8 +447,8 @@ function DiceRollParser.expression()
 		-- This means that we wont match roll20, but it'll be much easier on us
 		-- and should still meet our needs
 		{ 
-			{ desc = "dicePool", parser = Parser.lazy(DiceRollParser.dicePool) }
-		--	{ desc = "poolFn", parser = Parser:lazy(DiceRollParser.poolFn) },
+			{ desc = "dicePool", parser = Parser.lazy(DiceRollParser.dicePool) },
+			{ desc = "add", parser = Parser.lazy(DiceRollParser.add) },
 		}
 	)
 end
@@ -623,18 +683,22 @@ function Parser.oneOfChars(chars)
 	return Parser.matchChar(function (thisChar)
 		local strChars = ""
 		local isFirst = true
-		for _, value in pairs(chars) do
-			if string.match(thisChar, value) then return nil end
-			local sep
-			if isFirst then 
-				sep = "" 
-				isFirst = false
-			else 
-				sep = "," 
+		if (thisChar ~= nil) then
+			for _, value in pairs(chars) do
+				if string.match(thisChar, value) then return nil end
+				local sep
+				if isFirst then 
+					sep = "" 
+					isFirst = false
+				else 
+					sep = "," 
+				end
+				strChars = strChars .. sep .. value
 			end
-			strChars = strChars .. sep .. value
+			return "Got char '" .. thisChar .. "'. Expected one of {" .. strChars .. "}."
+		else
+			return "Expected one of {" .. strChars .. "} but hit EOF."
 		end
-	return "Got char '" .. thisChar .. "'. Expected one of {" .. strChars .. "}."
 	end)
 end
 

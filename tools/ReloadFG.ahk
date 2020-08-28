@@ -11,4 +11,4 @@ if WinExist("Fantasy Grounds")
 F2::
 if WinExist("Fantasy Grounds")
     WinActivate 
-    Send, /die 2d4{ENTER}
+    Send, /die add(3d6{!},5d8{!}k){ENTER}
