@@ -21,7 +21,7 @@ describe("lsUDRDieManager", function()
 					[3] = {{
 					sType = "dice",
 					sDesc = "",
-					aDice = repeatN(6,"d6"),
+					aDice = ArrayUtils.repeatN(6,"d6"),
 					nMod = 0,
 					evaluator = {
 						type = "dicePool",
@@ -29,9 +29,8 @@ describe("lsUDRDieManager", function()
 						sides = 6.0,
 						isExploding = true,
 						keepNum = 1,
-						successNum = 5.0,
-						targetNum = 7.0,
-						pending = repeatN(6, DieResult.new("d6")),
+						target = { type = "poolTarget", raiseNum = 5.0, targetNum = 7.0 },
+						pending = ArrayUtils.repeatN(6, DieManager.DieResult.new("d6")),
 						queued = {},
 						results = {},
 					}

@@ -288,7 +288,7 @@ end
 -- be easy enough to tweak later
 -- TODO: We need to limit the possible dice to the ruleset dice instead of the YOLO approach here
 -- TODO: We will also need to split this concept up once we support {4d4!,6d6!}kt7s5
-function DiceRollEvaluator.dicePool(num,sides,isExploding,kN,tN,sN)
+function DiceRollEvaluator.dicePool(num,sides,isExploding,kN,target)
 	local dieType = "d" .. string.format("%.0f",sides)
 	local queued = ArrayUtils.repeatN(num,dieType)
 	local o = {
@@ -297,8 +297,7 @@ function DiceRollEvaluator.dicePool(num,sides,isExploding,kN,tN,sN)
 		sides = sides,
 		isExploding = isExploding,
 		keepNum = kN,
-		targetNum = tN,
-		successNum = sN,
+		target = target,
 		queued = queued,
 		pending = {},
 		results = {}
@@ -364,9 +363,10 @@ function DiceRollEvaluator._evalDicePool(self,newResults)
 		else
 			table.sort(self.results, function (r1,r2) return r1.result > r2.result  end)
 			local keep = self.keepNum or #self.results
-			local sum = 0
+			local out = 0
+
 			for i=1,keep do
-				sum = sum + self.results[i].result
+				out = out + self.results[i].result
 				if self.keepNum ~= nil then
 					self.results[i].flags.kept = true
 				end
@@ -375,15 +375,56 @@ function DiceRollEvaluator._evalDicePool(self,newResults)
 				self.results[i].flags.discarded = true
 			end
 
-			-- TODO: Targets and Successes
+			if (self.target) then
+				-- TODO: This assumes it can never have rolls. This is ugly. We need to make 
+				-- recursive evaluators more automatic.
+				out = DiceRollEvaluator.eval(self.target,{}).res(out)
+				-- If we have a success, then mark the kept dice as successes
+				if out ~= nil then
+					for _,x in ipairs(self.results) do
+						if (x.flags.kept) then
+							x.flags.success = true
+						end
+					end
+				end
+			end
+
 			return { 
 				done = true,
-				result = sum,
+				result = out,
 				diceHistory = self.results,
 				diceResultsRemaining = remainingDice
 			}
 		end
 	end
+end
+
+function DiceRollEvaluator.poolTarget(targetNum,raiseNum)
+	local o = {
+		type = "poolTarget",
+		targetNum = targetNum,
+		raiseNum = raiseNum
+	}
+	return o
+end
+
+function DiceRollEvaluator._evalPoolTarget(self,newResults)
+	-- We don't allow any recursive things in poolTargets yet (if ever), so always return
+	-- the function
+	return {
+		done = true,
+		remainingDice = newResults,
+		res = function(poolRes)
+			local targetRes = poolRes - self.targetNum
+			if (targetRes < 0) then
+				return nil
+			elseif (self.raiseNum) then
+				return 1 + math.floor(targetRes/self.raiseNum) -- Successes
+			else
+				return targetRes
+			end
+		end
+	}
 end
 
 DieResult = {}
@@ -423,26 +464,32 @@ function DiceRollParser.keep()
 end
 
 function DiceRollParser.target()
-	return Parser.andThen(Parser.litChar("t"), function (_)
-		return Parser.number() -- TODO: Allow expressions for the kn val?
-	end)
+	-- TODO: Less than and greater than targets
+	-- TODO: Raises don't make sense with less than targets!
+	return Parser.lift3(
+		Parser.litChar("t"),
+		Parser.number(),
+		Parser.optional(DiceRollParser.raises()),
+		function (_,t,r)
+			return DiceRollEvaluator.poolTarget(t,r)
+		end
+	)
 end
 
-function DiceRollParser.success()
+function DiceRollParser.raises()
 	return Parser.andThen(Parser.litChar("s"), function (_)
 		return Parser.number() -- TODO: Allow expressions for the kn val?
 	end)
 end
 
 function DiceRollParser.dicePool()
-	return Parser.lift5(
+	return Parser.lift4(
 		Parser.number(),
 		DiceRollParser.die(),
 		Parser.optional(DiceRollParser.keep()),
 		Parser.optional(DiceRollParser.target()),
-		Parser.optional(DiceRollParser.success()),
-		function (n,d,k,t,s)
-			return DiceRollEvaluator.dicePool(n,d.side,d.exploding,k,t,s)
+		function (n,d,k,t)
+			return DiceRollEvaluator.dicePool(n,d.side,d.exploding,k,t)
 		end
 	)
 end

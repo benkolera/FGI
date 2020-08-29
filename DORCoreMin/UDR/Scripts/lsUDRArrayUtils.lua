@@ -21,7 +21,7 @@ end
 -- > map({1,2,3},fn(x) return x * 2 end)
 -- {2,4,6}
 function map(arr,fn)
-	local out = {}	
+	local out = {}
 	for _,v in ipairs(arr) do
 		table.insert(out,fn(v))
 	end
