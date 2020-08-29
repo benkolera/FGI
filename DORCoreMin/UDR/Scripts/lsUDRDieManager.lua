@@ -201,12 +201,14 @@ function fpCreateActionMessage(aSource,aRoll)
 	aMessage.text = aMessage.text .. aRoll.sDesc;
 	aMessage.dice = {}
 	aMessage.type = "normal|" .. aRoll.evalRes.result
-	for i,d in ipairs(aRoll.evalRes.diceHistory) do
+	for _,d in ipairs(aRoll.evalRes.diceHistory) do
 		local sides = d.type:sub(2)
 		local x = { result = d.result, type = d.type }
 
 		if (d.flags.discarded) then
 			x.type = "r" .. sides
+		elseif (d.flags.success) then
+			x.type = "g" .. sides
 		elseif (d.flags.exploded) then
 			x.type = "p" .. sides
 		end

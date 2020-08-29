@@ -28,6 +28,16 @@ function map(arr,fn)
 	return out
 end
 
+--- shallow copies an array
+-- @param arr
+function copy(arr)
+	local out = {}
+	for _,v in ipairs(arr) do
+		table.insert(out,v)
+	end
+	return out
+end
+
 --- Joins two arrays together
 -- @param arr1
 -- @param arr2
@@ -35,10 +45,7 @@ end
 -- > join({1,2,3},{4,5})
 -- {1,2,3,4,5}
 function join(arr1,arr2)
-	local out = {}
-	for _,v in ipairs(arr1) do
-		table.insert(out,v)
-	end
+	local out = copy(arr1)
 	for _,v in ipairs(arr2) do
 		table.insert(out,v)
 	end
