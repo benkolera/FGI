@@ -5,6 +5,7 @@
 	"editor.renderWhitespace": "all", 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"editor.rulers": [100],
 	"Lua.runtime.version": "Lua 5.1"
 =======
@@ -12,4 +13,8 @@
 =======
 	"editor.rulers": [100]
 >>>>>>> Ok, a barely working new setup
+=======
+	"editor.rulers": [100],
+	"Lua.runtime.version": "Lua 5.1"
+>>>>>>> Refactor things into modules!
 }

@@ -1,8 +1,12 @@
+
 describe("DiceRollParser", function ()
-	require("lsUDRDieManager")
+	require("testlib.require")
+	requireFGModule("Parser","lsUDRParser")
+	requireFGModule("ArrayUtils","lsUDRArrayUtils")
+	requireFGModule("DieManager","lsUDRDieManager")
 
 	it("should evaluate a dice pool",function ()
-		local e = DiceRollEvaluator.dicePool(2,4,false,nil,nil,nil)
+		local e = DieManager.DiceRollEvaluator.dicePool(2,4,false,nil,nil,nil)
 		assert.are.same(
 			{ done = false, newRolls = {"d4","d4"}, diceResultsRemaining = {} },
 			DiceRollEvaluator.eval(e,{})
@@ -17,7 +21,7 @@ describe("DiceRollParser", function ()
 				},
 				diceResultsRemaining = { { type = "d6", result = 1 }}
 			},
-			DiceRollEvaluator.eval(e,{
+			DieManager.DiceRollEvaluator.eval(e,{
 				{ type="d4", result=3 }, 
 				{ type="d4", result=4 }, 
 				{ type="d6", result=1 } 
@@ -71,13 +75,16 @@ describe("DiceRollParser", function ()
 end)
 
 describe("DiceRollParser", function ()
-	require("lsUDRDieManager")
 	_G.inspect = require("inspect")
+	require('testlib.require')
+	requireFGModule("ArrayUtils","lsUDRArrayUtils")
+	requireFGModule("Parser","lsUDRParser")
+	requireFGModule("DieManager","lsUDRDieManager")
 
 	it("expression should parse 3d6!",function ()
-		local res = DiceRollParser.expression().parse("3d6!")
+		local res = DieManager.DiceRollParser.expression().parse("3d6!")
 		assert.are.same(
-			ParserResult.ok(
+			Parser.Result.ok(
 				{
 					type = "dicePool",
 					num = 3,
@@ -94,7 +101,7 @@ describe("DiceRollParser", function ()
 			),
 			res
 		)
-		DiceRollEvaluator.eval(res.res,{})
+		DieManager.DiceRollEvaluator.eval(res.res,{})
 
 		local dice = {
 			{type="d6", result=3, flags={ exploded = false }},
@@ -108,13 +115,13 @@ describe("DiceRollParser", function ()
 				diceHistory = dice,
 				diceResultsRemaining = {}
 			},
-			DiceRollEvaluator.eval(res.res,dice)
+			DieManager.DiceRollEvaluator.eval(res.res,dice)
 		)
 	end)
 	it("expression should parse add(3d6!,5d12!k)",function ()
-		local res = DiceRollParser.expression().parse("add(3d6!,5d12!k)")
+		local res = DieManager.DiceRollParser.expression().parse("add(3d6!,5d12!k)")
 		assert.are.same(
-			ParserResult.ok(
+			Parser.Result.ok(
 				{
 					type = "add",
 					pendingEvaluators = {
@@ -126,7 +133,7 @@ describe("DiceRollParser", function ()
 							keepNum = nil,
 							targetNum = nil,
 							successNum = nil,
-							queued = repeatN(3,"d6"),
+							queued = ArrayUtils.repeatN(3,"d6"),
 							pending = {},
 							results = {}
 						},
@@ -138,7 +145,7 @@ describe("DiceRollParser", function ()
 							keepNum = 1,
 							targetNum = nil,
 							successNum = nil,
-							queued = repeatN(5,"d12"),
+							queued = ArrayUtils.repeatN(5,"d12"),
 							pending = {},
 							results = {}
 						}
@@ -155,7 +162,7 @@ describe("DiceRollParser", function ()
 				newRolls = { "d6", "d6", "d6", "d12", "d12", "d12", "d12", "d12" },
 				diceResultsRemaining = {}
 			},
-			DiceRollEvaluator.eval(res.res,{})
+			DieManager.DiceRollEvaluator.eval(res.res,{})
 		)
 		assert.are.same(
 			{ 
@@ -163,7 +170,7 @@ describe("DiceRollParser", function ()
 				newRolls = { "d6", "d12" },
 				diceResultsRemaining = { { type = "d8", result = 8 }}
 			},
-			DiceRollEvaluator.eval(res.res,{
+			DieManager.DiceRollEvaluator.eval(res.res,{
 				{ type="d6", result = 3 },
 				{ type="d6", result = 2 },
 				{ type="d6", result = 6 },
@@ -191,7 +198,7 @@ describe("DiceRollParser", function ()
 				},
 				diceResultsRemaining = {}
 			},
-			DiceRollEvaluator.eval(res.res,{
+			DieManager.DiceRollEvaluator.eval(res.res,{
 				{ type="d6", result = 4 },
 				{ type="d12", result = 5 }
 			})

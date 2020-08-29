@@ -4,11 +4,11 @@ SendMode Input
 SetWorkingDir %A_ScriptDir% 
 
 F1::
-if WinExist("Fantasy Grounds")
+if WinExist("ahk_class HORIZON")
     WinActivate 
     Send, /reload{ENTER}
 
 F2::
-if WinExist("Fantasy Grounds")
+if WinExist("ahk_class HORIZON")
     WinActivate 
     Send, /die add(3d6{!},5d8{!}k){ENTER}

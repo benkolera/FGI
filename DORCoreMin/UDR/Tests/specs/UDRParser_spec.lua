@@ -1,54 +1,55 @@
-describe("lsUDRDieManager.Parser", function()
-	require("lsUDRDieManager")
+describe("lsParser", function()
+	require("testlib.require")
+	requireFGModule("Parser","lsUDRParser")
 
 	describe("litChar", function()
 		it("should parse a literal", function ()
 			local res = Parser.litChar("b").parse("booyah")
-			assert.are.same(ParserResult.ok("b","ooyah"), res)
+			assert.are.same(Parser.Result.ok("b","ooyah"), res)
 		end)
 		it("should error on the wrong literal", function ()
 			local res = Parser.litChar("o").parse("booyah")
-			assert.are.same(ParserResult.err("Got char 'b'. Expected 'o'."), res)
+			assert.are.same(Parser.Result.err("Got char 'b'. Expected 'o'."), res)
 		end)
 	end)
 
 	describe("lit", function()
 		it("should parse a literal", function ()
 			local res = Parser.lit("boo").parse("booyah")
-			assert.are.same(ParserResult.ok("boo","yah"), res)
+			assert.are.same(Parser.Result.ok("boo","yah"), res)
 		end)
 		it("should error on the wrong literal", function ()
 			local res = Parser.lit("ooy").parse("booyah")
-			assert.are.same(ParserResult.err("Got 'booyah'. Expected 'ooy'."), res)
+			assert.are.same(Parser.Result.err("Got 'booyah'. Expected 'ooy'."), res)
 		end)
 	end)
 
 	describe("digit", function()
 		it("should parse a digit", function ()
 			local res = Parser.digit().parse("133t")
-			assert.are.same(ParserResult.ok(1,"33t"), res)
+			assert.are.same(Parser.Result.ok(1,"33t"), res)
 		end)
 		it("should error on the wrong literal", function ()
 			local res = Parser.digit().parse("booyah")
-			assert.are.same(ParserResult.err("Got char 'b'. Expected one of {0,1,2,3,4,5,6,7,8,9}."), res)
+			assert.are.same(Parser.Result.err("Got char 'b'. Expected one of {0,1,2,3,4,5,6,7,8,9}."), res)
 		end)
 	end)
 
 	describe("oneOrMany(digit)", function()
 		it("should parse digits but not die trailing non digits", function ()
 			local res = Parser.oneOrMany(Parser.digit()).parse("133t")
-			assert.are.same(ParserResult.ok({1,3,3},"t"), res)
+			assert.are.same(Parser.Result.ok({1,3,3},"t"), res)
 		end)
 		it("should error on a nondigit first char", function ()
 			local res = Parser.oneOrMany(Parser.digit()).parse("booyah")
-			assert.are.same(ParserResult.err("Got char 'b'. Expected one of {0,1,2,3,4,5,6,7,8,9}."), res)
+			assert.are.same(Parser.Result.err("Got char 'b'. Expected one of {0,1,2,3,4,5,6,7,8,9}."), res)
 		end)
 	end)
 
 	describe("number", function()
 		it("should parse digits but not die trailing non digits", function ()
 			local res = Parser.number().parse("123d12")
-			assert.are.same(ParserResult.ok(123,"d12"), res)
+			assert.are.same(Parser.Result.ok(123,"d12"), res)
 		end)
 	end)
 
@@ -61,10 +62,10 @@ describe("lsUDRDieManager.Parser", function()
 					return Parser.litChar('b')
 				end
 			end)
-			assert.are.same(ParserResult.ok("a",""),testParser.parse("1a"))
-			assert.are.same(ParserResult.err("Got char 'b'. Expected 'a'."),testParser.parse("1b"))
-			assert.are.same(ParserResult.ok("b",""),testParser.parse("2b"))
-			assert.are.same(ParserResult.err("Got char 'a'. Expected 'b'."),testParser.parse("5a"))
+			assert.are.same(Parser.Result.ok("a",""),testParser.parse("1a"))
+			assert.are.same(Parser.Result.err("Got char 'b'. Expected 'a'."),testParser.parse("1b"))
+			assert.are.same(Parser.Result.ok("b",""),testParser.parse("2b"))
+			assert.are.same(Parser.Result.err("Got char 'a'. Expected 'b'."),testParser.parse("5a"))
 		end)
 		it("lift3 should parse a dice set", function ()
 			local res = Parser.lift3(
@@ -75,11 +76,11 @@ describe("lsUDRDieManager.Parser", function()
 					return { num = num, sides = sides }
 				end
 			).parse("5d12")
-			assert.are.same(ParserResult.ok({ num = 5, sides = 12 },""), res)
+			assert.are.same(Parser.Result.ok({ num = 5, sides = 12 },""), res)
 		end)
 		it("lift{1-5} should do their thing", function ()
 			assert.are.same(
-				ParserResult.ok({"a","b"}, ""),
+				Parser.Result.ok({"a","b"}, ""),
 				Parser.lift2(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -87,7 +88,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("ab")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c"}, ""),
+				Parser.Result.ok({"a","b","c"}, ""),
 				Parser.lift3(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -96,7 +97,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("abc")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c","d"}, ""),
+				Parser.Result.ok({"a","b","c","d"}, ""),
 				Parser.lift4(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -106,7 +107,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("abcd")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c","d","e"}, ""),
+				Parser.Result.ok({"a","b","c","d","e"}, ""),
 				Parser.lift5(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -117,7 +118,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("abcde")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c","d","e","f"}, ""),
+				Parser.Result.ok({"a","b","c","d","e","f"}, ""),
 				Parser.lift6(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -129,7 +130,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("abcdef")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c","d","e","f","g"}, ""),
+				Parser.Result.ok({"a","b","c","d","e","f","g"}, ""),
 				Parser.lift7(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -142,7 +143,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("abcdefg")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c","d","e","f","g","h"}, ""),
+				Parser.Result.ok({"a","b","c","d","e","f","g","h"}, ""),
 				Parser.lift8(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -156,7 +157,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("abcdefgh")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c","d","e","f","g","h","i"}, ""),
+				Parser.Result.ok({"a","b","c","d","e","f","g","h","i"}, ""),
 				Parser.lift9(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -171,7 +172,7 @@ describe("lsUDRDieManager.Parser", function()
 				).parse("abcdefghi")
 			)
 			assert.are.same(
-				ParserResult.ok({"a","b","c","d","e","f","g","h","i","j"}, ""),
+				Parser.Result.ok({"a","b","c","d","e","f","g","h","i","j"}, ""),
 				Parser.lift10(
 					Parser.litChar("a"),
 					Parser.litChar("b"),
@@ -193,14 +194,14 @@ describe("lsUDRDieManager.Parser", function()
 		it("parses input if it matches", function ()
 			local p = Parser.optional(Parser.litChar("!"))
 			assert.are.same(
-				ParserResult.ok("!","woo"),
+				Parser.Result.ok("!","woo"),
 				p.parse("!woo")
 			)
 		end)
 		it("leaves input if it doesn't match", function ()
 			local p = Parser.optional(Parser.litChar("!"))
 			assert.are.same(
-				ParserResult.ok(nil,"woo"),
+				Parser.Result.ok(nil,"woo"),
 				p.parse("woo")
 			)
 		end)
@@ -209,7 +210,7 @@ describe("lsUDRDieManager.Parser", function()
 	describe("oneOf", function ()
 		it("should pick the first option", function ()
 			assert.are.same(
-				ParserResult.ok("a",""),
+				Parser.Result.ok("a",""),
 				Parser.oneOf({
 					{desc = "a", parser = Parser.litChar("a") },
 					{desc = "num", parser = Parser.number() }
@@ -218,7 +219,7 @@ describe("lsUDRDieManager.Parser", function()
 		end)
 		it("should pick the second option", function ()
 			assert.are.same(
-				ParserResult.ok(21,""),
+				Parser.Result.ok(21,""),
 				Parser.oneOf({
 					{desc = "a", parser = Parser.litChar("a") },
 					{desc = "num", parser = Parser.number() }
@@ -227,7 +228,7 @@ describe("lsUDRDieManager.Parser", function()
 		end)
 		it("fail gracefully", function ()
 			assert.are.same(
-				ParserResult.err("Could not parse zzzzz. Expecting on of {An A:Got char 'z'. Expected 'a'.,A Number:Got char 'z'. Expected one of {0,1,2,3,4,5,6,7,8,9}.}."),
+				Parser.Result.err("Could not parse zzzzz. Expecting on of {An A:Got char 'z'. Expected 'a'.,A Number:Got char 'z'. Expected one of {0,1,2,3,4,5,6,7,8,9}.}."),
 				Parser.oneOf({
 					{desc = "An A", parser = Parser.litChar("a") },
 					{desc = "A Number", parser = Parser.number() }
@@ -236,7 +237,7 @@ describe("lsUDRDieManager.Parser", function()
 		end)
 		it("should work with sep", function ()
 			assert.are.same(
-				ParserResult.ok({1,2,3},""),
+				Parser.Result.ok({1,2,3},""),
 				Parser.oneOrMany(Parser.number(),Parser.litChar(",")).parse("1,2,3")
 			)
 		end)
@@ -245,7 +246,7 @@ describe("lsUDRDieManager.Parser", function()
 	describe("lazy", function ()
 		it("should look like a normal parser", function ()
 			assert.are.same(
-				ParserResult.ok(123,""),
+				Parser.Result.ok(123,""),
 				Parser.lazy(function () return Parser.number() end).parse("123")
 			)
 		end)	

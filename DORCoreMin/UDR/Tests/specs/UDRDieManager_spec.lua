@@ -1,5 +1,8 @@
 describe("lsUDRDieManager", function()
-	require("lsUDRDieManager")
+	require('testlib.require')
+	requireFGModule("ArrayUtils","lsUDRArrayUtils")
+	requireFGModule("Parser","lsUDRParser")
+	requireFGModule("DieManager","lsUDRDieManager")
 	require("mocks.StringManager")
 	require("mocks.Debug")
 
@@ -11,7 +14,7 @@ describe("lsUDRDieManager", function()
 		local actionSpy = spy.on(ActionsManager, "actionDirect")
 
 		it("6d6!kt7s5", function ()
-			fpProcessDie(nil,"6d6!kt7s5")
+			DieManager.fpProcessDie(nil,"6d6!kt7s5")
 			assert.are.same(
 				{ 
 					[2] = "dice", 
