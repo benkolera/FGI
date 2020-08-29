@@ -14,6 +14,7 @@ function requireFGModule(name, module)
 	-- We're stuck lua 5.1 cos of fantasy grounds, so we don't have package.searchpath
 	local loader = package.loaders[2](module)
 	if (type(loader) == "function") then
+		-- run the loader in context of this table that we just created and installed
 		setfenv(loader, e)
 		loader()
 	else 
