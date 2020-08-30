@@ -14,7 +14,7 @@ describe("DiceRollParser", function ()
 		assert.are.same(
 			{ 
 				done = true, 
-				result = 7, 
+				result = DieManager.PoolResult.sum(7,true), 
 				diceHistory = {
 					{ type = "d4", result = 4, flags = { exploded = false } },
 					{ type = "d4", result = 3, flags = { exploded = false } },
@@ -60,7 +60,7 @@ describe("DiceRollParser", function ()
 		assert.are.same(
 			{ 
 				done = true, 
-				result = 12, 
+				result = DieManager.PoolResult.sum(12), 
 				diceHistory = {
 					{ type = "d4", result = 9, flags = { exploded = true } },
 					{ type = "d4", result = 3, flags = { exploded = false } },
@@ -74,12 +74,32 @@ describe("DiceRollParser", function ()
 	end)
 end)
 
-describe("DiceRollParser", function ()
+describe("DiceRollEvaluation", function ()
 	_G.inspect = require("inspect")
 	require('testlib.require')
 	requireFGModule("ArrayUtils","lsUDRArrayUtils")
 	requireFGModule("Parser","lsUDRParser")
 	requireFGModule("DieManager","lsUDRDieManager")
+
+	it("Results should add", function ()
+		local PoolResult = DieManager.PoolResult
+		assert.are.same(
+			PoolResult.sum(7),
+			PoolResult.add(PoolResult.zero(),PoolResult.sum(7))
+		)
+		assert.are.same(
+			PoolResult.sum(12),
+			PoolResult.add(PoolResult.sum(5),PoolResult.sum(7))
+		)
+		assert.are.same(
+			PoolResult.successes(7,true,1),
+			PoolResult.add(PoolResult.zero(),PoolResult.successes(7,true,1))
+		)
+		assert.are.same(
+			PoolResult.successes(10,true,2),
+			PoolResult.add(PoolResult.successes(3,true,1),PoolResult.successes(7,true,1))
+		)
+	end)
 
 	it("expression should parse 3d6!",function ()
 		local res = DieManager.DiceRollParser.expression().parse("3d6!")
@@ -110,15 +130,15 @@ describe("DiceRollParser", function ()
 		assert.are.same(
 			{ 
 				done=true,
-				result = 9, 
+				result = DieManager.PoolResult.sum(9), 
 				diceHistory = dice,
 				diceResultsRemaining = {}
 			},
 			DieManager.DiceRollEvaluator.eval(res.res,dice)
 		)
 	end)
-	it("expression should parse add(3d6!,5d12!k)",function ()
-		local res = DieManager.DiceRollParser.expression().parse("add(3d6!,5d12!k)")
+	it("expression should parse 3d6!+5d12!k",function ()
+		local res = DieManager.DiceRollParser.expression().parse("3d6!+5d12!k")
 		assert.are.same(
 			Parser.Result.ok(
 				{
@@ -182,7 +202,7 @@ describe("DiceRollParser", function ()
 		assert.are.same(
 			{ 
 				done = true,
-				result = 32,
+				result = DieManager.PoolResult.sum(32),
 				diceHistory = {
 					{ type = "d6", result = 10, flags = { exploded = true } },
 					{ type = "d6", result = 3, flags = { exploded = false } },
@@ -245,7 +265,7 @@ describe("DiceRollParser", function ()
 		assert.are.same(
 			{ 
 				done = true,
-				result = 3,
+				result = DieManager.PoolResult.successes(17,true,3),
 				diceHistory = {
 					{ type = "d12", result = 17, flags = { exploded = true, kept = true, success = true } },
 					{ type = "d12", result = 11, flags = { exploded = false, discarded = true } },

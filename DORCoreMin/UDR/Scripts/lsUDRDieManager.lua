@@ -12,8 +12,8 @@
 
 --[[  
 	Todo List
-- [ ] targets and successes
-- [ ] make the negative lookahead combinator so that we can do `3d6!+5d8!k` . Do + at first only
+- [x] targets and successes
+- [x] make it so we can do `3d6!+5d8!k` instead of add(x,y)
 - [ ] Handle the modifiers
 - [ ] Test that dragging of sheet with a modifier works (in star frontiers we do rolls like `5d10` with a 3 modifier)
 - [ ] handle percentage dice and d100 (no number)
@@ -200,7 +200,7 @@ function fpCreateActionMessage(aSource,aRoll)
 	local aMessage = ChatManager.createBaseMessage(aSource,aRoll.sUser);
 	aMessage.text = aMessage.text .. aRoll.sDesc;
 	aMessage.dice = {}
-	aMessage.type = "normal|" .. aRoll.evalRes.result
+	aMessage.type = "normal|" .. aRoll.evalRes.result.poolTotal
 	for _,d in ipairs(aRoll.evalRes.diceHistory) do
 		local sides = d.type:sub(2)
 		local x = { result = d.result, type = d.type }
@@ -225,6 +225,51 @@ end
 -- parser combinators to be kept out of this section.
 -------------------------------------------------------------------------------
 
+-- TODO: This structure is going to need some work as we do and decide on the 
+-- output of the chatbox when raises happen. What do we want to print if we're
+-- adding two pools that have raises? Does this even make sense?
+PoolResult = {}
+function PoolResult.new(r1)
+	r1.__index = PoolResult
+	return r1
+end
+
+function PoolResult.add(r1,r2)
+	if r1.__index ~= PoolResult or r2.__index ~= PoolResult then
+		error("Trying to PoolResult.add() things that aren't a PoolResult: " .. type(r1) .. " " .. type(r2))
+	end
+
+	if (r1.type == "zero") then
+		return r2
+	elseif (r1.type == "sum" and r2.type == "sum") then
+		return PoolResult.sum(r1.poolTotal + r2.poolTotal, r1.success and r2.success)
+	elseif (r1.type == "successes" and r2.type == "successes") then
+		-- TODO: Does this even make sense? Dunno, current grammar spec allows it
+		return PoolResult.successes(
+			r1.poolTotal + r2.poolTotal,
+			r1.success and r2.success,
+			r1.successes + r2.successes
+		)
+	else
+		error(
+			"You have made a dice code that adds pools that return different types of things! " .. 
+			"This isn't your fault, we should exclude this from the parser or figure out what it " ..
+			"means and implement it. :)"
+		)
+	end
+end
+function PoolResult.zero()
+	return PoolResult.new({ type = "zero", poolTotal = 0 })
+end
+function PoolResult.sum(poolTotal, successNilable)
+	local success = true	
+	if (successNilable ~= nil) then success = successNilable end
+	return PoolResult.new({ type = "sum", poolTotal = poolTotal, success = success })
+end
+function PoolResult.successes(poolTotal,success,successes)
+	return PoolResult.new({ type = "successes", poolTotal = poolTotal, success = success, successes = successes })
+end
+
 DiceRollEvaluator = {}
 function DiceRollEvaluator.eval(self,newResults)
 	-- because we can't call setmetatable and use inheritance in FG, lets just do 
@@ -241,10 +286,10 @@ function DiceRollEvaluator.eval(self,newResults)
 	return evaluator(self,newResults)
 end
 
-function DiceRollEvaluator.add(evaluators)
+function DiceRollEvaluator.add(eval1,eval2)
 	return {
 		type = "add",
-		pendingEvaluators = evaluators,
+		pendingEvaluators = {eval1,eval2},
 		doneEvaluators = {}
 	}
 end
@@ -272,10 +317,10 @@ function DiceRollEvaluator._evalAdd(self, newResults)
 	if #self.pendingEvaluators > 0 then
 		return { done = false, newRolls = newRolls, diceResultsRemaining = remainingDice }
 	else
-		local result = 0
+		local result = PoolResult.zero()
 		local diceHistory = {}
 		for _,ev in ipairs(self.doneEvaluators) do
-			result = result + ev.result.result
+			result = PoolResult.add(result,ev.result.result)
 			for _,dh in ipairs(ev.result.diceHistory) do
 				table.insert(diceHistory, dh)
 			end
@@ -363,10 +408,10 @@ function DiceRollEvaluator._evalDicePool(self,newResults)
 		else
 			table.sort(self.results, function (r1,r2) return r1.result > r2.result  end)
 			local keep = self.keepNum or #self.results
-			local out = 0
+			local sum = 0
 
 			for i=1,keep do
-				out = out + self.results[i].result
+				sum = sum + self.results[i].result
 				if self.keepNum ~= nil then
 					self.results[i].flags.kept = true
 				end
@@ -375,23 +420,27 @@ function DiceRollEvaluator._evalDicePool(self,newResults)
 				self.results[i].flags.discarded = true
 			end
 
+			local poolResult
+
 			if (self.target) then
 				-- TODO: This assumes it can never have rolls. This is ugly. We need to make 
 				-- recursive evaluators more automatic.
-				out = DiceRollEvaluator.eval(self.target,{}).res(out)
+				poolResult = DiceRollEvaluator.eval(self.target,{}).res(sum)
 				-- If we have a success, then mark the kept dice as successes
-				if out ~= nil then
+				if poolResult.success then
 					for _,x in ipairs(self.results) do
 						if (x.flags.kept) then
 							x.flags.success = true
 						end
 					end
 				end
+			else
+				poolResult = PoolResult.sum(sum)
 			end
 
 			return { 
 				done = true,
-				result = out,
+				result = poolResult,
 				diceHistory = self.results,
 				diceResultsRemaining = remainingDice
 			}
@@ -416,12 +465,22 @@ function DiceRollEvaluator._evalPoolTarget(self,newResults)
 		remainingDice = newResults,
 		res = function(poolRes)
 			local targetRes = poolRes - self.targetNum
-			if (targetRes < 0) then
-				return nil
-			elseif (self.raiseNum) then
-				return 1 + math.floor(targetRes/self.raiseNum) -- Successes
+			local success = false
+
+			if (targetRes > 0) then
+				success = true
 			else
-				return targetRes
+				targetRes = 0
+			end
+
+			if (self.raiseNum == nil) then
+				return PoolResult.sum(poolRes, success)
+			elseif (self.raiseNum) then
+				local successes = 0
+				if success then
+					successes = 1 + math.floor(targetRes/self.raiseNum)
+				end
+				return PoolResult.successes( poolRes, success, successes )
 			end
 		end
 	}
@@ -494,18 +553,11 @@ function DiceRollParser.dicePool()
 	)
 end
 
--- This is just a very simplistic add function that doesn't match our arithmetic
--- grammar but lets us test some degree of nesting of evaluators with a syntax
--- that doesn't force us to add a negative lookahead combinator like a + b does.
+-- TODO: Add more operators!
 function DiceRollParser.add()
-	return Parser.lift4(
-		Parser.lit("add"),
-		Parser.litChar("("),
-		Parser.oneOrMany(DiceRollParser.dicePool(),Parser.litChar(",")),
-		Parser.litChar(")"),
-		function (_,_,exprs,_)
-			return DiceRollEvaluator.add(exprs)
-		end
+	return Parser.chainOperandsl(
+		DiceRollParser.dicePool(),
+		Parser.map(Parser.litChar("+"),function (_) return DiceRollEvaluator.add end)
 	)
 end
 
@@ -519,8 +571,9 @@ function DiceRollParser.expression()
 		-- This means that we wont match roll20, but it'll be much easier on us
 		-- and should still meet our needs
 		{ 
-			{ desc = "dicePool", parser = Parser.lazy(DiceRollParser.dicePool) },
 			{ desc = "add", parser = Parser.lazy(DiceRollParser.add) },
+			{ desc = "dicePool", parser = Parser.lazy(DiceRollParser.dicePool)
+			},
 		}
 	)
 end

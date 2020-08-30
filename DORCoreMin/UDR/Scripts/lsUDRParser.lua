@@ -140,6 +140,39 @@ function andThen(p, fn)
 	end)
 end
 
+--- This parses a bunch of terms separated by operators and applies the operators
+-- left associatively. This makes our X+Y part of the grammar friendly to our top
+-- down parser.
+-- @param termParser: The parser to parse each term
+-- @param opParser: The parser to grab the operand. Should return a function that takes two terms
+-- @usage
+-- > Parser.chainOperandsl(
+--   Parser.number(),
+--     Parser.map(
+--     Parser.litChar("+"), 
+--     function (_)
+--       return function (t1,t2) 
+--         return { "+", t1, t2 } 
+--       end 
+--     end
+--    )
+-- ).parse("1+2+3rest")
+function chainOperandsl(termParser,opParser)
+	local function rest(term1)
+		return oneOf(
+			{
+				andThen(opParser, function (op)
+					return andThen(termParser, function (term2)
+						return rest(op(term1,term2))
+					end)
+				end),
+				new(function (input) return Result.ok(term1,input) end)
+			}
+		)
+	end
+	return andThen(termParser,rest)
+end
+
 --- A parser that matches a char based on a predicate that looks at the char and returns an error
 -- or not. If there is no error, this parser returns that character.
 -- @param fn: A function from string -> (string or nil)

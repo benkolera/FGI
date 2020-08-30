@@ -46,6 +46,25 @@ describe("lsParser", function()
 		end)
 	end)
 
+	describe("chainOperandsl", function ()
+		it("should chain operands left associatively",function ()
+			assert.are.same(
+				Parser.Result.ok({"+",{"+",1,2},3},"rest"),
+				Parser.chainOperandsl(
+					Parser.number(),
+					Parser.map(
+						Parser.litChar("+"), 
+						function (_)
+							return function (t1,t2) 
+								return { "+", t1, t2 } 
+							end 
+						end
+					)
+				).parse("1+2+3rest")
+			)
+		end)
+	end)
+
 	describe("number", function()
 		it("should parse digits but not die trailing non digits", function ()
 			local res = Parser.number().parse("123d12")
