@@ -1,0 +1,8 @@
+{
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"files.encoding": "utf8",
+	"editor.renderWhitespace": "all", 
+	"editor.rulers": [100],
+	"Lua.runtime.version": "Lua 5.1"
+}

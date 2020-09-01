@@ -43,3 +43,4 @@ luac.out
 *.bak
 *.ffs_db
 *.md.backup
+.deployrc

@@ -13,7 +13,7 @@
 
 function onHover(bOnControl)
 	if not bOnControl then
-		TNBoxManager.fpUpdateControl();
+		SuccessRaiseBoxManager.fpUpdateControl();
 	end
 end
 
@@ -21,7 +21,7 @@ function onDrop(nXPos,nYPos,oDragData)
 	local sDragType = oDragData.getType();
 	if sDragType == "number" or
 			sDragType == "targetnumber" then
-		TNBoxManager.fpSetTN(oDragData.getNumberData(),oDragData.getDescription());
+		SuccessRaiseBoxManager.fpSetRaises(oDragData.getNumberData(),oDragData.getDescription());
 		return true;
 	end
 	return false;
