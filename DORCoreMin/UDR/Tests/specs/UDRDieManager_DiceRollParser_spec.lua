@@ -4,6 +4,7 @@ describe("DiceRollParser", function ()
 	requireFGModule("Parser","lsUDRParser")
 	requireFGModule("ArrayUtils","lsUDRArrayUtils")
 	requireFGModule("DieManager","lsUDRDieManager")
+	requireFGModule("Validation","lsUDRValidation")
 
 	it("should evaluate a dice pool",function ()
 		local e = DieManager.DiceRollEvaluator.dicePool(2,4,false,nil,nil,nil)
@@ -80,6 +81,7 @@ describe("DiceRollEvaluation", function ()
 	requireFGModule("ArrayUtils","lsUDRArrayUtils")
 	requireFGModule("Parser","lsUDRParser")
 	requireFGModule("DieManager","lsUDRDieManager")
+	requireFGModule("Validation","lsUDRValidation")
 
 	it("Results should add", function ()
 		local PoolResult = DieManager.PoolResult
@@ -279,5 +281,133 @@ describe("DiceRollEvaluation", function ()
 				{ type="d12", result = 5 }
 			})
 		)
+	end)
+
+	describe("fromDesktop", function ()
+		require("mocks.Debug")
+		local DieResult = DieManager.DieResult
+		local DiceRollEvaluator = DieManager.DiceRollEvaluator
+		it ("single dice parses to evaluator OK", function ()
+			assert.are.same(
+				{ 
+					type = "dicePool",
+					num = 1,
+					sides = 6,
+					isExploding = false,
+					queued = {},
+					pending = {DieResult.new("d6")},
+					results = {},
+				},
+				DiceRollEvaluator.fromDesktop({"d6"},false,nil,nil,nil)
+			)
+		end)
+		it ("many dice parses to evaluator OK", function ()
+			assert.are.same(
+				{ 
+					type = "dicePool",
+					num = 3,
+					sides = 6,
+					isExploding = false,
+					queued = {},
+					pending = ArrayUtils.repeatN(3,DieResult.new("d6")),
+					results = {},
+				},
+				DiceRollEvaluator.fromDesktop({"d6","d6","d6"},false,nil,nil,nil)
+			)
+		end)
+		it ("exploding, keep, targets work", function ()
+			assert.are.same(
+				{ 
+					type = "dicePool",
+					num = 3,
+					sides = 6,
+					isExploding = true,
+					keepNum = 1,
+					target = {
+						type = "poolTarget",
+						targetNum = 7,
+						raiseNum = 5
+					},
+					queued = {},
+					pending = ArrayUtils.repeatN(3,DieResult.new("d6")),
+					results = {},
+				},
+				DiceRollEvaluator.fromDesktop(
+					{"d6","d6","d6"},
+					true,
+					{ keepNum = 1, highest = true },
+					{ targetNum = 7, above = true }, 
+					5
+				)
+			)
+		end)
+		it ("multiple sets of dice parse contiguously", function ()
+			assert.are.same(
+				{
+					type = "add",
+					doneEvaluators = {},
+					pendingEvaluators = {
+						{
+							type = "add",
+							doneEvaluators = {},
+							pendingEvaluators = {
+								{
+									type = "dicePool",
+									num = 3,
+									sides = 6,
+									isExploding = true,
+									keepNum = 1,
+									target = {
+										type = "poolTarget",
+										targetNum = 7,
+										raiseNum = 5
+									},
+									queued = {},
+									pending = ArrayUtils.repeatN(3,DieResult.new("d6")),
+									results = {},
+								},
+								{
+									type = "dicePool",
+									num = 1,
+									sides = 8,
+									isExploding = true,
+									keepNum = 1,
+									target = {
+										type = "poolTarget",
+										targetNum = 7,
+										raiseNum = 5
+									},
+									queued = {},
+									pending = {DieResult.new("d8")},
+									results = {},
+								},
+							}
+						},
+						{
+							type = "dicePool",
+							num = 1,
+							sides = 6,
+							isExploding = true,
+							keepNum = 1,
+							target = {
+								type = "poolTarget",
+								targetNum = 7,
+								raiseNum = 5
+							},
+							queued = {},
+							pending = {DieResult.new("d6")},
+							results = {},
+						},
+					}
+				},
+				DiceRollEvaluator.fromDesktop(
+					{"d6","d6","d6","d8","d6"},
+					true,
+					{ keepNum = 1, highest = true },
+					{ targetNum = 7, above = true }, 
+					5
+				)
+			)
+		end)
 	end)
 end)

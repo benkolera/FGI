@@ -7,9 +7,18 @@
 -- > repeatN(5,"d6")
 -- {"d6","d6","d6","d6","d6"}
 function repeatN(n,x)
+	return repeatNLazy(n, function () return x end)
+end
+
+--- Builds an array of n elements which are all the result of the fn
+-- @param n: A number
+-- @param fn: A function that will generate the input
+-- @usage
+-- > repeatN(5,function () DieResult.new("d6"))
+function repeatNLazy(n,fn)
 	local out = {}
 	for i=1, n do
-		out[i] = x
+		out[i] = fn()
 	end
 	return out
 end

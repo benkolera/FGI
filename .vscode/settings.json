@@ -3,18 +3,6 @@
 	"editor.detectIndentation": false,
 	"files.encoding": "utf8",
 	"editor.renderWhitespace": "all", 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	"editor.rulers": [100],
 	"Lua.runtime.version": "Lua 5.1"
-=======
->>>>>>> Pre-rewrite commit. Lets keep this around a bit
-=======
-	"editor.rulers": [100]
->>>>>>> Ok, a barely working new setup
-=======
-	"editor.rulers": [100],
-	"Lua.runtime.version": "Lua 5.1"
->>>>>>> Refactor things into modules!
 }

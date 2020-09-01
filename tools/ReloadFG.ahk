@@ -11,4 +11,4 @@ if WinExist("ahk_class HORIZON")
 F2::
 if WinExist("ahk_class HORIZON")
     WinActivate 
-    Send, /die add(3d6{!},5d8{!}k){ENTER}
+    Send, /die 3d6{!}+5d8{!}k{ENTER}

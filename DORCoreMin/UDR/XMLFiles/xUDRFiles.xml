@@ -25,5 +25,6 @@
 	<script name="TNBoxManager" file="UDR/Scripts/lsUDRTNBoxManager.lua" />
 	<script name="UDRFManager" file="UDR/Scripts/lsUDRFManager.lua" />
 	<script name="ArrayUtils" file="UDR/Scripts/lsUDRArrayUtils.lua" />
+	<script name="Validation" file="UDR/Scripts/lsUDRValidation.lua" />
 	<script name="Parser" file="UDR/Scripts/lsUDRParser.lua" />
 </root>

@@ -3,6 +3,7 @@ describe("lsUDRDieManager", function()
 	requireFGModule("ArrayUtils","lsUDRArrayUtils")
 	requireFGModule("Parser","lsUDRParser")
 	requireFGModule("DieManager","lsUDRDieManager")
+	requireFGModule("Validation","lsUDRValidation")
 	require("mocks.StringManager")
 	require("mocks.Debug")
 
